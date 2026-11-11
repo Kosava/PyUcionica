@@ -1,0 +1,156 @@
+{
+  "id": "m03_l06",
+  "goal": "Spojićeš sve što si do sada naučio — unos, konverziju, operatore i uslove — u pravi mali program: kalkulator.",
+  "explanation": [
+    "Ovo je **praktična lekcija**. Nema novih pojmova — cilj je da sve što znaš povežeš u jedan program koji zaista nešto radi.",
+    "Kalkulator treba da:\n- pita za prvi broj,\n- pita za operaciju (+, -, *, /),\n- pita za drugi broj,\n- izračuna i ispiše rezultat.",
+    "Brojeve učitavamo sa `float()`, da bi kalkulator radio i sa decimalnim brojevima (npr. 2.5). Operacija ostaje tekst, pa je poredimo sa `==`: `if operacija == \"+\":`.",
+    "Dobar program predviđa i **neispravan unos**:\n- deljenje nulom nije moguće — proveri da drugi broj nije 0 pre deljenja (ugnježdeni if!),\n- ako korisnik upiše nepostojeću operaciju, ispiši jasnu poruku u else delu.",
+    "> Kako se pravi veći program? Ne piši sve odjednom. Napiši prvi deo (učitavanje), pokreni, proveri. Dodaj sabiranje, pokreni, proveri. Pa ostale operacije... Mali koraci = manje grešaka, a svaka greška se lako pronađe."
+  ],
+  "terms": [
+    {
+      "term": "Neispravan unos",
+      "definition": "Unos sa kojim program ne može normalno da radi (npr. deljenje nulom). Dobar program ga prepoznaje i javlja jasnu poruku."
+    }
+  ],
+  "example_code": "# Mali program za proveru parnosti — vežba pre kalkulatora.\nbroj = int(input(\"Unesi ceo broj: \"))\n\nif broj == 0:\n    print(\"Nula je paran broj.\")\nelif broj % 2 == 0:\n    print(f\"{broj} je paran broj.\")\nelse:\n    print(f\"{broj} je neparan broj.\")\n",
+  "example_steps": [
+    {
+      "code": "broj = int(input(\"Unesi ceo broj: \"))",
+      "explanation": "Unos + konverzija u jednoj liniji."
+    },
+    {
+      "code": "elif broj % 2 == 0:",
+      "explanation": "Operator ostatka i poređenje zajedno: ostatak 0 pri deljenju sa 2 znači paran broj."
+    },
+    {
+      "code": "print(f\"{broj} je paran broj.\")",
+      "explanation": "f-string za lep ispis. Isti obrazac koristićeš i u kalkulatoru."
+    }
+  ],
+  "exercise": {
+    "type": "app",
+    "description": "Napravi kalkulator. Program redom pita za prvi broj, operaciju i drugi broj (to je već napisano), a zatim:\n\n- za `+`, `-`, `*` i `/` ispisuje `Rezultat: <vrednost>` (npr. `Rezultat: 10.0`),\n- za deljenje nulom ispisuje `Deljenje nulom nije moguće.`\n- za bilo koju drugu operaciju ispisuje `Nepoznata operacija.`\n\nProgram će biti proveren sa šest različitih unosa, uključujući deljenje nulom i nepostojeću operaciju.",
+    "starter_code": "a = float(input(\"Prvi broj: \"))\noperacija = input(\"Operacija (+, -, *, /): \")\nb = float(input(\"Drugi broj: \"))\n\n# Proveri operaciju i ispiši rezultat.\n",
+    "expected_output_preview": "Prvi broj: 9\nOperacija (+, -, *, /): /\nDrugi broj: 2\nRezultat: 4.5",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^\\s*elif\\b",
+          "message": "Operacije se razlikuju pomoću if/elif.",
+          "regex": true,
+          "min_count": 3
+        },
+        {
+          "pattern": "^\\s*else\\s*:",
+          "message": "Postoji else za nepoznatu operaciju.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "6\n+\n4",
+          "output_contains": [
+            "Rezultat: 10.0"
+          ]
+        },
+        {
+          "stdin": "7\n-\n10",
+          "output_contains": [
+            "Rezultat: -3.0"
+          ]
+        },
+        {
+          "stdin": "2.5\n*\n4",
+          "output_contains": [
+            "Rezultat: 10.0"
+          ]
+        },
+        {
+          "stdin": "9\n/\n2",
+          "output_contains": [
+            "Rezultat: 4.5"
+          ]
+        },
+        {
+          "stdin": "5\n/\n0",
+          "output_contains": [
+            "Deljenje nulom nije moguće."
+          ],
+          "output_not_contains": [
+            "Rezultat"
+          ],
+          "name": "deljenje nulom"
+        },
+        {
+          "stdin": "3\n%\n2",
+          "output_contains": [
+            "Nepoznata operacija."
+          ],
+          "output_not_contains": [
+            "Rezultat"
+          ],
+          "name": "nepoznata operacija"
+        }
+      ]
+    },
+    "hints": [
+      "Počni sa sabiranjem: if operacija == \"+\": i ispod print(\"Rezultat:\", a + b). Pokreni i proveri pre nego što dodaš ostalo.",
+      "Ostale operacije dodaj sa elif. Za deljenje, unutar elif operacija == \"/\": stavi ugnježdeni if b == 0: ... else: ...",
+      "Na kraju dodaj:\nelse:\n    print(\"Nepoznata operacija.\")"
+    ],
+    "solution": "a = float(input(\"Prvi broj: \"))\noperacija = input(\"Operacija (+, -, *, /): \")\nb = float(input(\"Drugi broj: \"))\n\n# Proveri operaciju i ispiši rezultat.\nif operacija == \"+\":\n    print(\"Rezultat:\", a + b)\nelif operacija == \"-\":\n    print(\"Rezultat:\", a - b)\nelif operacija == \"*\":\n    print(\"Rezultat:\", a * b)\nelif operacija == \"/\":\n    if b == 0:\n        print(\"Deljenje nulom nije moguće.\")\n    else:\n        print(\"Rezultat:\", a / b)\nelse:\n    print(\"Nepoznata operacija.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Zašto se brojevi u kalkulatoru učitavaju sa float() a ne sa int()?",
+      "options": [
+        "Da bi radio i sa decimalnim brojevima",
+        "Jer je float brži",
+        "Jer int ne radi sa input()"
+      ],
+      "correct": 0,
+      "explanation": "int(\"2.5\") bi dao ValueError; float prihvata i cele i decimalne brojeve."
+    },
+    {
+      "question": "Kada treba proveriti da li je delilac nula?",
+      "options": [
+        "Posle deljenja",
+        "Pre deljenja",
+        "Nije potrebno"
+      ],
+      "correct": 1,
+      "explanation": "Deljenje nulom izaziva grešku, pa se proverava unapred."
+    },
+    {
+      "question": "Kako se najlakše piše veći program?",
+      "options": [
+        "Sve odjednom, pa pokrenuti na kraju",
+        "U malim koracima, uz pokretanje posle svakog",
+        "Kopiranjem sa interneta"
+      ],
+      "correct": 1,
+      "explanation": "Mali koraci olakšavaju pronalaženje grešaka."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "a = 9.0\nb = 2.0\nop = \"/\"\nif op == \"+\":\n    print(a + b)\nelif op == \"/\":\n    print(a / b)\n",
+      "options": [
+        "4.5",
+        "4",
+        "11.0"
+      ],
+      "correct": 0,
+      "explanation": "op je \"/\", pa se izvršava deljenje: 9.0 / 2.0 = 4.5."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "op = \"%\"\nif op == \"+\":\n    print(\"sabiranje\")\nelif op == \"-\":\n    print(\"oduzimanje\")\nelse:\n    print(\"nepoznato\")\n",
+      "answer": "nepoznato",
+      "explanation": "Nijedan uslov nije tačan, pa se izvršava else."
+    }
+  ]
+}

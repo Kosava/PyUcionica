@@ -1,0 +1,144 @@
+{
+  "id": "m02_l06",
+  "goal": "Naučićeš da pomoću funkcije input() pitaš korisnika za podatke i da sa tim podacima radiš u programu.",
+  "explanation": [
+    "Do sada su svi podaci bili upisani u kod. Program postaje mnogo zanimljiviji kada može da **pita korisnika**. Za to služi funkcija **input()**.",
+    "Kada Python stigne do `input()`, program **stane i čeka** da korisnik nešto upiše i pritisne Enter. Ono što je korisnik upisao funkcija **vraća** — kao da je na njenom mestu u kodu napisana ta vrednost. Zato se rezultat obično čuva u promenljivu: `ime = input()`.",
+    "U zagrade možeš staviti tekst pitanja, koji se ispisuje pre čekanja: `ime = input(\"Kako se zoveš? \")`. Ostavi razmak na kraju pitanja, da odgovor ne bude zalepljen za upitnik.",
+    "U ovoj aplikaciji, kada program pozove input(), polje **Unos za program** ispod rezultata postaje žuto. Upiši odgovor u to polje i pritisni Enter.",
+    "**Najvažnije pravilo:** input() UVEK vraća tekst (str), čak i kada korisnik upiše broj. Ako želiš da računaš, pretvori odgovor u broj — to si naučio u prethodnoj lekciji:\n`godine = int(input(\"Koliko imaš godina? \"))`\nOvde se prvo izvrši input(), a njegov rezultat odmah se preda funkciji int().",
+    "> Kada klikneš „Proveri zadatak“, aplikacija sama upisuje unos umesto tebe, i to nekoliko puta sa različitim vrednostima. Tako se proverava da li program radi za bilo koji unos, a ne samo za jedan."
+  ],
+  "terms": [
+    {
+      "term": "input()",
+      "definition": "Funkcija koja čeka da korisnik nešto upiše i vraća upisani tekst."
+    },
+    {
+      "term": "Povratna vrednost",
+      "definition": "Vrednost koju funkcija vraća posle izvršavanja, npr. tekst koji je korisnik upisao."
+    },
+    {
+      "term": "Korisnički unos",
+      "definition": "Podaci koje korisnik upisuje tastaturom dok program radi."
+    }
+  ],
+  "example_code": "ime = input(\"Kako se zoveš? \")\nprint(\"Drago mi je, \" + ime + \"!\")\n\ngodina_rodjenja = int(input(\"Koje godine si rođen/a? \"))\nprint(\"U 2030. godini imaćeš\", 2030 - godina_rodjenja, \"godina.\")\n",
+  "example_steps": [
+    {
+      "code": "ime = input(\"Kako se zoveš? \")",
+      "explanation": "Ispisuje pitanje i čeka. Ono što upišeš postaje vrednost promenljive ime."
+    },
+    {
+      "code": "print(\"Drago mi je, \" + ime + \"!\")",
+      "explanation": "ime je tekst, pa se može spojiti sa drugim tekstom."
+    },
+    {
+      "code": "godina_rodjenja = int(input(\"Koje godine si rođen/a? \"))",
+      "explanation": "Odgovor se odmah pretvara u ceo broj, da bi moglo da se računa."
+    },
+    {
+      "code": "print(\"U 2030. godini imaćeš\", 2030 - godina_rodjenja, \"godina.\")",
+      "explanation": "Račun se izvršava unutar print-a. Pokreni primer i probaj različite godine."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Dopuni program tako da:\n\n- pita korisnika za ime (to je već urađeno),\n- pita korisnika koliko ima godina i odgovor pretvori u ceo broj,\n- ispiše `Zdravo, <ime>!`\n- ispiše `Za 10 godina imaćeš <godine + 10> godina.`\n\nPrimer: za ime Ana i 25 godina, program ispisuje `Zdravo, Ana!` i `Za 10 godina imaćeš 35 godina.` Pokreni program i probaj ga sa svojim podacima pre provere.",
+    "starter_code": "# Pitaj korisnika za ime.\nime = input(\"Kako se zoveš? \")\n\n# Pitaj za godine i pretvori odgovor u ceo broj.\n\n# Ispiši pozdrav.\n\n# Ispiši koliko će godina imati za 10 godina.\n",
+    "expected_output_preview": "Kako se zoveš? Ana\nKoliko imaš godina? 25\nZdravo, Ana!\nZa 10 godina imaćeš 35 godina.",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "input(",
+          "message": "Program dva puta koristi input().",
+          "min_count": 2
+        },
+        {
+          "pattern": "int(",
+          "message": "Godine se pretvaraju u ceo broj pomoću int()."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "Ana\n25",
+          "output_contains": [
+            "Zdravo, Ana!",
+            "imaćeš 35 godina"
+          ]
+        },
+        {
+          "stdin": "Marko\n40",
+          "output_contains": [
+            "Zdravo, Marko!",
+            "imaćeš 50 godina"
+          ]
+        },
+        {
+          "stdin": "Jovana\n7",
+          "output_contains": [
+            "Zdravo, Jovana!",
+            "imaćeš 17 godina"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Druga linija koda liči na prvu, samo se odgovor pretvara u broj: godine = int(input(\"Koliko imaš godina? \"))",
+      "Pozdrav se sastavlja spajanjem: print(\"Zdravo, \" + ime + \"!\")",
+      "Za poslednji red koristi zareze u print-u: print(\"Za 10 godina imaćeš\", godine + 10, \"godina.\")"
+    ],
+    "solution": "# Pitaj korisnika za ime.\nime = input(\"Kako se zoveš? \")\n\n# Pitaj za godine i pretvori odgovor u ceo broj.\ngodine = int(input(\"Koliko imaš godina? \"))\n\n# Ispiši pozdrav.\nprint(\"Zdravo, \" + ime + \"!\")\n\n# Ispiši koliko će godina imati za 10 godina.\nprint(\"Za 10 godina imaćeš\", godine + 10, \"godina.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Kog tipa je vrednost koju vraća input()?",
+      "options": [
+        "int",
+        "str",
+        "Zavisi od toga šta korisnik upiše"
+      ],
+      "correct": 1,
+      "explanation": "input() uvek vraća tekst. Za brojeve ga treba pretvoriti."
+    },
+    {
+      "question": "Korisnik upiše 5 na x = input(). Šta ispisuje print(x + x)?",
+      "options": [
+        "10",
+        "55",
+        "Grešku"
+      ],
+      "correct": 1,
+      "explanation": "x je tekst \"5\", pa se spaja: 55."
+    },
+    {
+      "question": "Kako se ispravno učitava ceo broj?",
+      "options": [
+        "int(input())",
+        "input(int())",
+        "input().int"
+      ],
+      "correct": 0,
+      "explanation": "Prvo input() vrati tekst, pa ga int() pretvori u broj."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "x = \"5\"\nprint(x * 2)\n",
+      "options": [
+        "10",
+        "55",
+        "Greška"
+      ],
+      "correct": 1,
+      "explanation": "x je tekst (kao što input() uvek vraća tekst), pa se ponavlja: 55."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "x = \"3\"\ny = int(x)\nprint(x + x)\nprint(y + y)\n",
+      "answer": "33\n6",
+      "explanation": "x je tekst, pa se spaja: 33. y je broj, pa se sabira: 6."
+    }
+  ]
+}

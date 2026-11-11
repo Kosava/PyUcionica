@@ -1,0 +1,26 @@
+# pyqt6_learning_studio/pyproject.toml
+# Metapodaci projekta i podešavanja alata.
+#
+# Aplikacija se NE instalira pomoću pip-a: paketi config/, core/, ui/... imaju
+# opšta imena koja bi se sudarila sa drugim bibliotekama u site-packages.
+# Načini instalacije su opisani u README.md (pokretanje iz izvornog koda,
+# Arch paket iz packaging/arch, ili PyInstaller paket iz packaging/).
+
+[project]
+name = "pyqt6-learning-studio"
+version = "0.7.0"
+description = "Interaktivna desktop aplikacija za učenje Pythona i PyQt6 za potpune početnike (na srpskom)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["PyQt6>=6.5"]
+
+[project.optional-dependencies]
+editor = ["PyQt6-QScintilla>=2.14"]
+dev = ["pytest>=8.0", "pytest-cov", "pyinstaller>=6.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:cacheprovider"
+# Ako se neki test „zaglavi“ (npr. modalni dijalog), posle 60 s ispisuje se gde stoji.
+faulthandler_timeout = 60
+filterwarnings = ["error::ResourceWarning"]

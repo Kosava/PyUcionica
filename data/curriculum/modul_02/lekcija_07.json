@@ -1,0 +1,135 @@
+{
+  "id": "m02_l07",
+  "goal": "Naučićeš da pomoću f-stringova lako ubacuješ vrednosti u tekst i da broj decimala prikazuješ onako kako želiš.",
+  "explanation": [
+    "Spajanje teksta znakom + i str() radi, ali brzo postaje nepregledno: `\"Ime: \" + ime + \", godine: \" + str(godine)`. Postoji mnogo lakši način — **f-string**.",
+    "F-string je tekst ispred čijeg početnog navodnika stoji slovo **f**. Unutar njega, sve što staviš u **vitičaste zagrade** `{ }` Python izračuna i ubaci u tekst: `f\"Ime: {ime}, godine: {godine}\"`. Ne treba str(), ne treba +.",
+    "U vitičastim zagradama može stajati i račun ili poziv metode: `f\"Za 5 godina: {godine + 5}\"`, `f\"{ime.upper()}\"`.",
+    "Posle dvotačke unutar zagrada možeš zadati **format** — kako vrednost da izgleda. Najčešće se koristi broj decimala: `{cena:.2f}` znači „decimalni broj sa tačno 2 decimale“. Tako 259 postaje `259.00`, a 3.14159 postaje `3.14` (zaokruženo).",
+    "> Ako zaboraviš slovo f ispred navodnika, Python će ispisati vitičaste zagrade doslovno: {ime}. To je česta greška — prvo proveri da li slovo f postoji."
+  ],
+  "terms": [
+    {
+      "term": "f-string",
+      "definition": "Tekst sa slovom f ispred navodnika, u koji se ubacuju vrednosti pomoću { }."
+    },
+    {
+      "term": "Vitičaste zagrade { }",
+      "definition": "Mesto u f-stringu gde Python ubacuje vrednost promenljive ili rezultat računa."
+    },
+    {
+      "term": "Format :.2f",
+      "definition": "Prikazuje decimalni broj sa tačno dve decimale, uz zaokruživanje."
+    }
+  ],
+  "example_code": "ime = \"Ana\"\ngodine = 25\nprint(f\"{ime} ima {godine} godina.\")\nprint(f\"Za 5 godina imaće {godine + 5}.\")\n\npi = 3.14159\nprint(f\"Pi zaokruženo: {pi:.2f}\")\ncena = 199\nprint(f\"Cena: {cena:.2f} din\")\nprint(\"Bez slova f: {ime}\")\n",
+  "example_steps": [
+    {
+      "code": "print(f\"{ime} ima {godine} godina.\")",
+      "explanation": "Vrednosti se ubacuju na mesta vitičastih zagrada: Ana ima 25 godina."
+    },
+    {
+      "code": "print(f\"Za 5 godina imaće {godine + 5}.\")",
+      "explanation": "U zagradama može biti i račun: 30."
+    },
+    {
+      "code": "print(f\"Pi zaokruženo: {pi:.2f}\")",
+      "explanation": "Format .2f zaokružuje na dve decimale: 3.14."
+    },
+    {
+      "code": "print(f\"Cena: {cena:.2f} din\")",
+      "explanation": "I ceo broj može da se prikaže sa decimalama: 199.00."
+    },
+    {
+      "code": "print(\"Bez slova f: {ime}\")",
+      "explanation": "Bez f ispred navodnika, zagrade se ispisuju doslovno."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Dopuni program tako da izračuna ukupnu cenu (cena puta količina) i ispiše je pomoću **f-stringa** u obliku:\n\n`2 x Mleko = 259.00 din`\n\nUkupna cena mora biti prikazana sa tačno dve decimale (format `:.2f`). Rezultat ne upisuj ručno.",
+    "starter_code": "proizvod = \"Mleko\"\ncena = 129.5\nkolicina = 2\n\n# Izračunaj ukupnu cenu.\n\n# Ispiši račun pomoću f-stringa.\n",
+    "expected_output_preview": "2 x Mleko = 259.00 din",
+    "criteria": {
+      "expected_output": "2 x Mleko = 259.00 din",
+      "code_contains": [
+        {
+          "pattern": "\\bf[\\\"']",
+          "message": "Ispis koristi f-string (slovo f ispred navodnika).",
+          "regex": true
+        },
+        {
+          "pattern": ":.2f",
+          "message": "Cena se prikazuje sa dve decimale (:.2f)."
+        },
+        {
+          "pattern": "{proizvod}",
+          "message": "Naziv proizvoda se ubacuje pomoću {proizvod}."
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "259",
+          "message": "Ukupna cena se računa, a ne upisuje ručno."
+        }
+      ]
+    },
+    "hints": [
+      "Prvo izračunaj: ukupno = cena * kolicina",
+      "F-string počinje ovako: f\"{kolicina} x {proizvod} = ...",
+      "Ceo red: print(f\"{kolicina} x {proizvod} = {ukupno:.2f} din\")"
+    ],
+    "solution": "proizvod = \"Mleko\"\ncena = 129.5\nkolicina = 2\n\n# Izračunaj ukupnu cenu.\nukupno = cena * kolicina\n\n# Ispiši račun pomoću f-stringa.\nprint(f\"{kolicina} x {proizvod} = {ukupno:.2f} din\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta ispisuje print(f\"{2 + 3}\")?",
+      "options": [
+        "2 + 3",
+        "5",
+        "{2 + 3}"
+      ],
+      "correct": 1,
+      "explanation": "Sadržaj vitičastih zagrada se izračunava."
+    },
+    {
+      "question": "Šta ispisuje print(f\"{7.456:.1f}\")?",
+      "options": [
+        "7.4",
+        "7.5",
+        "7.456"
+      ],
+      "correct": 1,
+      "explanation": "Format .1f zaokružuje na jednu decimalu: 7.5."
+    },
+    {
+      "question": "Šta ispisuje print(\"{x}\") ako je x = 3?",
+      "options": [
+        "3",
+        "{x}",
+        "Grešku"
+      ],
+      "correct": 1,
+      "explanation": "Bez slova f, to je običan tekst."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "c = 2.5\nprint(f\"{c:.2f}\")\n",
+      "options": [
+        "2.5",
+        "2.50",
+        "{c:.2f}"
+      ],
+      "correct": 1,
+      "explanation": "Format .2f prikazuje tačno dve decimale."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "ime = \"Mia\"\ngod = 7\nprint(f\"{ime} ima {god + 1}\")\nprint(\"{ime}\")\n",
+      "answer": "Mia ima 8\n{ime}",
+      "explanation": "U f-stringu se izrazi u zagradama izračunaju. Bez slova f, zagrade se ispisuju doslovno."
+    }
+  ]
+}

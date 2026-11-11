@@ -1,0 +1,144 @@
+{
+  "id": "m05_l05",
+  "goal": "Naučićeš kratke funkcije bez imena (lambda) i funkcije koje primaju druge funkcije: sorted sa key, filter i map.",
+  "explanation": [
+    "U Pythonu je funkcija vrednost kao i svaka druga: možeš je dodeliti promenljivoj ili predati drugoj funkciji. Funkcija koja prima (ili vraća) drugu funkciju zove se **funkcija višeg reda**.",
+    "**sorted(lista, key=funkcija)** sortira prema vrednosti koju funkcija vrati za svaki element. `sorted(reci, key=len)` sortira reči po dužini. Elementi sa istom vrednošću ostaju u originalnom redosledu.",
+    "Za kratku funkciju koja treba na jednom mestu, ne mora `def` — postoji **lambda**: `lambda x: x * 2` je funkcija koja prima x i vraća x * 2. Bez return-a: vraća se izraz posle dvotačke. Primer: `sorted(proizvodi, key=lambda p: p[1])` sortira torke po drugom elementu.",
+    "**filter(funkcija, lista)** zadržava samo elemente za koje funkcija vraća True: `filter(lambda n: n > 0, brojevi)`. **map(funkcija, lista)** primenjuje funkciju na svaki element: `map(lambda n: n * n, brojevi)`. Oba vraćaju poseban objekat — pretvori ga u listu sa `list(...)`.",
+    "> lambda je zgodna za kratke izraze. Čim logika postane duža od jednog reda, napiši običnu funkciju sa def — lakše se čita."
+  ],
+  "terms": [
+    {
+      "term": "lambda",
+      "definition": "Kratka funkcija bez imena: lambda x: x * 2."
+    },
+    {
+      "term": "Funkcija višeg reda",
+      "definition": "Funkcija koja prima drugu funkciju kao argument (sorted, filter, map)."
+    },
+    {
+      "term": "key",
+      "definition": "Argument funkcije sorted: funkcija po čijem rezultatu se sortira."
+    },
+    {
+      "term": "filter / map",
+      "definition": "filter zadržava elemente za koje je uslov tačan; map menja svaki element."
+    }
+  ],
+  "example_code": "reci = [\"prozor\", \"a\", \"kuća\", \"sto\"]\nprint(sorted(reci))\nprint(sorted(reci, key=len))\n\nproizvodi = [(\"hleb\", 65), (\"sir\", 450), (\"mleko\", 129)]\nnajjeftiniji = sorted(proizvodi, key=lambda p: p[1])\nprint(najjeftiniji[0])\n\nbrojevi = [3, -1, 4, -5, 2]\npozitivni = list(filter(lambda n: n > 0, brojevi))\nkvadrati = list(map(lambda n: n * n, pozitivni))\nprint(pozitivni, kvadrati)\n",
+  "example_steps": [
+    {
+      "code": "print(sorted(reci, key=len))",
+      "explanation": "Za svaku reč poziva se len, a sortira se po dobijenim dužinama: a, sto, kuća, prozor."
+    },
+    {
+      "code": "sorted(proizvodi, key=lambda p: p[1])",
+      "explanation": "lambda vraća cenu (drugi element torke), pa se sortira po ceni."
+    },
+    {
+      "code": "list(filter(lambda n: n > 0, brojevi))",
+      "explanation": "Ostaju samo pozitivni: [3, 4, 2]."
+    },
+    {
+      "code": "list(map(lambda n: n * n, pozitivni))",
+      "explanation": "Svaki se kvadrira: [9, 16, 4]."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava reči (u jednom redu, odvojene razmacima) i ispisuje:\n\n- `Po dužini: …` — reči sortirane po dužini (`sorted` sa `key`), spojene sa `\", \"`; reči iste dužine ostaju redom kojim su unete,\n- `Duže od 3: …` — samo reči duže od 3 slova (`filter` sa `lambda`), u originalnom redosledu.",
+    "starter_code": "reci = input(\"Reči: \").split()\n\n# Sortiraj po dužini i izdvoj reči duže od 3 slova.\n",
+    "expected_output_preview": "Reči: prozor a kuća sto\nPo dužini: a, sto, kuća, prozor\nDuže od 3: prozor, kuća",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "lambda",
+          "message": "Koristi se lambda."
+        },
+        {
+          "pattern": "sorted\\(.*key\\s*=",
+          "message": "Sortira se pomoću sorted sa key.",
+          "regex": true
+        },
+        {
+          "pattern": "filter(",
+          "message": "Reči se izdvajaju pomoću filter."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "prozor a kuća sto",
+          "output_contains": [
+            "Po dužini: a, sto, kuća, prozor",
+            "Duže od 3: prozor, kuća"
+          ]
+        },
+        {
+          "stdin": "dan noć jutro ne",
+          "output_contains": [
+            "Po dužini: ne, dan, noć, jutro",
+            "Duže od 3: jutro"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "po_duzini = sorted(reci, key=len)",
+      "duze = list(filter(lambda r: len(r) > 3, reci))",
+      "Ispis: print(\"Po dužini:\", \", \".join(po_duzini)) i slično za duže reči."
+    ],
+    "solution": "reci = input(\"Reči: \").split()\n\n# Sortiraj po dužini i izdvoj reči duže od 3 slova.\npo_duzini = sorted(reci, key=len)\nduze = list(filter(lambda r: len(r) > 3, reci))\nprint(\"Po dužini:\", \", \".join(po_duzini))\nprint(\"Duže od 3:\", \", \".join(duze))\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta vraća lambda x: x + 1 kada se pozove sa 4?",
+      "options": [
+        "4",
+        "5",
+        "Ništa"
+      ],
+      "correct": 1,
+      "explanation": "Vraća se izraz posle dvotačke."
+    },
+    {
+      "question": "Šta radi filter(f, lista)?",
+      "options": [
+        "Menja svaki element",
+        "Zadržava elemente za koje f vraća True",
+        "Sortira listu"
+      ],
+      "correct": 1,
+      "explanation": "Za menjanje služi map."
+    },
+    {
+      "question": "Kada je bolje koristiti def umesto lambda?",
+      "options": [
+        "Uvek",
+        "Kada je logika duža od jednog izraza",
+        "Nikad"
+      ],
+      "correct": 1,
+      "explanation": "lambda je za kratke izraze."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(sorted([\"ccc\", \"a\", \"bb\"], key=len))\n",
+      "options": [
+        "['a', 'bb', 'ccc']",
+        "['ccc', 'bb', 'a']",
+        "['a', 'ccc', 'bb']"
+      ],
+      "correct": 0,
+      "explanation": "Sortira se po dužini: 1, 2, 3."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "brojevi = [1, 2, 3, 4]\nprint(list(map(lambda n: n * 10, brojevi)))\nprint(list(filter(lambda n: n % 2 == 0, brojevi)))\n",
+      "answer": "[10, 20, 30, 40]\n[2, 4]",
+      "explanation": "map množi svaki, filter zadržava parne."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "m02_l04",
+  "goal": "Upoznaćeš logičke vrednosti True i False (tip bool) i videćeš kako nastaju kao odgovor na pitanje „da ili ne“.",
+  "explanation": [
+    "Programi stalno postavljaju pitanja na koja je odgovor **da** ili **ne**: Da li je korisnik punoletan? Da li je lozinka tačna? Da li je korpa prazna? Za takve odgovore postoji tip **bool** (logička vrednost).",
+    "Tip bool ima samo dve vrednosti: **True** (tačno, da) i **False** (netačno, ne). Pišu se bez navodnika i obavezno velikim početnim slovom — `true` ili `TRUE` Python ne prepoznaje.",
+    "Logičku vrednost možeš upisati direktno: `ima_kartu = True`. Mnogo češće, ona nastaje kao rezultat **poređenja**. Na primer `godine >= 18` je pitanje „da li su godine veće ili jednake 18?“, a odgovor je True ili False. Sva poređenja detaljno obrađujemo u Modulu 3; za sada su dovoljni `>` (veće), `<` (manje) i `>=` (veće ili jednako).",
+    "Rezultat poređenja može se sačuvati u promenljivu: `punoletan = godine >= 18`. Python prvo izračuna desnu stranu (True ili False), pa je stavi u promenljivu.",
+    "Reč `in` proverava da li se jedan tekst nalazi unutar drugog: `\"Py\" in \"Python\"` daje True, a `\"Java\" in \"Python\"` daje False.",
+    "> Logičke vrednosti su temelj odlučivanja u programima. Uskoro ćeš pomoću naredbe if reći programu: „ako je ovo True, uradi jedno, a inače drugo“."
+  ],
+  "terms": [
+    {
+      "term": "bool",
+      "definition": "Tip za logičke vrednosti. Ima samo dve vrednosti: True i False."
+    },
+    {
+      "term": "True / False",
+      "definition": "Tačno / netačno. Pišu se velikim početnim slovom i bez navodnika."
+    },
+    {
+      "term": "Poređenje",
+      "definition": "Izraz koji upoređuje dve vrednosti, npr. 5 > 3. Rezultat je uvek True ili False."
+    },
+    {
+      "term": "in",
+      "definition": "Proverava da li se nešto nalazi unutar nečega: \"a\" in \"Ana\" je True."
+    }
+  ],
+  "example_code": "ima_kartu = True\nprint(ima_kartu)\nprint(type(ima_kartu))\n\nbodovi = 42\nprolaz = bodovi > 50\nprint(\"Prolaz:\", prolaz)\n\nprint(\"mleko\" in \"spisak: hleb, mleko, jaja\")\n",
+  "example_steps": [
+    {
+      "code": "ima_kartu = True",
+      "explanation": "Logička vrednost upisana direktno. Bez navodnika, sa velikim T."
+    },
+    {
+      "code": "print(type(ima_kartu))",
+      "explanation": "Ispisuje <class 'bool'>."
+    },
+    {
+      "code": "prolaz = bodovi > 50",
+      "explanation": "Pitanje: da li je 42 veće od 50? Nije, pa prolaz dobija vrednost False."
+    },
+    {
+      "code": "print(\"mleko\" in \"spisak: hleb, mleko, jaja\")",
+      "explanation": "Reč mleko postoji u tekstu, pa se ispisuje True."
+    }
+  ],
+  "exercise": {
+    "type": "complete",
+    "description": "U početnom kodu su tri prazna mesta označena sa `___`. Zameni ih tako da:\n\n- promenljiva `punoletan` dobije rezultat poređenja „godine su veće ili jednake 18“,\n- druga linija proveri da li se tekst \"Py\" nalazi u tekstu \"Python\" (koristi `in`),\n- treća linija ispiše tip promenljive `punoletan`.",
+    "starter_code": "godine = 20\npunoletan = ___\nprint(punoletan)\n\nprint(\"Py\" ___ \"Python\")\n\nprint(___)\n",
+    "expected_output_preview": "True\nTrue\n<class 'bool'>",
+    "criteria": {
+      "expected_output": "True\nTrue\n<class 'bool'>",
+      "code_contains": [
+        {
+          "pattern": "punoletan\\s*=\\s*godine\\s*>=\\s*18",
+          "message": "punoletan se računa poređenjem godine >= 18.",
+          "regex": true
+        },
+        {
+          "pattern": "[\\\"']Py[\\\"']\\s+in\\s+",
+          "message": "Koristi se reč in.",
+          "regex": true
+        },
+        {
+          "pattern": "type(punoletan)",
+          "message": "Tip se dobija funkcijom type(punoletan)."
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "___",
+          "message": "Sva prazna mesta (___) su popunjena."
+        }
+      ]
+    },
+    "hints": [
+      "Prvo prazno mesto: godine >= 18",
+      "Drugo prazno mesto je jedna reč koja znači „nalazi se u“: in",
+      "Treće prazno mesto: type(punoletan)"
+    ],
+    "solution": "godine = 20\npunoletan = godine >= 18\nprint(punoletan)\n\nprint(\"Py\" in \"Python\")\n\nprint(type(punoletan))\n"
+  },
+  "quiz": [
+    {
+      "question": "Koja vrednost je ispravno napisana logička vrednost?",
+      "options": [
+        "true",
+        "\"True\"",
+        "True"
+      ],
+      "correct": 2,
+      "explanation": "True se piše velikim slovom i bez navodnika; \"True\" bi bio tekst."
+    },
+    {
+      "question": "Šta je rezultat 3 > 8?",
+      "options": [
+        "True",
+        "False",
+        "5"
+      ],
+      "correct": 1,
+      "explanation": "3 nije veće od 8, pa je rezultat False."
+    },
+    {
+      "question": "Šta je rezultat \"a\" in \"Beograd\"?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "explanation": "Slovo a postoji u reči Beograd."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(5 > 2)\n",
+      "options": [
+        "True",
+        "False",
+        "5 > 2"
+      ],
+      "correct": 0,
+      "explanation": "5 je veće od 2, pa je rezultat poređenja True."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "x = 10\nprint(x >= 10)\nprint(\"y\" in \"Python\")\nprint(\"z\" in \"Python\")\n",
+      "answer": "True\nTrue\nFalse",
+      "explanation": "10 >= 10 je tačno; slovo y postoji u reči Python, a z ne postoji."
+    }
+  ]
+}

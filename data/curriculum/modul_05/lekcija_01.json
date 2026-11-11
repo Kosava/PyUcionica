@@ -1,0 +1,124 @@
+{
+  "id": "m05_l01",
+  "goal": "Naučićeš da praviš sopstvene funkcije pomoću def i da ih pozivaš, kako se isti kod ne bi prepisivao više puta.",
+  "explanation": [
+    "Već koristiš mnogo gotovih funkcija: print, input, len, range. **Funkcija** je imenovani blok koda koji radi jedan posao. Sada ćeš praviti svoje.",
+    "Funkcija se pravi (**definiše**) rečju **def**, imenom, zagradama i dvotačkom; ispod je uvučen blok — **telo** funkcije:\n`def pozdrav():`\n`    print(\"Zdravo!\")`\n`    print(\"Dobro došao.\")`",
+    "Definisanje **ne izvršava** telo! Telo se izvršava tek kada funkciju **pozoveš** — imenom i zagradama: `pozdrav()`. Možeš je pozvati koliko god puta želiš.",
+    "Funkcija mora biti definisana **pre** prvog poziva (Python čita kod odozgo nadole). Zato se funkcije obično pišu na vrhu programa.",
+    "Zašto funkcije?\n- isti kod se ne prepisuje — piše se jednom, poziva više puta,\n- ime opisuje šta deo koda radi, pa se program lakše čita,\n- kada treba nešto promeniti, menja se na jednom mestu.",
+    "Imena funkcija prate ista pravila kao imena promenljivih; dobro ime je glagol: `nacrtaj_liniju`, `izracunaj_prosek`."
+  ],
+  "terms": [
+    {
+      "term": "Funkcija",
+      "definition": "Imenovani blok koda koji obavlja jedan posao."
+    },
+    {
+      "term": "def",
+      "definition": "Reč kojom se definiše (pravi) funkcija."
+    },
+    {
+      "term": "Telo funkcije",
+      "definition": "Uvučen blok ispod def — izvršava se pri svakom pozivu."
+    },
+    {
+      "term": "Poziv funkcije",
+      "definition": "Izvršavanje funkcije: ime i zagrade, npr. pozdrav()."
+    }
+  ],
+  "example_code": "def pozdrav():\n    print(\"Zdravo!\")\n    print(\"Dobro došao u program.\")\n\n\ndef ukrasna_linija():\n    print(\"*\" * 15)\n\n\nukrasna_linija()\npozdrav()\nukrasna_linija()\npozdrav()\n",
+  "example_steps": [
+    {
+      "code": "def pozdrav():",
+      "explanation": "Pravi se funkcija pozdrav. Ništa se još ne ispisuje."
+    },
+    {
+      "code": "ukrasna_linija()\npozdrav()",
+      "explanation": "Pozivi: tek sada se izvršavaju tela funkcija, redom."
+    },
+    {
+      "code": "pozdrav()",
+      "explanation": "Drugi poziv iste funkcije — isti ispis, bez prepisivanja koda."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši funkciju `nacrtaj_liniju()` koja ispisuje liniju od **20 crtica** (`-`). Zatim napiši program koji poziva funkciju, ispisuje `MENI`, pa ponovo poziva funkciju. Izlaz:\n\n`--------------------`\n`MENI`\n`--------------------`",
+    "starter_code": "# Definiši funkciju nacrtaj_liniju().\n\n\n# Pozovi funkciju, ispiši MENI, pozovi funkciju ponovo.\n",
+    "expected_output_preview": "--------------------\nMENI\n--------------------",
+    "criteria": {
+      "expected_output": "--------------------\nMENI\n--------------------",
+      "code_contains": [
+        {
+          "pattern": "^def\\s+nacrtaj_liniju\\(\\s*\\)\\s*:",
+          "message": "Postoji funkcija nacrtaj_liniju().",
+          "regex": true
+        },
+        {
+          "pattern": "^nacrtaj_liniju\\(\\s*\\)",
+          "message": "Funkcija se poziva dva puta.",
+          "regex": true,
+          "min_count": 2
+        }
+      ]
+    },
+    "hints": [
+      "Funkcija:\ndef nacrtaj_liniju():\n    print(\"-\" * 20)",
+      "Pozivi su van funkcije (bez uvlačenja): nacrtaj_liniju()",
+      "Redosled: nacrtaj_liniju(), print(\"MENI\"), nacrtaj_liniju()."
+    ],
+    "solution": "# Definiši funkciju nacrtaj_liniju().\ndef nacrtaj_liniju():\n    print(\"-\" * 20)\n\n\n# Pozovi funkciju, ispiši MENI, pozovi funkciju ponovo.\nnacrtaj_liniju()\nprint(\"MENI\")\nnacrtaj_liniju()\n"
+  },
+  "quiz": [
+    {
+      "question": "Kada se izvršava telo funkcije?",
+      "options": [
+        "Kada Python stigne do def",
+        "Pri svakom pozivu funkcije",
+        "Na kraju programa"
+      ],
+      "correct": 1,
+      "explanation": "def samo pravi funkciju."
+    },
+    {
+      "question": "Kako se poziva funkcija crtaj?",
+      "options": [
+        "crtaj",
+        "crtaj()",
+        "def crtaj()"
+      ],
+      "correct": 1,
+      "explanation": "Ime i zagrade."
+    },
+    {
+      "question": "Šta se desi ako funkciju pozoveš pre nego što je definisana?",
+      "options": [
+        "Radi normalno",
+        "NameError",
+        "Ništa"
+      ],
+      "correct": 1,
+      "explanation": "Python je još ne poznaje."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "def a():\n    print(\"A\", end=\"\")\n\nprint(\"B\", end=\"\")\na()\n",
+      "options": [
+        "AB",
+        "BA",
+        "B"
+      ],
+      "correct": 1,
+      "explanation": "Poziv a() dolazi posle ispisa B, pa je rezultat BA."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "def zvezde():\n    print(\"**\")\n\nzvezde()\nprint(\"-\")\nzvezde()\n",
+      "answer": "**\n-\n**",
+      "explanation": "Dva poziva, između njih jedan print."
+    }
+  ]
+}

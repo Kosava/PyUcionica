@@ -1,0 +1,15 @@
+# Python & PyQt6
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.coverage
+*.db-journal
+*.db-wal
+*.db-shm

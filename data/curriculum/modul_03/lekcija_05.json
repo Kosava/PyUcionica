@@ -1,0 +1,149 @@
+{
+  "id": "m03_l05",
+  "goal": "Naučićeš da stavljaš uslov unutar uslova (ugnježdeni uslovi) i kada je to bolje od spajanja uslova sa and.",
+  "explanation": [
+    "Unutar bloka if može stajati bilo koji kod — pa i nova if naredba. To se zove **ugnježdeni uslov** (uslov „u gnezdu“ drugog uslova).",
+    "Unutrašnji if se uvlači još jedan nivo, dakle 8 razmaka. Svaki nivo uvlačenja pokazuje kome blok pripada: else poravnat sa unutrašnjim if-om pripada njemu, a else poravnat sa spoljašnjim — spoljašnjem.",
+    "Ugnježdeni uslovi su korisni kada drugo pitanje ima smisla **samo ako** je odgovor na prvo bio „da“. Na primer, lozinku ima smisla tražiti tek kada je korisničko ime poznato. Za nepoznatog korisnika program ne treba ni da pita za lozinku.",
+    "Ponekad se ugnježdeni uslov može zameniti sa `and`. Kada god obe grane treba da daju **različite poruke** (npr. „nepoznat korisnik“ i „pogrešna lozinka“), ugnježdavanje je jasnije.",
+    "> Ne pravi previše nivoa — kod sa 4–5 nivoa uvlačenja teško se čita. Dva do tri nivoa su sasvim u redu."
+  ],
+  "terms": [
+    {
+      "term": "Ugnježdeni uslov",
+      "definition": "if naredba koja se nalazi unutar bloka druge if naredbe."
+    },
+    {
+      "term": "Nivo uvlačenja",
+      "definition": "Koliko je linija uvučena (4, 8, 12 razmaka...). Pokazuje kom bloku pripada."
+    }
+  ],
+  "example_code": "stanje = 5000\niznos = int(input(\"Koliko želiš da podigneš? \"))\n\nif iznos > 0:\n    if iznos <= stanje:\n        stanje = stanje - iznos\n        print(f\"Isplaćeno {iznos} din. Novo stanje: {stanje} din.\")\n    else:\n        print(\"Nemaš dovoljno novca na računu.\")\nelse:\n    print(\"Iznos mora biti veći od nule.\")\n",
+  "example_steps": [
+    {
+      "code": "if iznos > 0:",
+      "explanation": "Spoljašnji uslov: ima li smisla uopšte nastaviti?"
+    },
+    {
+      "code": "    if iznos <= stanje:",
+      "explanation": "Unutrašnji uslov proverava se samo za pozitivan iznos. Uvučen je za 4 razmaka."
+    },
+    {
+      "code": "        stanje = stanje - iznos",
+      "explanation": "Blok unutrašnjeg if-a — 8 razmaka."
+    },
+    {
+      "code": "    else:\n        print(\"Nemaš dovoljno novca na računu.\")",
+      "explanation": "Ovaj else je poravnat sa unutrašnjim if-om, pa pripada njemu."
+    },
+    {
+      "code": "else:\n    print(\"Iznos mora biti veći od nule.\")",
+      "explanation": "Ovaj else je poravnat sa spoljašnjim if-om."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši jednostavnu prijavu:\n\n- pitaj za korisničko ime,\n- ako je ime `admin`, **tek tada** pitaj za lozinku:\n    - ako je lozinka `python123`, ispiši `Dobro došao!`\n    - inače ispiši `Pogrešna lozinka.`\n- ako ime nije `admin`, ispiši `Nepoznat korisnik.` (i ne pitaj za lozinku).\n\nKoristi ugnježdeni if.",
+    "starter_code": "korisnik = input(\"Korisničko ime: \")\n\n# Ako je korisnik admin, pitaj za lozinku i proveri je.\n",
+    "expected_output_preview": "Korisničko ime: admin\nLozinka: python123\nDobro došao!",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^ {4,}if\\b",
+          "message": "Postoji ugnježdeni (uvučeni) if.",
+          "regex": true
+        },
+        {
+          "pattern": "input(",
+          "message": "Program koristi input() za ime i lozinku.",
+          "min_count": 2
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "admin\npython123",
+          "output_contains": [
+            "Dobro došao!"
+          ]
+        },
+        {
+          "stdin": "admin\n12345",
+          "output_contains": [
+            "Pogrešna lozinka."
+          ],
+          "output_not_contains": [
+            "Dobro došao"
+          ]
+        },
+        {
+          "stdin": "marko",
+          "output_contains": [
+            "Nepoznat korisnik."
+          ],
+          "output_not_contains": [
+            "Dobro došao",
+            "Pogrešna lozinka"
+          ],
+          "name": "bez pitanja za lozinku"
+        }
+      ]
+    },
+    "hints": [
+      "Spoljašnji uslov: if korisnik == \"admin\": — unutar njega ide lozinka = input(\"Lozinka: \").",
+      "Ispod lozinke, uvučeno za još 4 razmaka: if lozinka == \"python123\": ... else: ...",
+      "Na kraju, else: poravnat sa prvim if-om ispisuje \"Nepoznat korisnik.\""
+    ],
+    "solution": "korisnik = input(\"Korisničko ime: \")\n\n# Ako je korisnik admin, pitaj za lozinku i proveri je.\nif korisnik == \"admin\":\n    lozinka = input(\"Lozinka: \")\n    if lozinka == \"python123\":\n        print(\"Dobro došao!\")\n    else:\n        print(\"Pogrešna lozinka.\")\nelse:\n    print(\"Nepoznat korisnik.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Koliko razmaka obično ima linija unutar ugnježdenog if-a?",
+      "options": [
+        "4",
+        "8",
+        "2"
+      ],
+      "correct": 1,
+      "explanation": "Svaki nivo dodaje 4 razmaka: spoljašnji blok 4, unutrašnji 8."
+    },
+    {
+      "question": "Kome pripada else?",
+      "options": [
+        "Najbližem if-u iznad",
+        "if-u sa kojim je poravnat",
+        "Uvek prvom if-u"
+      ],
+      "correct": 1,
+      "explanation": "Pripadnost određuje uvlačenje — else pripada if-u u istoj ravni."
+    },
+    {
+      "question": "Kada je ugnježdeni uslov bolji od and?",
+      "options": [
+        "Kada svaka grana treba drugačiju poruku",
+        "Nikad",
+        "Uvek"
+      ],
+      "correct": 0,
+      "explanation": "Ugnježdavanje jasno razdvaja različite slučajeve."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "a = 10\nb = 0\nif a > 5:\n    if b > 0:\n        print(\"oba\")\n    else:\n        print(\"samo a\")\nelse:\n    print(\"nijedan\")\n",
+      "options": [
+        "oba",
+        "samo a",
+        "nijedan"
+      ],
+      "correct": 1,
+      "explanation": "Spoljašnji uslov je tačan, unutrašnji nije — izvršava se unutrašnji else."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "x = 3\nif x > 0:\n    print(\"pozitivan\")\n    if x % 2 == 0:\n        print(\"paran\")\n    else:\n        print(\"neparan\")\n",
+      "answer": "pozitivan\nneparan",
+      "explanation": "3 je pozitivan, a ostatak pri deljenju sa 2 je 1, pa je neparan."
+    }
+  ]
+}

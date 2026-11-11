@@ -1,0 +1,115 @@
+{
+  "id": "m01_l04",
+  "goal": "Naučićeš da pišeš komentare — beleške u kodu koje Python preskače — i da njima privremeno isključiš linije koda.",
+  "explanation": [
+    "Kod ne čita samo računar, već i ljudi: ti sam za mesec dana, ili neko ko ti pomaže. Zato u kod možeš da upisuješ **komentare** — beleške namenjene ljudima. Python ih potpuno preskače.",
+    "Komentar počinje znakom **#** (taraba). Sve od tarabe do kraja te linije je komentar. Komentar može da stoji u posebnoj liniji ili na kraju linije sa kodom, na primer: `print(\"Zdravo\")  # pozdrav`.",
+    "Komentari imaju još jednu veoma korisnu primenu: ako ispred linije koda staviš #, ta linija se više ne izvršava, ali ostaje u kodu i možeš lako da je vratiš. To se zove **zakomentarisati** liniju. U editoru to radi prečica **Ctrl+/** — ona dodaje ili uklanja # ispred označenih linija.",
+    "Dobar komentar objašnjava **zašto** nešto radiš ili **šta** deo programa radi, a ne prepričava očigledno. Komentar „# ispisuje broj“ iznad print(5) ne pomaže mnogo; komentar „# ukupan broj učenika u grupi“ pomaže.",
+    "> Pažnja: taraba unutar navodnika nije komentar, već deo teksta. print(\"#1 na listi\") ispisuje #1 na listi."
+  ],
+  "terms": [
+    {
+      "term": "Komentar",
+      "definition": "Deo koda koji počinje znakom # i koji Python ne izvršava. Služi za beleške ljudima."
+    },
+    {
+      "term": "Zakomentarisati",
+      "definition": "Staviti # ispred linije koda da se privremeno ne izvršava, bez brisanja."
+    }
+  ],
+  "example_code": "# Ovaj program pozdravlja korisnika.\nprint(\"Zdravo!\")  # ispisuje pozdrav\n\n# print(\"Ova linija se ne izvršava.\")\nprint(\"Kraj programa.\")\nprint(\"# Ovo nije komentar, jer je unutar navodnika.\")\n",
+  "example_steps": [
+    {
+      "code": "# Ovaj program pozdravlja korisnika.",
+      "explanation": "Komentar u posebnoj liniji: opisuje šta ceo program radi. Python ga preskače."
+    },
+    {
+      "code": "print(\"Zdravo!\")  # ispisuje pozdrav",
+      "explanation": "Kod pa komentar u istoj liniji. Izvršava se samo deo pre tarabe."
+    },
+    {
+      "code": "# print(\"Ova linija se ne izvršava.\")",
+      "explanation": "Zakomentarisana linija koda. Ostaje u fajlu, ali se ne izvršava."
+    },
+    {
+      "code": "print(\"# Ovo nije komentar, jer je unutar navodnika.\")",
+      "explanation": "Taraba je unutar stringa, pa se ispisuje kao običan znak."
+    }
+  ],
+  "exercise": {
+    "type": "complete",
+    "description": "Ovaj program ispisuje spisak za kupovinu. Uradi dve stvari:\n\n- Na sam vrh programa dodaj komentar koji opisuje šta program radi.\n- Zakomentariši liniju koja ispisuje „Kupi sok“, tako da se sok više ne ispisuje. Liniju **nemoj brisati**.\n\nProgram na kraju treba da ispiše samo hleb, mleko i jaja.",
+    "starter_code": "print(\"Kupi hleb\")\nprint(\"Kupi mleko\")\nprint(\"Kupi jaja\")\nprint(\"Kupi sok\")\n",
+    "expected_output_preview": "Kupi hleb\nKupi mleko\nKupi jaja",
+    "criteria": {
+      "expected_output": "Kupi hleb\nKupi mleko\nKupi jaja",
+      "min_comment_lines": 2,
+      "code_contains": [
+        {
+          "pattern": "^\\s*#\\s*print\\(\"Kupi sok\"\\)",
+          "regex": true,
+          "ignore_comments": false,
+          "message": "Linija sa sokom je zakomentarisana (a ne obrisana)."
+        }
+      ]
+    },
+    "hints": [
+      "Komentar je bilo koja linija koja počinje znakom #, npr. # Spisak za kupovinu.",
+      "Da bi zakomentarisao liniju sa sokom, stavi # na njen početak. Možeš i da postaviš kursor u tu liniju i pritisneš Ctrl+/.",
+      "Poslednja linija treba da izgleda ovako: # print(\"Kupi sok\")"
+    ],
+    "solution": "# Program ispisuje spisak za kupovinu.\nprint(\"Kupi hleb\")\nprint(\"Kupi mleko\")\nprint(\"Kupi jaja\")\n# print(\"Kupi sok\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Kojim znakom počinje komentar u Pythonu?",
+      "options": [
+        "//",
+        "#",
+        "--"
+      ],
+      "correct": 1,
+      "explanation": "U Pythonu komentar počinje tarabom (#)."
+    },
+    {
+      "question": "Šta ispisuje print(\"#5\")?",
+      "options": [
+        "Ništa, to je komentar",
+        "#5",
+        "5"
+      ],
+      "correct": 1,
+      "explanation": "Taraba unutar navodnika je deo teksta, pa se ispisuje #5."
+    },
+    {
+      "question": "Zašto bismo zakomentarisali liniju umesto da je obrišemo?",
+      "options": [
+        "Da bi se izvršavala brže",
+        "Da je privremeno isključimo i lako vratimo",
+        "Zato što Python ne dozvoljava brisanje"
+      ],
+      "correct": 1,
+      "explanation": "Zakomentarisana linija se ne izvršava, ali ostaje u kodu i lako se ponovo uključuje."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "# print(\"Jedan\")\nprint(\"Dva\")  # print(\"Tri\")\n",
+      "options": [
+        "Jedan Dva Tri",
+        "Dva",
+        "Dva Tri"
+      ],
+      "correct": 1,
+      "explanation": "Prva linija je ceo komentar, a u drugoj se izvršava samo deo pre tarabe."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(\"#1\")\n# print(\"#2\")\nprint(\"#3\")  # kraj\n",
+      "answer": "#1\n#3",
+      "explanation": "Taraba unutar navodnika je običan znak. Druga linija je zakomentarisana."
+    }
+  ]
+}

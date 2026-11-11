@@ -1,0 +1,167 @@
+{
+  "id": "m10_l01",
+  "goal": "Napravićeš kalkulator sa pravim prozorom — spojićeš polja za unos, dugmad, signale, uslove i proveru neispravnog unosa u jednu aplikaciju.",
+  "explanation": [
+    "Ovo je prvi **završni projekat**. U Modulu 3 napravio si kalkulator koji radi u panelu sa rezultatom. Sada ćeš napraviti pravu malu aplikaciju sa prozorom: dva polja za brojeve, četiri dugmeta i natpis sa rezultatom.",
+    "Plan, korak po korak (posle svakog koraka pokreni program):\n- napravi polja i natpis i dodaj ih u raspored,\n- dodaj **red** sa četiri dugmeta: QHBoxLayout ređa elemente vodoravno, a `raspored.addLayout(red)` ubacuje ceo red u glavni raspored,\n- napiši funkciju `izracunaj(operacija)` koja čita polja, računa i menja natpis,\n- poveži svako dugme sa njegovom funkcijom.",
+    "**Funkcija sa parametrom.** `def izracunaj(operacija):` pravi funkciju koja pri pozivu prima vrednost — npr. `izracunaj(\"+\")`. Unutar funkcije ta vrednost se zove `operacija`. Tako jedna funkcija radi sve četiri operacije. Dugme, međutim, poziva funkciju bez vrednosti, pa za svako dugme pravimo malu funkciju: `def saberi(): izracunaj(\"+\")`.",
+    "**Neispravan unos.** Ako korisnik upiše „abc“, `float(\"abc\")` izaziva ValueError. U konzoli bi se program prekinuo — u aplikaciji želimo ljubaznu poruku. Za to služi `try` / `except`: kod u bloku `try` se pokušava, a ako nastane navedena greška, umesto prekida izvršava se blok `except`. Detaljno u lekciji 36.\n`try:`\n`    a = float(prvi.text())`\n`except ValueError:`\n`    rezultat.setText(\"Unesi ispravne brojeve.\")`\n`    return`\n`return` odmah završava funkciju.",
+    "**Petlja za dugmad (opciono).** U rešenju se četiri dugmeta prave petljom `for`, da se ista tri reda ne pišu četiri puta. Petlje su tema Modula 4 — ako ti je lakše, napravi četiri dugmeta jedno po jedno, potpuno je isto.",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "QHBoxLayout",
+      "definition": "Raspored koji ređa widget-e vodoravno, jedan pored drugog."
+    },
+    {
+      "term": "addLayout",
+      "definition": "Ubacuje ceo raspored (npr. red dugmadi) u drugi raspored."
+    },
+    {
+      "term": "Parametar funkcije",
+      "definition": "Vrednost koju funkcija prima pri pozivu: def izracunaj(operacija)."
+    },
+    {
+      "term": "try / except",
+      "definition": "Pokušaj izvršavanja; ako nastane navedena greška, umesto prekida izvršava se except blok."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Red dugmadi\")\n\nnatpis = QLabel(\"Izaberi boju\")\nred = QHBoxLayout()\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(natpis)\nraspored.addLayout(red)\n\n\ndef izaberi(boja):\n    natpis.setText(f\"Izabrao si: {boja}\")\n\n\ndef crvena():\n    izaberi(\"crvena\")\n\n\ndef plava():\n    izaberi(\"plava\")\n\n\ndugme1 = QPushButton(\"Crvena\")\ndugme1.clicked.connect(crvena)\ndugme2 = QPushButton(\"Plava\")\ndugme2.clicked.connect(plava)\nred.addWidget(dugme1)\nred.addWidget(dugme2)\n\nprozor.show()\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "red = QHBoxLayout()\nraspored.addLayout(red)",
+      "explanation": "Vodoravni red ubačen u vertikalni raspored — ispod natpisa."
+    },
+    {
+      "code": "def izaberi(boja):\n    natpis.setText(f\"Izabrao si: {boja}\")",
+      "explanation": "Jedna funkcija sa parametrom radi posao za sva dugmad."
+    },
+    {
+      "code": "def crvena():\n    izaberi(\"crvena\")",
+      "explanation": "Mala funkcija bez parametra — nju povezujemo sa dugmetom, a ona poziva izaberi sa pravom vrednošću."
+    },
+    {
+      "code": "dugme1.clicked.connect(crvena)",
+      "explanation": "Isti obrazac koristićeš za četiri dugmeta kalkulatora."
+    }
+  ],
+  "exercise": {
+    "type": "app",
+    "description": "Napravi kalkulator u prozoru `Kalkulator`:\n\n- dva polja QLineEdit (prvi i drugi broj) i natpis QLabel za rezultat,\n- četiri dugmeta sa tekstom tačno `+`, `-`, `*` i `/`,\n- klik na dugme upisuje u natpis `Rezultat: <vrednost>` (brojeve čitaj sa `float`, npr. `Rezultat: 10.0`),\n- deljenje nulom: `Deljenje nulom nije moguće.`\n- ako polja ne sadrže ispravne brojeve: `Unesi ispravne brojeve.`\n\nProvera upisuje brojeve u polja (redom kojim su napravljena), klikće dugmad i čita natpise — šest puta, sa različitim unosom.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit, QPushButton,\n                             QVBoxLayout, QWidget)\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Kalkulator\")\n\n# 1. Dva polja za brojeve (QLineEdit) i natpis za rezultat (QLabel).\n\n# 2. Raspored: polja, red sa četiri dugmeta (+ - * /), natpis.\n\n# 3. Funkcija izracunaj(operacija) i četiri male funkcije za dugmad.\n\n# 4. Poveži dugmad sa funkcijama.\n\nprozor.show()\nsys.exit(app.exec())\n",
+    "expected_output_preview": "(6 i 4, klik na „+“ → natpis: Rezultat: 10.0)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "QHBoxLayout(",
+          "message": "Dugmad su u vodoravnom redu (QHBoxLayout)."
+        },
+        {
+          "pattern": "^def\\s+\\w+\\(\\s*\\w+\\s*\\)",
+          "message": "Postoji funkcija sa parametrom (npr. izracunaj(operacija)).",
+          "regex": true
+        },
+        {
+          "pattern": "except",
+          "message": "Neispravan unos se obrađuje pomoću try/except."
+        }
+      ],
+      "cases": [
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], '6')\n    upisi(polja[1], '4')\n    klikni('+')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Rezultat: 10.0"
+          ],
+          "name": "6 + 4"
+        },
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], '7')\n    upisi(polja[1], '10')\n    klikni('-')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Rezultat: -3.0"
+          ],
+          "name": "7 - 10"
+        },
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], '2.5')\n    upisi(polja[1], '4')\n    klikni('*')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Rezultat: 10.0"
+          ],
+          "name": "2.5 * 4"
+        },
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], '9')\n    upisi(polja[1], '2')\n    klikni('/')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Rezultat: 4.5"
+          ],
+          "name": "9 / 2"
+        },
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], '5')\n    upisi(polja[1], '0')\n    klikni('/')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Deljenje nulom nije moguće."
+          ],
+          "name": "deljenje nulom",
+          "output_not_contains": [
+            "natpis: Rezultat: "
+          ]
+        },
+        {
+          "gui_script": "polja = sve('QLineEdit')\nif len(polja) < 2:\n    print('[provera] Potrebna su dva polja za unos (QLineEdit).')\nelse:\n    upisi(polja[0], 'abc')\n    upisi(polja[1], '1')\n    klikni('+')\n    for n in sve('QLabel'):\n        print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Unesi ispravne brojeve."
+          ],
+          "name": "neispravan unos"
+        }
+      ]
+    },
+    "hints": [
+      "Kreni od izgleda: prvi = QLineEdit(), drugi = QLineEdit(), rezultat = QLabel(\"Rezultat:\"), pa raspored i red = QHBoxLayout(). Pokreni i proveri izgled pre nego što pišeš funkcije.",
+      "U funkciji izracunaj(operacija) prvo u try bloku pročitaj oba broja sa float(...). U except ValueError: postavi poruku i napiši return.",
+      "Za svako dugme: dugme = QPushButton(\"+\"), dugme.clicked.connect(saberi), red.addWidget(dugme). Funkcija saberi samo poziva izracunaj(\"+\")."
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLineEdit, QPushButton,\n                             QVBoxLayout, QWidget)\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Kalkulator\")\n\nprvi = QLineEdit()\nprvi.setPlaceholderText(\"Prvi broj\")\ndrugi = QLineEdit()\ndrugi.setPlaceholderText(\"Drugi broj\")\nrezultat = QLabel(\"Rezultat:\")\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(prvi)\nraspored.addWidget(drugi)\nred_dugmadi = QHBoxLayout()\nraspored.addLayout(red_dugmadi)\nraspored.addWidget(rezultat)\n\n\ndef izracunaj(operacija):\n    try:\n        a = float(prvi.text())\n        b = float(drugi.text())\n    except ValueError:\n        rezultat.setText(\"Unesi ispravne brojeve.\")\n        return\n    if operacija == \"+\":\n        rezultat.setText(f\"Rezultat: {a + b}\")\n    elif operacija == \"-\":\n        rezultat.setText(f\"Rezultat: {a - b}\")\n    elif operacija == \"*\":\n        rezultat.setText(f\"Rezultat: {a * b}\")\n    elif b == 0:\n        rezultat.setText(\"Deljenje nulom nije moguće.\")\n    else:\n        rezultat.setText(f\"Rezultat: {a / b}\")\n\n\ndef saberi():\n    izracunaj(\"+\")\n\n\ndef oduzmi():\n    izracunaj(\"-\")\n\n\ndef pomnozi():\n    izracunaj(\"*\")\n\n\ndef podeli():\n    izracunaj(\"/\")\n\n\nfor tekst_dugmeta, funkcija in ((\"+\", saberi), (\"-\", oduzmi), (\"*\", pomnozi), (\"/\", podeli)):\n    dugme = QPushButton(tekst_dugmeta)\n    dugme.clicked.connect(funkcija)\n    red_dugmadi.addWidget(dugme)\n\nprozor.show()\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Koji raspored ređa dugmad jedno pored drugog?",
+      "options": [
+        "QVBoxLayout",
+        "QHBoxLayout",
+        "QLabel"
+      ],
+      "correct": 1,
+      "explanation": "H znači horizontalno (vodoravno)."
+    },
+    {
+      "question": "Šta se desi kada u try bloku nastane ValueError, a postoji except ValueError?",
+      "options": [
+        "Program se prekida",
+        "Izvršava se except blok, a program nastavlja da radi",
+        "Python ignoriše liniju"
+      ],
+      "correct": 1,
+      "explanation": "except hvata grešku i umesto prekida izvršava svoj blok."
+    },
+    {
+      "question": "Zašto za svako dugme pravimo malu funkciju (saberi, oduzmi...)?",
+      "options": [
+        "Jer dugme poziva funkciju bez vrednosti, a izracunaj traži operaciju",
+        "Jer je tako brže",
+        "Jer PyQt6 ne dozvoljava parametre"
+      ],
+      "correct": 0,
+      "explanation": "Mala funkcija poziva izracunaj sa pravom operacijom."
+    },
+    {
+      "question": "Šta radi return unutar funkcije?",
+      "options": [
+        "Ponovo pokreće funkciju",
+        "Odmah završava funkciju",
+        "Ispisuje rezultat"
+      ],
+      "correct": 1,
+      "explanation": "Posle return se ostatak funkcije ne izvršava."
+    }
+  ]
+}

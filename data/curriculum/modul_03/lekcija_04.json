@@ -1,0 +1,176 @@
+{
+  "id": "m03_l04",
+  "goal": "Naučićeš da program donosi odluke pomoću if, elif i else, i shvatićeš zašto je uvlačenje koda u Pythonu važno.",
+  "explanation": [
+    "Do sada je program uvek izvršavao sve linije redom. Naredba **if** omogućava da se neki deo koda izvrši **samo ako je uslov tačan**.",
+    "Oblik je: reč `if`, uslov, pa **dvotačka**. Ispod sledi **blok** — jedna ili više linija koje su **uvučene** za 4 razmaka. Blok se izvršava samo ako je uslov True:\n`if temperatura > 30:`\n`    print(\"Vruće je!\")`",
+    "**Uvlačenje** (razmaci na početku linije) u Pythonu nije ukras — ono pokazuje koje linije pripadaju bloku. Prva linija koja više nije uvučena ne pripada bloku i izvršava se uvek. U editoru, posle linije koja se završava dvotačkom, Enter sam uvlači sledeći red.",
+    "**else** (inače) dodaje blok koji se izvršava kada uslov NIJE tačan. Piše se u ravni sa if, sa dvotačkom.",
+    "**elif** (skraćeno od „else if“ — inače ako) proverava sledeći uslov kada prethodni nije bio tačan. Može ih biti koliko god treba. Python proverava uslove odozgo nadole i izvršava **samo prvi** blok čiji je uslov tačan — ostali se preskaču.",
+    "> Zato je redosled uslova važan. Kod ocena, prvo proveri najveći prag (>= 90), pa manji (>= 75)... Da je obrnuto, i 95 poena bi zadovoljilo prvi uslov >= 50."
+  ],
+  "terms": [
+    {
+      "term": "if",
+      "definition": "Izvršava blok koda samo ako je uslov tačan (True)."
+    },
+    {
+      "term": "elif",
+      "definition": "Proverava sledeći uslov ako prethodni nisu bili tačni."
+    },
+    {
+      "term": "else",
+      "definition": "Blok koji se izvršava kada nijedan uslov nije bio tačan."
+    },
+    {
+      "term": "Blok",
+      "definition": "Grupa uvučenih linija koje pripadaju naredbi iznad (if, elif, else...)."
+    },
+    {
+      "term": "Uvlačenje",
+      "definition": "Razmaci na početku linije (4 po nivou) koji određuju kom bloku linija pripada."
+    }
+  ],
+  "example_code": "temperatura = int(input(\"Temperatura napolju: \"))\n\nif temperatura >= 30:\n    print(\"Vruće je — ponesi vodu.\")\nelif temperatura >= 15:\n    print(\"Prijatno vreme.\")\nelif temperatura >= 0:\n    print(\"Hladno je — obuci jaknu.\")\nelse:\n    print(\"Mraz! Pazi na poledicu.\")\n\nprint(\"Ova linija se ispisuje uvek.\")\n",
+  "example_steps": [
+    {
+      "code": "if temperatura >= 30:\n    print(\"Vruće je — ponesi vodu.\")",
+      "explanation": "Ako je uslov tačan, izvršava se uvučena linija, a ostali delovi (elif, else) se preskaču."
+    },
+    {
+      "code": "elif temperatura >= 15:",
+      "explanation": "Proverava se samo ako prvi uslov nije bio tačan. Na primer 20: nije >= 30, ali jeste >= 15."
+    },
+    {
+      "code": "else:\n    print(\"Mraz! Pazi na poledicu.\")",
+      "explanation": "Izvršava se ako nijedan uslov iznad nije tačan, npr. za -5."
+    },
+    {
+      "code": "print(\"Ova linija se ispisuje uvek.\")",
+      "explanation": "Nije uvučena, pa ne pripada nijednom bloku i izvršava se uvek."
+    }
+  ],
+  "exercise": {
+    "type": "complete",
+    "description": "Dopuni program koji pretvara broj poena (0–100) u ocenu:\n\n- 90 i više → `Odličan (5)`\n- 75 i više → `Vrlo dobar (4)`\n- 60 i više → `Dobar (3)`\n- 50 i više → `Dovoljan (2)`\n- manje od 50 → `Nedovoljan (1)`\n\nProgram mora da ispiše **tačno jednu** ocenu. Prvi uslov je već napisan.",
+    "starter_code": "poeni = int(input(\"Broj poena (0-100): \"))\n\nif poeni >= 90:\n    print(\"Odličan (5)\")\n# Dopiši elif delove za 4, 3 i 2, i else za 1.\n",
+    "expected_output_preview": "Broj poena (0-100): 80\nVrlo dobar (4)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^\\s*elif\\b",
+          "message": "Koriste se tri elif dela.",
+          "regex": true,
+          "min_count": 3
+        },
+        {
+          "pattern": "^\\s*else\\s*:",
+          "message": "Postoji else deo za nedovoljnu ocenu.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "95",
+          "output_contains": [
+            "Odličan (5)"
+          ],
+          "output_line_count": 1
+        },
+        {
+          "stdin": "90",
+          "output_contains": [
+            "Odličan (5)"
+          ],
+          "output_line_count": 1,
+          "name": "granica 90"
+        },
+        {
+          "stdin": "80",
+          "output_contains": [
+            "Vrlo dobar (4)"
+          ],
+          "output_line_count": 1
+        },
+        {
+          "stdin": "60",
+          "output_contains": [
+            "Dobar (3)"
+          ],
+          "output_line_count": 1
+        },
+        {
+          "stdin": "50",
+          "output_contains": [
+            "Dovoljan (2)"
+          ],
+          "output_line_count": 1
+        },
+        {
+          "stdin": "49",
+          "output_contains": [
+            "Nedovoljan (1)"
+          ],
+          "output_line_count": 1
+        }
+      ]
+    },
+    "hints": [
+      "Svaki sledeći deo ima isti oblik: elif poeni >= 75: i ispod uvučen print.",
+      "Redosled je bitan: 90, pa 75, pa 60, pa 50. Za sve ostalo koristi else:",
+      "Poslednji deo:\nelse:\n    print(\"Nedovoljan (1)\")"
+    ],
+    "solution": "poeni = int(input(\"Broj poena (0-100): \"))\n\nif poeni >= 90:\n    print(\"Odličan (5)\")\nelif poeni >= 75:\n    print(\"Vrlo dobar (4)\")\nelif poeni >= 60:\n    print(\"Dobar (3)\")\nelif poeni >= 50:\n    print(\"Dovoljan (2)\")\nelse:\n    print(\"Nedovoljan (1)\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Čime se završava linija sa if?",
+      "options": [
+        "Tačkom-zarezom ;",
+        "Dvotačkom :",
+        "Ničim"
+      ],
+      "correct": 1,
+      "explanation": "if, elif i else se završavaju dvotačkom."
+    },
+    {
+      "question": "Koliko blokova se izvrši u lancu if/elif/else?",
+      "options": [
+        "Svi čiji je uslov tačan",
+        "Najviše jedan",
+        "Uvek dva"
+      ],
+      "correct": 1,
+      "explanation": "Izvršava se samo prvi blok sa tačnim uslovom (ili else)."
+    },
+    {
+      "question": "Kako Python zna koje linije pripadaju if bloku?",
+      "options": [
+        "Po vitičastim zagradama",
+        "Po uvlačenju",
+        "Po praznom redu"
+      ],
+      "correct": 1,
+      "explanation": "Uvučene linije ispod if pripadaju njegovom bloku."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "t = 20\nif t > 25:\n    print(\"toplo\")\nelif t > 15:\n    print(\"prijatno\")\nelse:\n    print(\"hladno\")\n",
+      "options": [
+        "toplo",
+        "prijatno",
+        "hladno"
+      ],
+      "correct": 1,
+      "explanation": "20 nije veće od 25, ali jeste veće od 15 — izvršava se samo elif blok."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "x = 5\nif x > 3:\n    print(\"A\")\nif x > 4:\n    print(\"B\")\nelse:\n    print(\"C\")\nprint(\"D\")\n",
+      "answer": "A\nB\nD",
+      "explanation": "Ovo su DVE odvojene if naredbe, pa se proveravaju obe. D nije uvučeno, pa se ispisuje uvek."
+    }
+  ]
+}

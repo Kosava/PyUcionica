@@ -1,0 +1,147 @@
+{
+  "id": "m04_l08",
+  "goal": "Naučićeš najkorisnije načine prolaska kroz kolekcije: kroz rečnik sa items(), sa rednim brojem pomoću enumerate, sortirano, i ugrađene funkcije sum, min i max.",
+  "explanation": [
+    "Petlja `for` radi sa svakom kolekcijom, ali postoje zgodni dodaci:",
+    "**Kroz rečnik:** `for kljuc in recnik:` prolazi kroz ključeve. Kada ti trebaju i ključ i vrednost, koristi `items()`, uz raspakivanje: `for ime, ocena in ocene.items():`.",
+    "**Sa rednim brojem:** `enumerate` daje parove (redni broj, element). `for i, stavka in enumerate(lista, start=1):` — i kreće od 1.",
+    "**Sortirano:** `for ime in sorted(ocene):` prolazi kroz ključeve abecedno; originalna kolekcija se ne menja.",
+    "**Ugrađene funkcije:** `sum(lista)` — zbir, `min(lista)` i `max(lista)` — najmanji i najveći element, `len(lista)` — broj. Prosek je `sum(lista) / len(lista)` (pazi da lista nije prazna!).",
+    "> Ove funkcije rade i sa vrednostima rečnika: sum(ocene.values()) sabira sve ocene."
+  ],
+  "terms": [
+    {
+      "term": "items()",
+      "definition": "Vraća parove (ključ, vrednost) rečnika — za petlju for k, v in d.items()."
+    },
+    {
+      "term": "values()",
+      "definition": "Vraća samo vrednosti rečnika."
+    },
+    {
+      "term": "enumerate",
+      "definition": "Daje parove (redni broj, element): for i, x in enumerate(lista, start=1)."
+    },
+    {
+      "term": "sum, min, max",
+      "definition": "Zbir, najmanji i najveći element kolekcije."
+    }
+  ],
+  "example_code": "ocene = {\"Marko\": 4, \"Ana\": 5, \"Iva\": 3}\n\nfor ime, ocena in ocene.items():\n    print(ime, \"→\", ocena)\n\nfor ime in sorted(ocene):\n    print(\"Abecedno:\", ime)\n\nvrednosti = list(ocene.values())\nprint(\"Prosek:\", sum(vrednosti) / len(vrednosti))\nprint(\"Najbolja:\", max(vrednosti), \"Najslabija:\", min(vrednosti))\n\nfor i, ime in enumerate(sorted(ocene), start=1):\n    print(f\"{i}. {ime}\")\n",
+  "example_steps": [
+    {
+      "code": "for ime, ocena in ocene.items():",
+      "explanation": "Svaki par se raspakuje u ime i ocenu."
+    },
+    {
+      "code": "for ime in sorted(ocene):",
+      "explanation": "sorted nad rečnikom daje sortirane ključeve."
+    },
+    {
+      "code": "print(\"Prosek:\", sum(vrednosti) / len(vrednosti))",
+      "explanation": "(4 + 5 + 3) / 3 = 4.0"
+    },
+    {
+      "code": "for i, ime in enumerate(sorted(ocene), start=1):",
+      "explanation": "Redni brojevi od 1 bez ručnog brojača."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava ocene učenika — svaki red u obliku `Ime ocena` (npr. `Ana 5`) — **sve dok se ne unese prazan red**. Zatim ispisuje:\n\n- svakog učenika i ocenu, **abecedno po imenu**: `Ana: 5`\n- prosek na dve decimale: `Prosek: 4.50`\n\nKoristi rečnik, split i sorted. Pretpostavi da je unet bar jedan učenik.",
+    "starter_code": "ocene = {}\n\n# Učitavaj redove „Ime ocena“ dok red nije prazan.\n\n# Ispiši učenike abecedno i prosek.\n",
+    "expected_output_preview": "Učenik i ocena: Marko 4\nUčenik i ocena: Ana 5\nUčenik i ocena: \nAna: 5\nMarko: 4\nProsek: 4.50",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "sorted(",
+          "message": "Učenici se sortiraju funkcijom sorted."
+        },
+        {
+          "pattern": ".split(",
+          "message": "Red se deli na ime i ocenu metodom split."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "Marko 4\nAna 5\n\n",
+          "output_contains": [
+            "Ana: 5\nMarko: 4",
+            "Prosek: 4.50"
+          ]
+        },
+        {
+          "stdin": "Iva 3\nBoris 5\nAna 2\n\n",
+          "output_contains": [
+            "Ana: 2\nBoris: 5\nIva: 3",
+            "Prosek: 3.33"
+          ]
+        },
+        {
+          "stdin": "Jovan 5\n\n",
+          "output_contains": [
+            "Jovan: 5",
+            "Prosek: 5.00"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "U petlji: red = input(...); if red == \"\": break; ime, ocena = red.split()",
+      "Sačuvaj kao broj: ocene[ime] = int(ocena).",
+      "Ispis: for ime in sorted(ocene): print(f\"{ime}: {ocene[ime]}\"), pa prosek = sum(ocene.values()) / len(ocene) i print(f\"Prosek: {prosek:.2f}\")."
+    ],
+    "solution": "ocene = {}\n\n# Učitavaj redove „Ime ocena“ dok red nije prazan.\nwhile True:\n    red = input(\"Učenik i ocena: \")\n    if red == \"\":\n        break\n    ime, ocena = red.split()\n    ocene[ime] = int(ocena)\n\n# Ispiši učenike abecedno i prosek.\nfor ime in sorted(ocene):\n    print(f\"{ime}: {ocene[ime]}\")\nprosek = sum(ocene.values()) / len(ocene)\nprint(f\"Prosek: {prosek:.2f}\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta daje d.items() u petlji?",
+      "options": [
+        "Samo ključeve",
+        "Parove (ključ, vrednost)",
+        "Samo vrednosti"
+      ],
+      "correct": 1,
+      "explanation": "Zato se piše for k, v in d.items()."
+    },
+    {
+      "question": "Kako dobiti redne brojeve od 1 u petlji?",
+      "options": [
+        "range(lista)",
+        "enumerate(lista, start=1)",
+        "lista.index()"
+      ],
+      "correct": 1,
+      "explanation": "enumerate daje (broj, element)."
+    },
+    {
+      "question": "Šta vraća max([3, 9, 2])?",
+      "options": [
+        "3",
+        "9",
+        "2"
+      ],
+      "correct": 1,
+      "explanation": "Najveći element."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "d = {\"b\": 2, \"a\": 1, \"c\": 3}\nprint(\"\".join(sorted(d)))\n",
+      "options": [
+        "bac",
+        "abc",
+        "123"
+      ],
+      "correct": 1,
+      "explanation": "sorted nad rečnikom sortira ključeve."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "for i, slovo in enumerate(\"xyz\", start=1):\n    print(i, slovo)\n",
+      "answer": "1 x\n2 y\n3 z",
+      "explanation": "enumerate radi i sa tekstom."
+    }
+  ]
+}

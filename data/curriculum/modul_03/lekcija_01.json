@@ -1,0 +1,154 @@
+{
+  "id": "m03_l01",
+  "goal": "Upoznaćeš sve matematičke operatore u Pythonu, uključujući celobrojno deljenje, ostatak i stepenovanje, i naučićeš kojim redom se računa.",
+  "explanation": [
+    "**Operator** je znak koji govori Pythonu koju operaciju da izvrši nad vrednostima. Već znaš četiri osnovna: `+`, `-`, `*` i `/`. Postoje još tri koja se često koriste.",
+    "`//` je **celobrojno deljenje** — deli i odbacuje decimalni deo: `17 // 5` je `3` (jer 5 staje u 17 tri puta).",
+    "`%` daje **ostatak pri deljenju**: `17 % 5` je `2` (17 = 3 · 5 + 2). Ostatak je koristan na mnogo mesta: da li je broj paran (`broj % 2` je 0), pretvaranje minuta u sate i minute, cifre broja...",
+    "`**` je **stepenovanje**: `2 ** 3` je `8` (2 · 2 · 2), a `9 ** 0.5` je `3.0` (kvadratni koren).",
+    "Redosled računanja je kao u matematici:\n- prvo zagrade,\n- zatim stepenovanje `**`,\n- zatim `*`, `/`, `//`, `%`,\n- na kraju `+` i `-`.\nZato je `2 + 3 * 4` jednako 14, a `(2 + 3) * 4` jednako 20. Kada nisi siguran, stavi zagrade — one nikad ne smetaju.",
+    "Česta skraćenica: `x += 5` znači isto što i `x = x + 5` (povećaj x za 5). Slično rade `-=`, `*=` i `/=`."
+  ],
+  "terms": [
+    {
+      "term": "Operator",
+      "definition": "Znak koji označava operaciju nad vrednostima, npr. + ili %."
+    },
+    {
+      "term": "// (celobrojno deljenje)",
+      "definition": "Deljenje koje odbacuje decimalni deo: 7 // 2 je 3."
+    },
+    {
+      "term": "% (ostatak)",
+      "definition": "Ostatak pri deljenju: 7 % 2 je 1."
+    },
+    {
+      "term": "** (stepenovanje)",
+      "definition": "Stepen broja: 3 ** 2 je 9."
+    }
+  ],
+  "example_code": "print(17 // 5)\nprint(17 % 5)\nprint(2 ** 10)\n\nprint(2 + 3 * 4)\nprint((2 + 3) * 4)\n\nbroj = 14\nprint(\"Ostatak pri deljenju sa 2:\", broj % 2)\n\npoeni = 10\npoeni += 5\nprint(poeni)\n",
+  "example_steps": [
+    {
+      "code": "print(17 // 5)\nprint(17 % 5)",
+      "explanation": "17 podeljeno sa 5 je 3 celih (17 // 5) i ostatak 2 (17 % 5)."
+    },
+    {
+      "code": "print(2 ** 10)",
+      "explanation": "Dva na desetu: 1024."
+    },
+    {
+      "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+      "explanation": "Množenje ima prednost: 14. Sa zagradama se prvo sabira: 20."
+    },
+    {
+      "code": "print(\"Ostatak pri deljenju sa 2:\", broj % 2)",
+      "explanation": "Ostatak 0 znači da je broj paran."
+    },
+    {
+      "code": "poeni += 5",
+      "explanation": "Skraćeno za poeni = poeni + 5. Ispisuje se 15."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji od korisnika traži broj minuta i ispisuje koliko je to sati i minuta, u obliku:\n\n`135 minuta je 2 h i 15 min`\n\nKoristi `//` za sate i `%` za preostale minute. Program će biti proveren sa nekoliko različitih unosa.",
+    "starter_code": "minuti = int(input(\"Unesi broj minuta: \"))\n\n# Izračunaj sate (celobrojno deljenje sa 60).\n\n# Izračunaj preostale minute (ostatak pri deljenju sa 60).\n\n# Ispiši rezultat pomoću f-stringa.\n",
+    "expected_output_preview": "Unesi broj minuta: 135\n135 minuta je 2 h i 15 min",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "//",
+          "message": "Sati se računaju celobrojnim deljenjem (//)."
+        },
+        {
+          "pattern": "%",
+          "message": "Preostali minuti se računaju ostatkom (%)."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "135",
+          "output_contains": [
+            "135 minuta je 2 h i 15 min"
+          ]
+        },
+        {
+          "stdin": "60",
+          "output_contains": [
+            "60 minuta je 1 h i 0 min"
+          ]
+        },
+        {
+          "stdin": "59",
+          "output_contains": [
+            "59 minuta je 0 h i 59 min"
+          ]
+        },
+        {
+          "stdin": "1000",
+          "output_contains": [
+            "1000 minuta je 16 h i 40 min"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Jedan sat ima 60 minuta. Koliko puta 60 staje u broj minuta? To je minuti // 60.",
+      "sati = minuti // 60 i ostatak = minuti % 60",
+      "Ispis: print(f\"{minuti} minuta je {sati} h i {ostatak} min\")"
+    ],
+    "solution": "minuti = int(input(\"Unesi broj minuta: \"))\n\n# Izračunaj sate (celobrojno deljenje sa 60).\nsati = minuti // 60\n\n# Izračunaj preostale minute (ostatak pri deljenju sa 60).\nostatak = minuti % 60\n\n# Ispiši rezultat pomoću f-stringa.\nprint(f\"{minuti} minuta je {sati} h i {ostatak} min\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Koliko je 20 % 6?",
+      "options": [
+        "3",
+        "2",
+        "3.33"
+      ],
+      "correct": 1,
+      "explanation": "6 staje u 20 tri puta (18), ostatak je 2."
+    },
+    {
+      "question": "Koliko je 10 - 2 * 3?",
+      "options": [
+        "24",
+        "4",
+        "16"
+      ],
+      "correct": 1,
+      "explanation": "Prvo množenje (6), pa oduzimanje: 4."
+    },
+    {
+      "question": "Šta znači x += 1?",
+      "options": [
+        "x = 1",
+        "x = x + 1",
+        "x je veće od 1"
+      ],
+      "correct": 1,
+      "explanation": "+= dodaje vrednost postojećoj promenljivoj."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(2 + 3 * 2)\n",
+      "options": [
+        "10",
+        "8",
+        "12"
+      ],
+      "correct": 1,
+      "explanation": "Množenje ima prednost: 3 * 2 = 6, pa 2 + 6 = 8."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(17 // 5)\nprint(17 % 5)\nprint(2 ** 3)\n",
+      "answer": "3\n2\n8",
+      "explanation": "17 // 5 = 3 (celih), 17 % 5 = 2 (ostatak), 2 ** 3 = 8."
+    }
+  ]
+}

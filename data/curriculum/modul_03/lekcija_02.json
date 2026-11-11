@@ -1,0 +1,151 @@
+{
+  "id": "m03_l02",
+  "goal": "Naučićeš sve operatore poređenja i razliku između = (dodeljivanje) i == (poređenje).",
+  "explanation": [
+    "U lekciji o logičkim vrednostima video si da poređenje daje True ili False. Sada upoznaj sve **operatore poređenja**:\n- `==` jednako,\n- `!=` različito (nije jednako),\n- `>` veće, `<` manje,\n- `>=` veće ili jednako, `<=` manje ili jednako.",
+    "**Najvažnija razlika u ovoj lekciji:** jedan znak `=` dodeljuje vrednost (`x = 5` — „x dobija 5“), a dva znaka `==` porede (`x == 5` — „da li je x jednako 5?“). Mešanje ova dva znaka je jedna od najčešćih početničkih grešaka.",
+    "Mogu se porediti i tekstovi: `\"da\" == \"da\"` je True. Pazi — poređenje teksta razlikuje velika i mala slova, pa je `\"Da\" == \"da\"` False. Ako odgovor korisnika može biti napisan bilo kako, prvo ga pretvori u mala slova: `odgovor.lower() == \"da\"`.",
+    "Broj i tekst nikada nisu jednaki: `5 == \"5\"` je False. Zato se brojevi iz input() pretvaraju pomoću int() pre poređenja.",
+    "Python dozvoljava i ulančano poređenje, kao u matematici: `1 <= ocena <= 5` je True ako je ocena između 1 i 5."
+  ],
+  "terms": [
+    {
+      "term": "Operator poređenja",
+      "definition": "Znak koji poredi dve vrednosti: ==, !=, <, >, <=, >=. Rezultat je True ili False."
+    },
+    {
+      "term": "== (jednako)",
+      "definition": "Proverava da li su dve vrednosti iste. Ne mešati sa = koje dodeljuje vrednost."
+    },
+    {
+      "term": "!= (različito)",
+      "definition": "True ako vrednosti NISU iste."
+    }
+  ],
+  "example_code": "a = 7\nb = 3\nprint(a == b)\nprint(a != b)\nprint(a > b)\nprint(a <= 7)\n\nodgovor = \"Da\"\nprint(odgovor == \"da\")\nprint(odgovor.lower() == \"da\")\n\nprint(5 == \"5\")\nocena = 4\nprint(1 <= ocena <= 5)\n",
+  "example_steps": [
+    {
+      "code": "print(a == b)\nprint(a != b)",
+      "explanation": "7 nije jednako 3: False. Jesu li različiti? True."
+    },
+    {
+      "code": "print(a <= 7)",
+      "explanation": "7 je manje ILI jednako 7 — True."
+    },
+    {
+      "code": "print(odgovor == \"da\")",
+      "explanation": "Da i da nisu isto (veliko D): False."
+    },
+    {
+      "code": "print(odgovor.lower() == \"da\")",
+      "explanation": "Posle pretvaranja u mala slova poređenje uspeva: True."
+    },
+    {
+      "code": "print(5 == \"5\")",
+      "explanation": "Broj i tekst nisu jednaki: False."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava dva cela broja i ispisuje tri reda:\n\n`Jednaki: <True/False>`\n`Prvi veći: <True/False>`\n`Različiti: <True/False>`\n\nVrednosti True/False treba da budu rezultati poređenja (`==`, `>`, `!=`), a ne upisane ručno. Program će biti proveren sa više parova brojeva.",
+    "starter_code": "a = int(input(\"Prvi broj: \"))\nb = int(input(\"Drugi broj: \"))\n\n# Ispiši tri poređenja.\n",
+    "expected_output_preview": "Prvi broj: 7\nDrugi broj: 3\nJednaki: False\nPrvi veći: True\nRazličiti: True",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "==",
+          "message": "Koristi se operator =="
+        },
+        {
+          "pattern": "!=",
+          "message": "Koristi se operator !="
+        },
+        {
+          "pattern": "a\\s*>\\s*b",
+          "message": "Koristi se poređenje a > b.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "7\n3",
+          "output_contains": [
+            "Jednaki: False",
+            "Prvi veći: True",
+            "Različiti: True"
+          ]
+        },
+        {
+          "stdin": "4\n4",
+          "output_contains": [
+            "Jednaki: True",
+            "Prvi veći: False",
+            "Različiti: False"
+          ]
+        },
+        {
+          "stdin": "2\n9",
+          "output_contains": [
+            "Jednaki: False",
+            "Prvi veći: False",
+            "Različiti: True"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "print može da ispiše tekst i rezultat poređenja: print(\"Jednaki:\", a == b)",
+      "Drugi red: print(\"Prvi veći:\", a > b)",
+      "Treći red koristi operator različitosti: print(\"Različiti:\", a != b)"
+    ],
+    "solution": "a = int(input(\"Prvi broj: \"))\nb = int(input(\"Drugi broj: \"))\n\n# Ispiši tri poređenja.\nprint(\"Jednaki:\", a == b)\nprint(\"Prvi veći:\", a > b)\nprint(\"Različiti:\", a != b)\n"
+  },
+  "quiz": [
+    {
+      "question": "Koji izraz proverava da li je x jednako 10?",
+      "options": [
+        "x = 10",
+        "x == 10",
+        "x := 10"
+      ],
+      "correct": 1,
+      "explanation": "Za poređenje se koriste dva znaka jednakosti."
+    },
+    {
+      "question": "Šta je rezultat \"Ana\" == \"ana\"?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "explanation": "Poređenje teksta razlikuje velika i mala slova."
+    },
+    {
+      "question": "Šta je rezultat 3 != 3?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "explanation": "3 i 3 su isti, pa tvrdnja „različiti su“ nije tačna."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"Da\" == \"da\")\n",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "explanation": "Poređenje teksta razlikuje velika i mala slova."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "a = 5\nprint(a == 5)\nprint(a != 5)\nprint(1 <= a <= 3)\n",
+      "answer": "True\nFalse\nFalse",
+      "explanation": "a jeste 5; tvrdnja „a nije 5“ je netačna; 5 nije između 1 i 3."
+    }
+  ]
+}

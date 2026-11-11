@@ -1,0 +1,145 @@
+{
+  "id": "m04_l09",
+  "goal": "Napravićeš malu evidenciju zaliha koja prima komande — spojićeš petlje, rečnik, split i uslove u jedan praktičan program.",
+  "explanation": [
+    "Ovo je **praktična lekcija** modula. Pravimo program koji vodi evidenciju zaliha (npr. u magacinu ili špajzu) i reaguje na **komande** koje korisnik kuca:\n- `dodaj jabuka 3` — dodaje 3 komada jabuka (ako jabuke već postoje, sabira),\n- `prikazi` — ispisuje sve stavke abecedno,\n- `kraj` — završava program.",
+    "Obrazac „čitaj komandu u petlji“ izgleda ovako:\n`while True:`\n`    delovi = input(\"> \").split()`\n`    komanda = delovi[0]`\n`    if komanda == \"kraj\": break`\n`    elif komanda == \"dodaj\": ...`\n`    else: print(\"Nepoznata komanda.\")`",
+    "Zalihe čuvamo u rečniku `naziv → količina`. Za sabiranje sa postojećom količinom zgodna je metoda get sa zamenom 0: `zalihe[naziv] = zalihe.get(naziv, 0) + kolicina` — radi i za nove i za postojeće nazive.",
+    "Prazan red bi napravio praznu listu, pa bi `delovi[0]` izazvao IndexError. Zato prvo proveri: `if not delovi: continue` (prazna lista se ponaša kao False).",
+    "> Gradi postepeno: prvo samo „kraj“, pa „dodaj“, pa „prikazi“. Posle svakog koraka pokreni program i probaj ga."
+  ],
+  "terms": [
+    {
+      "term": "Komanda",
+      "definition": "Reč kojom korisnik kaže programu šta da uradi (dodaj, prikazi, kraj)."
+    },
+    {
+      "term": "get(kljuc, 0)",
+      "definition": "Vrednost za ključ, ili 0 ako ključ još ne postoji — zgodno za sabiranje."
+    },
+    {
+      "term": "if not lista",
+      "definition": "Tačno ako je lista prazna."
+    }
+  ],
+  "example_code": "brojac = {}\nfor rec in \"a b a c a b\".split():\n    brojac[rec] = brojac.get(rec, 0) + 1\nprint(brojac)\n\n# Komande iz liste umesto sa tastature:\nfor red in [\"pozdrav Ana\", \"\", \"zbir 2 3\", \"xyz\"]:\n    delovi = red.split()\n    if not delovi:\n        continue\n    if delovi[0] == \"pozdrav\":\n        print(\"Zdravo,\", delovi[1])\n    elif delovi[0] == \"zbir\":\n        print(int(delovi[1]) + int(delovi[2]))\n    else:\n        print(\"Nepoznata komanda.\")\n",
+  "example_steps": [
+    {
+      "code": "brojac[rec] = brojac.get(rec, 0) + 1",
+      "explanation": "Brojanje pojavljivanja: {'a': 3, 'b': 2, 'c': 1}."
+    },
+    {
+      "code": "    if not delovi:\n        continue",
+      "explanation": "Prazan red se preskače, pa delovi[0] ne izaziva grešku."
+    },
+    {
+      "code": "    elif delovi[0] == \"zbir\":",
+      "explanation": "Prva reč je komanda, ostale su podaci za nju."
+    }
+  ],
+  "exercise": {
+    "type": "app",
+    "description": "Napravi evidenciju zaliha koja čita komande dok ne dobije `kraj`:\n\n- `dodaj <naziv> <količina>` — dodaje količinu (sabira ako naziv već postoji), bez ispisa,\n- `prikazi` — ispisuje svaku stavku abecedno u obliku `jabuka: 4`; ako nema stavki, ispisuje `Nema zaliha.`\n- `kraj` — ispisuje `Doviđenja!` i završava,\n- prazan red se preskače,\n- bilo šta drugo — `Nepoznata komanda.`",
+    "starter_code": "zalihe = {}\n\n# Čitaj komande u petlji while True.\n",
+    "expected_output_preview": "> dodaj jabuka 3\n> dodaj kruska 2\n> dodaj jabuka 1\n> prikazi\njabuka: 4\nkruska: 2\n> kraj\nDoviđenja!",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "while\\s+True\\s*:",
+          "message": "Komande se čitaju u petlji while True.",
+          "regex": true
+        },
+        {
+          "pattern": ".split(",
+          "message": "Red se deli na reči metodom split."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "dodaj jabuka 3\ndodaj kruska 2\ndodaj jabuka 1\nprikazi\nkraj",
+          "output_contains": [
+            "jabuka: 4\nkruska: 2",
+            "Doviđenja!"
+          ]
+        },
+        {
+          "stdin": "prikazi\nkraj",
+          "output_contains": [
+            "Nema zaliha.",
+            "Doviđenja!"
+          ],
+          "name": "prazne zalihe"
+        },
+        {
+          "stdin": "dodaj sok 5\n\nprodaj sok\nprikazi\nkraj\ndodaj voda 1",
+          "output_contains": [
+            "Nepoznata komanda.",
+            "sok: 5",
+            "Doviđenja!"
+          ],
+          "output_not_contains": [
+            "voda"
+          ],
+          "name": "prazan red, nepoznata komanda, ništa posle kraja"
+        }
+      ]
+    },
+    "hints": [
+      "Početak petlje: delovi = input(\"> \").split(); if not delovi: continue; komanda = delovi[0].",
+      "Za dodaj: naziv = delovi[1], kolicina = int(delovi[2]), pa zalihe[naziv] = zalihe.get(naziv, 0) + kolicina.",
+      "Za prikazi: if not zalihe: print(\"Nema zaliha.\") inače for naziv in sorted(zalihe): print(f\"{naziv}: {zalihe[naziv]}\")."
+    ],
+    "solution": "zalihe = {}\n\n# Čitaj komande u petlji while True.\nwhile True:\n    delovi = input(\"> \").split()\n    if not delovi:\n        continue\n    komanda = delovi[0]\n    if komanda == \"kraj\":\n        print(\"Doviđenja!\")\n        break\n    elif komanda == \"dodaj\":\n        naziv = delovi[1]\n        kolicina = int(delovi[2])\n        zalihe[naziv] = zalihe.get(naziv, 0) + kolicina\n    elif komanda == \"prikazi\":\n        if not zalihe:\n            print(\"Nema zaliha.\")\n        for naziv in sorted(zalihe):\n            print(f\"{naziv}: {zalihe[naziv]}\")\n    else:\n        print(\"Nepoznata komanda.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta radi zalihe.get(\"x\", 0) + 1 kada \"x\" ne postoji?",
+      "options": [
+        "KeyError",
+        "Vraća 1",
+        "Vraća None"
+      ],
+      "correct": 1,
+      "explanation": "get vraća zamenu 0, pa je rezultat 1."
+    },
+    {
+      "question": "Zašto se proverava if not delovi pre delovi[0]?",
+      "options": [
+        "Zbog brzine",
+        "Prazan red daje praznu listu, a delovi[0] bi izazvao IndexError",
+        "Nije potrebno"
+      ],
+      "correct": 1,
+      "explanation": "Prazna lista nema prvi element."
+    },
+    {
+      "question": "Kako se najlakše gradi ovakav program?",
+      "options": [
+        "Sve odjednom",
+        "Komandu po komandu, uz pokretanje posle svakog koraka",
+        "Kopiranjem rešenja"
+      ],
+      "correct": 1,
+      "explanation": "Mali koraci olakšavaju pronalaženje grešaka."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "z = {}\nfor naziv in [\"a\", \"b\", \"a\"]:\n    z[naziv] = z.get(naziv, 0) + 2\nprint(z[\"a\"], z[\"b\"])\n",
+      "options": [
+        "2 2",
+        "4 2",
+        "3 1"
+      ],
+      "correct": 1,
+      "explanation": "a se dodaje dva puta po 2."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "red = \"dodaj sok 5\"\nk, naziv, kol = red.split()\nprint(naziv)\nprint(int(kol) * 2)\n",
+      "answer": "sok\n10",
+      "explanation": "split daje tri reči, raspakovane u tri promenljive."
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "id": "m01_l05",
+  "goal": "Naučićeš da čitaš poruke o greškama (traceback), da pronađeš liniju u kojoj je problem i da ga ispraviš korak po korak.",
+  "explanation": [
+    "Kada Python naiđe na problem, ispisuje poruku o grešci koja se zove **traceback** (trag). Na prvi pogled izgleda zastrašujuće, ali ona je zapravo tvoj najbolji pomoćnik: tačno kaže šta je pošlo naopako i gde.",
+    "Traceback se čita **odozdo nagore**:\n- Poslednji red kaže **vrstu greške** i kratak opis, npr. `NameError: name 'Print' is not defined`.\n- Iznad toga piše u kom fajlu i u kojoj **liniji** je greška: `File \"main.py\", line 2`.\n- Ispod oznake linije prikazan je sam problematični kod, a ponekad i znakovi ^ koji pokazuju tačno mesto.",
+    "Postoje dve velike grupe grešaka. **Sintaksne greške** (SyntaxError) Python pronalazi pre pokretanja — program se tada uopšte ne izvršava. Greške **tokom izvršavanja** (npr. NameError) nastaju dok program radi: linije iznad greške su već izvršene i njihov ispis vidiš, a program se zaustavlja na liniji sa greškom.",
+    "Ova aplikacija ti dodatno pomaže: liniju sa greškom označava u editoru, a ispod tehničke poruke prikazuje objašnjenje na srpskom i savet šta da proveriš.",
+    "Dobra strategija za ispravljanje grešaka:\n- pročitaj poslednji red poruke,\n- idi na označenu liniju (i pogledaj liniju iznad nje),\n- uporedi je sa ispravnim primerom,\n- ispravi **jednu** stvar i ponovo pokreni program.\nČesto ispravka jedne greške otkrije sledeću — to je normalno.",
+    "> Najčešći uzroci kod početnika: navodnik ili zagrada koji nisu zatvoreni, veliko slovo gde treba malo (Print umesto print) i „pametni“ navodnici “ ” kopirani iz Word-a."
+  ],
+  "terms": [
+    {
+      "term": "Greška (izuzetak)",
+      "definition": "Situacija u kojoj Python ne može da nastavi sa izvršavanjem. U Pythonu se greške zovu i izuzeci (exceptions)."
+    },
+    {
+      "term": "Traceback",
+      "definition": "Poruka o grešci: pokazuje vrstu greške, opis i liniju u kojoj je nastala."
+    },
+    {
+      "term": "SyntaxError",
+      "definition": "Sintaksna greška — kod nije napisan po pravilima, pa se program ne pokreće."
+    },
+    {
+      "term": "NameError",
+      "definition": "Greška koja nastaje kada se koristi ime koje Python ne poznaje, npr. Print umesto print."
+    }
+  ],
+  "example_code": "print(\"Ova linija radi.\")\nPrint(\"Ova linija ima grešku.\")\nprint(\"Do ove linije program nikad ne stiže.\")\n",
+  "example_steps": [
+    {
+      "code": "print(\"Ova linija radi.\")",
+      "explanation": "Ispravna linija. Izvršava se, pa njen tekst vidiš u rezultatu, iako u programu postoji greška."
+    },
+    {
+      "code": "Print(\"Ova linija ima grešku.\")",
+      "explanation": "Print sa velikim P ne postoji. Python javlja NameError za liniju 2 i odmah zaustavlja program."
+    },
+    {
+      "code": "print(\"Do ove linije program nikad ne stiže.\")",
+      "explanation": "Program je stao na liniji 2, pa se ova linija ne izvršava. Pokreni primer i pročitaj poruku odozdo nagore."
+    }
+  ],
+  "exercise": {
+    "type": "fix",
+    "description": "U ovom programu postoje **tri greške**. Pokreni ga, pročitaj poruku o grešci, ispravi problem i pokreni ponovo — sve dok program ne ispiše sve četiri linije bez greške.\n\nTekst unutar navodnika ne menjaj — ispravljaj samo navodnike, zagrade i nazive.",
+    "starter_code": "print(\"Prva linija je ispravna.\")\nprint(\"Druga linija nema zatvoren navodnik)\nPrint(\"Treća linija je pogrešno napisana.\")\nprint(\"Četvrta linija nema zatvorenu zagradu.\"\n",
+    "expected_output_preview": "Prva linija je ispravna.\nDruga linija nema zatvoren navodnik\nTreća linija je pogrešno napisana.\nČetvrta linija nema zatvorenu zagradu.",
+    "criteria": {
+      "expected_output": "Prva linija je ispravna.\nDruga linija nema zatvoren navodnik\nTreća linija je pogrešno napisana.\nČetvrta linija nema zatvorenu zagradu.",
+      "code_not_contains": [
+        {
+          "pattern": "Print(",
+          "message": "Funkcija print je svuda napisana malim slovima."
+        }
+      ],
+      "code_contains": [
+        {
+          "pattern": "print(",
+          "min_count": 4,
+          "message": "Sve četiri linije koriste print."
+        }
+      ]
+    },
+    "hints": [
+      "Prva poruka govori o liniji 2: string nije zatvoren. Dodaj navodnik pre zatvorene zagrade.",
+      "Sledeća greška je u liniji 4: zagrada je otvorena, ali nije zatvorena. Dodaj ) na kraj linije.",
+      "Na kraju ostaje NameError: u liniji 3 piše Print sa velikim P. Python razlikuje velika i mala slova."
+    ],
+    "solution": "print(\"Prva linija je ispravna.\")\nprint(\"Druga linija nema zatvoren navodnik\")\nprint(\"Treća linija je pogrešno napisana.\")\nprint(\"Četvrta linija nema zatvorenu zagradu.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Odakle počinješ da čitaš traceback?",
+      "options": [
+        "Od prvog reda",
+        "Od poslednjeg reda",
+        "Svejedno je"
+      ],
+      "correct": 1,
+      "explanation": "Poslednji red sadrži vrstu greške i opis — najvažniju informaciju."
+    },
+    {
+      "question": "Program ima NameError u liniji 3. Šta se dešava sa linijama 1 i 2?",
+      "options": [
+        "Izvršile su se",
+        "Nisu se izvršile",
+        "Izvršiće se posle greške"
+      ],
+      "correct": 0,
+      "explanation": "Greške tokom izvršavanja zaustavljaju program na liniji greške; linije iznad su već izvršene."
+    },
+    {
+      "question": "Šta najverovatnije izaziva SyntaxError: unterminated string literal?",
+      "options": [
+        "Pogrešno ime funkcije",
+        "Navodnik koji nije zatvoren",
+        "Deljenje nulom"
+      ],
+      "correct": 1,
+      "explanation": "Unterminated string znači da tekst nije zatvoren navodnikom."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"A\")\nprint(\"B\"\nprint(\"C\")\n",
+      "options": [
+        "A",
+        "Ništa — Python javlja SyntaxError pre pokretanja",
+        "A, pa B, pa C"
+      ],
+      "correct": 1,
+      "explanation": "Zagrada u drugoj liniji nije zatvorena. Sintaksa se proverava pre pokretanja, pa se ne izvrši nijedna linija."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"Start\")\nprint(nepostojece)\nprint(\"Kraj\")\n",
+      "options": [
+        "Start, a zatim poruka o grešci NameError",
+        "Samo poruka o grešci NameError",
+        "Start i Kraj"
+      ],
+      "correct": 0,
+      "explanation": "Ovo je greška tokom izvršavanja: prva linija se izvrši, a program staje na drugoj. Kraj se ne ispisuje."
+    }
+  ]
+}

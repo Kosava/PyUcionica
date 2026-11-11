@@ -1,0 +1,140 @@
+{
+  "id": "m04_l02",
+  "goal": "Naučićeš petlju while, koja se ponavlja sve dok je uslov tačan — kada unapred ne znaš koliko će puta trebati.",
+  "explanation": [
+    "Petlja for je odlična kada znaš koliko ponavljanja treba (npr. 10). Ponekad to ne znaš: „pitaj korisnika dok ne upiše 0“. Za to služi petlja **while** (dok).",
+    "Oblik: `while uslov:` i ispod uvučen blok. Pre svakog prolaza Python proveri uslov. Ako je True — izvrši blok i ponovo proveri. Ako je False — petlja se završava.",
+    "Unutar petlje nešto mora da **promeni** uslov, inače se petlja nikada ne završava (**beskonačna petlja**). U ovoj aplikaciji takav program se automatski zaustavi posle vremenskog ograničenja, uz poruku.",
+    "Čest obrazac — čitanje dok korisnik ne upiše znak za kraj:\n`broj = int(input())`\n`while broj != 0:`\n`    ...obradi broj...`\n`    broj = int(input())`\nPrvi unos je pre petlje, a sledeći na kraju bloka.",
+    "> Kada pišeš while, uvek se zapitaj: šta u bloku vodi ka tome da uslov postane False?"
+  ],
+  "terms": [
+    {
+      "term": "while",
+      "definition": "Petlja koja se ponavlja dok je uslov tačan: while uslov:"
+    },
+    {
+      "term": "Beskonačna petlja",
+      "definition": "Petlja čiji uslov nikada ne postane False, pa se ne završava."
+    },
+    {
+      "term": "Znak za kraj",
+      "definition": "Posebna vrednost (npr. 0 ili prazan unos) kojom korisnik javlja da je završio."
+    }
+  ],
+  "example_code": "broj = 1\nwhile broj <= 5:\n    print(\"Broj:\", broj)\n    broj = broj + 1\nprint(\"Gotovo\")\n\n# Odbrojavanje\nn = 3\nwhile n > 0:\n    print(n)\n    n -= 1\nprint(\"Start!\")\n",
+  "example_steps": [
+    {
+      "code": "while broj <= 5:",
+      "explanation": "Pre svakog prolaza: da li je broj manji ili jednak 5?"
+    },
+    {
+      "code": "    broj = broj + 1",
+      "explanation": "Ova linija menja uslov. Bez nje bi broj zauvek bio 1 — beskonačna petlja."
+    },
+    {
+      "code": "    n -= 1",
+      "explanation": "Kraći zapis za n = n - 1. Kada n postane 0, uslov n > 0 je False i petlja staje."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava cele brojeve, jedan po jedan, **sve dok korisnik ne upiše 0**, a zatim ispisuje njihov zbir u obliku `Zbir: 8`.\n\nNula se ne sabira — ona samo označava kraj. Ako je prvi broj odmah 0, program ispisuje `Zbir: 0`.",
+    "starter_code": "zbir = 0\nbroj = int(input(\"Broj (0 za kraj): \"))\n\n# Dok broj nije 0: dodaj ga zbiru i učitaj sledeći.\n\nprint(\"Zbir:\", zbir)\n",
+    "expected_output_preview": "Broj (0 za kraj): 5\nBroj (0 za kraj): 3\nBroj (0 za kraj): 0\nZbir: 8",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^\\s*while\\b",
+          "message": "Koristi se petlja while.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "5\n3\n0",
+          "output_contains": [
+            "Zbir: 8"
+          ]
+        },
+        {
+          "stdin": "0",
+          "output_contains": [
+            "Zbir: 0"
+          ],
+          "name": "odmah nula"
+        },
+        {
+          "stdin": "10\n-4\n2\n0",
+          "output_contains": [
+            "Zbir: 8"
+          ]
+        },
+        {
+          "stdin": "100\n0\n7",
+          "output_contains": [
+            "Zbir: 100"
+          ],
+          "name": "posle nule se ne čita"
+        }
+      ]
+    },
+    "hints": [
+      "Uslov petlje: while broj != 0:",
+      "U bloku: prvo zbir = zbir + broj, pa učitaj sledeći broj (ista linija kao pre petlje).",
+      "Blok ima dve uvučene linije: zbir = zbir + broj i broj = int(input(\"Broj (0 za kraj): \"))."
+    ],
+    "solution": "zbir = 0\nbroj = int(input(\"Broj (0 za kraj): \"))\n\n# Dok broj nije 0: dodaj ga zbiru i učitaj sledeći.\nwhile broj != 0:\n    zbir = zbir + broj\n    broj = int(input(\"Broj (0 za kraj): \"))\n\nprint(\"Zbir:\", zbir)\n"
+  },
+  "quiz": [
+    {
+      "question": "Kada se završava petlja while?",
+      "options": [
+        "Posle 10 prolaza",
+        "Kada uslov postane False",
+        "Kada se ispiše nešto"
+      ],
+      "correct": 1,
+      "explanation": "Uslov se proverava pre svakog prolaza."
+    },
+    {
+      "question": "Šta je beskonačna petlja?",
+      "options": [
+        "Petlja sa range(1000)",
+        "Petlja čiji uslov nikad ne postane False",
+        "Petlja bez print-a"
+      ],
+      "correct": 1,
+      "explanation": "Ništa u bloku ne menja uslov."
+    },
+    {
+      "question": "Kada je while bolji izbor od for?",
+      "options": [
+        "Kada unapred ne znaš broj ponavljanja",
+        "Uvek",
+        "Kada brojiš od 1 do 10"
+      ],
+      "correct": 0,
+      "explanation": "Npr. čitanje dok korisnik ne upiše 0."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "x = 10\nwhile x > 0:\n    x = x - 4\nprint(x)\n",
+      "options": [
+        "0",
+        "-2",
+        "2"
+      ],
+      "correct": 1,
+      "explanation": "x ide 10 → 6 → 2 → -2. Tek -2 nije veće od 0."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "i = 1\nwhile i < 20:\n    print(i)\n    i = i * 3\n",
+      "answer": "1\n3\n9",
+      "explanation": "i ide 1, 3, 9, pa 27 — 27 nije manje od 20, petlja staje."
+    }
+  ]
+}

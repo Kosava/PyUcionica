@@ -1,0 +1,146 @@
+{
+  "id": "m05_l07",
+  "goal": "Naučićeš kako se veći program deli na funkcije i fajlove (module), i čemu služi provera if __name__ == \"__main__\".",
+  "explanation": [
+    "Kako program raste, jedan dugačak fajl postaje nepregledan. Rešenje je **podela**: kod se grupiše u funkcije, a funkcije koje idu zajedno u posebne **fajlove (module)**. Svaki .py fajl je modul i može se uvesti iz drugog fajla.",
+    "Primer projekta na računaru:\n- `racunanje.py` sa funkcijom `kvadrat(x)`,\n- `main.py` sa `from racunanje import kvadrat`.\nPython traži modul `racunanje.py` u istom folderu kao main.py. Tako su organizovane i sve veće aplikacije — i ova u kojoj učiš (folderi core, ui, models...).",
+    "Kada se fajl uvozi, Python izvrši **ceo** fajl. Ako modul na dnu ima i probne pozive (npr. `print(kvadrat(3))`), oni bi se izvršili i pri uvozu. Zato se koristi provera:\n`if __name__ == \"__main__\":`\n`    main()`\nPromenljiva `__name__` je `\"__main__\"` samo kada je fajl **pokrenut direktno**; kada je uvezen, sadrži ime modula. Tako se main() izvršava samo pri direktnom pokretanju.",
+    "Uobičajen raspored jednog fajla: importi na vrhu, zatim funkcije, zatim funkcija `main()` koja povezuje sve, i na dnu provera `__name__`.",
+    "> U ovoj aplikaciji vežbaš u jednom fajlu (main.py), pa ovaj zadatak traži organizaciju unutar fajla. Kada praviš projekat na svom računaru, iste funkcije samo premestiš u posebne fajlove."
+  ],
+  "terms": [
+    {
+      "term": "Modul (fajl)",
+      "definition": "Svaki .py fajl; može se uvesti iz drugog fajla: from racunanje import kvadrat."
+    },
+    {
+      "term": "main()",
+      "definition": "Uobičajeno ime glavne funkcije koja povezuje ostale delove programa."
+    },
+    {
+      "term": "__name__",
+      "definition": "Ugrađena promenljiva: \"__main__\" kada je fajl pokrenut direktno, ime modula kada je uvezen."
+    }
+  ],
+  "example_code": "# Na računaru bi ovo bila dva fajla.\n# racunanje.py:\ndef kvadrat(x):\n    return x * x\n\n\ndef kub(x):\n    return x * x * x\n\n\n# main.py (uz: from racunanje import kvadrat, kub):\ndef main():\n    for n in range(1, 4):\n        print(n, kvadrat(n), kub(n))\n\n\nprint(\"__name__ je:\", __name__)\n\nif __name__ == \"__main__\":\n    main()\n",
+  "example_steps": [
+    {
+      "code": "def main():",
+      "explanation": "Glavni deo programa je takođe funkcija."
+    },
+    {
+      "code": "print(\"__name__ je:\", __name__)",
+      "explanation": "Pri direktnom pokretanju ispisuje se __main__."
+    },
+    {
+      "code": "if __name__ == \"__main__\":\n    main()",
+      "explanation": "main() se poziva samo kada je fajl pokrenut, a ne kada je uvezen."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Organizuj program u funkcije:\n\n- `kvadrat(x)` — vraća x · x,\n- `opis_broja(n)` — **vraća** tekst `Broj 4 je paran, a njegov kvadrat je 16.` (ili `neparan`), koristeći funkciju kvadrat,\n- `main()` — učitava broj i ispisuje rezultat funkcije opis_broja,\n- na dnu: `if __name__ == \"__main__\":` i poziv `main()`.\n\nProvera pokreće program, ali i sama poziva tvoje funkcije.",
+    "starter_code": "# Funkcija kvadrat(x).\n\n\n# Funkcija opis_broja(n) — vraća tekst.\n\n\n# Funkcija main() — učitava broj i ispisuje opis.\n\n\n# Provera __name__ i poziv main().\n",
+    "expected_output_preview": "Broj: 4\nBroj 4 je paran, a njegov kvadrat je 16.",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^def\\s+main\\(\\s*\\)\\s*:",
+          "message": "Postoji funkcija main().",
+          "regex": true
+        },
+        {
+          "pattern": "^if\\s+__name__\\s*==\\s*[\\\"']__main__[\\\"']\\s*:",
+          "message": "Na dnu je provera if __name__ == \"__main__\":.",
+          "regex": true
+        },
+        {
+          "pattern": "kvadrat\\(",
+          "message": "Funkcija opis_broja koristi funkciju kvadrat.",
+          "regex": true,
+          "min_count": 2
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "4",
+          "output_contains": [
+            "Broj 4 je paran, a njegov kvadrat je 16."
+          ]
+        },
+        {
+          "stdin": "7",
+          "output_contains": [
+            "Broj 7 je neparan, a njegov kvadrat je 49."
+          ]
+        },
+        {
+          "stdin": "1",
+          "test_code": "print(\"test:\", kvadrat(9))\nprint(\"test:\", opis_broja(10))",
+          "output_contains": [
+            "test: 81",
+            "test: Broj 10 je paran, a njegov kvadrat je 100."
+          ],
+          "name": "funkcije vraćaju vrednosti"
+        }
+      ]
+    },
+    "hints": [
+      "def kvadrat(x): return x * x",
+      "U opis_broja: if n % 2 == 0: vrsta = \"paran\" else: vrsta = \"neparan\"; pa return f\"Broj {n} je {vrsta}, a njegov kvadrat je {kvadrat(n)}.\"",
+      "main(): n = int(input(\"Broj: \")) i print(opis_broja(n)). Na dnu, bez uvlačenja: if __name__ == \"__main__\": i ispod uvučeno main()."
+    ],
+    "solution": "def kvadrat(x):\n    return x * x\n\n\ndef opis_broja(n):\n    vrsta = \"paran\" if n % 2 == 0 else \"neparan\"\n    return f\"Broj {n} je {vrsta}, a njegov kvadrat je {kvadrat(n)}.\"\n\n\ndef main():\n    n = int(input(\"Broj: \"))\n    print(opis_broja(n))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  },
+  "quiz": [
+    {
+      "question": "Kakvu vrednost ima __name__ kada je fajl pokrenut direktno?",
+      "options": [
+        "\"main\"",
+        "\"__main__\"",
+        "Ime fajla"
+      ],
+      "correct": 1,
+      "explanation": "Kada je uvezen, sadrži ime modula."
+    },
+    {
+      "question": "Zašto se koristi if __name__ == \"__main__\"?",
+      "options": [
+        "Da main() radi samo pri direktnom pokretanju, ne i pri uvozu",
+        "Da bi program bio brži",
+        "Obavezno je u svakom programu"
+      ],
+      "correct": 0,
+      "explanation": "Uvoz ne treba da pokreće program."
+    },
+    {
+      "question": "Kako se iz fajla racunanje.py uvozi funkcija kvadrat?",
+      "options": [
+        "import kvadrat",
+        "from racunanje import kvadrat",
+        "include racunanje"
+      ],
+      "correct": 1,
+      "explanation": "from modul import ime."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "def main():\n    print(\"radim\")\n\nif __name__ == \"__main__\":\n    main()\n",
+      "options": [
+        "radim",
+        "Ništa",
+        "__main__"
+      ],
+      "correct": 0,
+      "explanation": "Fajl je pokrenut direktno, pa se main() poziva."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "def dupliraj(x):\n    return x * 2\n\ndef main():\n    print(dupliraj(4))\n    print(dupliraj(\"ab\"))\n\nmain()\n",
+      "answer": "8\nabab",
+      "explanation": "Ista funkcija radi i sa brojem i sa tekstom."
+    }
+  ]
+}

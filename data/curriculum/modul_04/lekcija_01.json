@@ -1,0 +1,151 @@
+{
+  "id": "m04_l01",
+  "goal": "Naučićeš da pomoću petlje for ponoviš isti deo koda više puta, bez prepisivanja.",
+  "explanation": [
+    "Zamisli da treba da ispišeš brojeve od 1 do 100. Sto print naredbi bi bilo smešno dugo. Za ponavljanje služi **petlja** — deo koda koji se izvršava više puta.",
+    "Petlja **for** prolazi kroz niz vrednosti i za svaku izvrši svoj blok. Oblik je kao kod if: reč `for`, ime promenljive, reč `in`, niz vrednosti i **dvotačka**, a ispod uvučen blok:\n`for broj in range(1, 4):`\n`    print(broj)`",
+    "**range** pravi niz celih brojeva:\n- `range(5)` → 0, 1, 2, 3, 4 (pet brojeva, počinje od 0),\n- `range(1, 6)` → 1, 2, 3, 4, 5 (kraj se NE računa),\n- `range(0, 10, 2)` → 0, 2, 4, 6, 8 (treći broj je korak).",
+    "U svakom prolazu (**iteraciji**) promenljiva petlje dobija sledeću vrednost iz niza. U prvom prolazu `broj` je 1, u drugom 2... Kada vrednosti ponestane, petlja se završava i program nastavlja ispod nje.",
+    "Petlja može da prolazi i kroz tekst — slovo po slovo: `for slovo in \"Ana\":`.",
+    "> Najčešća greška: zaboraviti da range(1, 10) ne uključuje 10. Ako ti treba i 10, piši range(1, 11)."
+  ],
+  "terms": [
+    {
+      "term": "Petlja",
+      "definition": "Deo koda koji se izvršava više puta."
+    },
+    {
+      "term": "for",
+      "definition": "Petlja koja prolazi kroz niz vrednosti: for x in niz:"
+    },
+    {
+      "term": "range",
+      "definition": "Pravi niz celih brojeva: range(početak, kraj, korak). Kraj se ne uključuje."
+    },
+    {
+      "term": "Iteracija",
+      "definition": "Jedan prolaz kroz blok petlje."
+    }
+  ],
+  "example_code": "for broj in range(1, 6):\n    print(\"Broj:\", broj)\n\nzbir = 0\nfor broj in range(1, 101):\n    zbir = zbir + broj\nprint(\"Zbir od 1 do 100:\", zbir)\n\nfor slovo in \"Ana\":\n    print(slovo)\n",
+  "example_steps": [
+    {
+      "code": "for broj in range(1, 6):\n    print(\"Broj:\", broj)",
+      "explanation": "Pet prolaza: broj je redom 1, 2, 3, 4, 5. Šestica se ne ispisuje."
+    },
+    {
+      "code": "zbir = 0\nfor broj in range(1, 101):\n    zbir = zbir + broj",
+      "explanation": "Pre petlje zbir je 0. U svakom prolazu dodaje se sledeći broj. Posle 100 prolaza zbir je 5050."
+    },
+    {
+      "code": "print(\"Zbir od 1 do 100:\", zbir)",
+      "explanation": "Nije uvučeno, pa se izvršava jednom — posle petlje."
+    },
+    {
+      "code": "for slovo in \"Ana\":",
+      "explanation": "Petlja kroz tekst: slovo je redom A, n, a."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava ceo broj i ispisuje njegovu **tablicu množenja od 1 do 10**, u obliku:\n\n`3 x 1 = 3`\n`3 x 2 = 6`\n…\n`3 x 10 = 30`\n\nKoristi petlju for i range.",
+    "starter_code": "n = int(input(\"Broj: \"))\n\n# Ispiši tablicu množenja pomoću petlje for.\n",
+    "expected_output_preview": "Broj: 3\n3 x 1 = 3\n3 x 2 = 6\n...\n3 x 10 = 30",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^\\s*for\\s+\\w+\\s+in\\s+range\\(",
+          "message": "Koristi se petlja for sa range.",
+          "regex": true
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "print(",
+          "message": "Ispis je u petlji — dovoljan je jedan print.",
+          "min_count": 3
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "3",
+          "output_contains": [
+            "3 x 1 = 3",
+            "3 x 5 = 15",
+            "3 x 10 = 30"
+          ],
+          "output_line_count": 10
+        },
+        {
+          "stdin": "7",
+          "output_contains": [
+            "7 x 1 = 7",
+            "7 x 10 = 70"
+          ],
+          "output_not_contains": [
+            "7 x 11",
+            "7 x 0"
+          ],
+          "output_line_count": 10
+        }
+      ]
+    },
+    "hints": [
+      "Brojevi od 1 do 10: range(1, 11).",
+      "for i in range(1, 11): i ispod, uvučeno, jedan print.",
+      "print(f\"{n} x {i} = {n * i}\")"
+    ],
+    "solution": "n = int(input(\"Broj: \"))\n\n# Ispiši tablicu množenja pomoću petlje for.\nfor i in range(1, 11):\n    print(f\"{n} x {i} = {n * i}\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Koje brojeve daje range(2, 5)?",
+      "options": [
+        "2, 3, 4, 5",
+        "2, 3, 4",
+        "3, 4, 5"
+      ],
+      "correct": 1,
+      "explanation": "Kraj (5) se ne uključuje."
+    },
+    {
+      "question": "Koliko puta se izvrši blok petlje for i in range(4)?",
+      "options": [
+        "3",
+        "4",
+        "5"
+      ],
+      "correct": 1,
+      "explanation": "range(4) daje 0, 1, 2, 3 — četiri broja."
+    },
+    {
+      "question": "Šta je iteracija?",
+      "options": [
+        "Greška u petlji",
+        "Jedan prolaz kroz blok petlje",
+        "Kraj programa"
+      ],
+      "correct": 1,
+      "explanation": "Svaki prolaz je jedna iteracija."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "for i in range(0, 10, 3):\n    print(i, end=\" \")\n",
+      "options": [
+        "0 3 6 9",
+        "0 3 6 9 12",
+        "3 6 9"
+      ],
+      "correct": 0,
+      "explanation": "Korak je 3; 12 je veće od kraja (10). end=\" \" ispisuje razmak umesto novog reda."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "ukupno = 0\nfor x in range(1, 5):\n    ukupno = ukupno + x\n    print(ukupno)\n",
+      "answer": "1\n3\n6\n10",
+      "explanation": "print je u petlji, pa se ispisuje zbir posle svakog prolaza: 1, 1+2, 1+2+3, 1+2+3+4."
+    }
+  ]
+}

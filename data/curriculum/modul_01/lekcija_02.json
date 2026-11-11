@@ -1,0 +1,123 @@
+{
+  "id": "m01_l02",
+  "goal": "Napisaćeš svoj prvi program i naučiti kako se pomoću print() ispisuje tekst na ekran.",
+  "explanation": [
+    "Postoji tradicija da prvi program koji neko napiše u novom jeziku ispisuje pozdrav „Zdravo, svete!“. I mi ćemo tako početi. Za ispis se koristi **print** — jedna od najvažnijih i najčešće korišćenih naredbi u Pythonu.",
+    "print je **funkcija**. Funkcija je imenovana naredba koja nešto radi. Da bi se funkcija izvršila, iza njenog imena pišu se zagrade: `print()`. Kažemo da smo funkciju **pozvali**.",
+    "Ono što stavimo u zagrade zove se **argument** — to je vrednost koju predajemo funkciji da sa njom nešto uradi. Funkcija print ispisuje svoj argument. U izrazu `print(\"Zdravo, svete!\")` argument je tekst „Zdravo, svete!“.",
+    "Tekst se u programiranju zove **string** (niz znakova). String se uvek piše između navodnika, da bi Python znao gde tekst počinje, a gde se završava. Možeš koristiti dvostruke \" ili jednostruke ' navodnike, ali početak i kraj moraju biti isti.",
+    "Python strogo razlikuje velika i mala slova. `print` je ispravno, a `Print` ili `PRINT` Python ne prepoznaje i javlja grešku.",
+    "Svaki poziv print-a ispisuje jedan red. Ako napišeš tri print-a, dobićeš tri reda, redom kojim su napisani. Poziv bez argumenta, `print()`, ispisuje prazan red.\nAko print-u daš više argumenata odvojenih zarezom, ispisuje ih u istom redu, odvojene jednim razmakom.",
+    "> Navodnici se ne ispisuju — oni samo označavaju granice teksta. Program print(\"Zdravo\") ispisuje Zdravo, bez navodnika."
+  ],
+  "terms": [
+    {
+      "term": "Funkcija",
+      "definition": "Imenovana naredba koja obavlja neki posao. Poziva se tako što se iza imena napišu zagrade, npr. print()."
+    },
+    {
+      "term": "Poziv funkcije",
+      "definition": "Izvršavanje funkcije: ime funkcije + zagrade, sa argumentima unutar zagrada."
+    },
+    {
+      "term": "Argument",
+      "definition": "Vrednost koja se u zagradama predaje funkciji. Kod print(\"Ćao\") argument je tekst „Ćao“."
+    },
+    {
+      "term": "String",
+      "definition": "Tekst u programu, napisan između navodnika: \"ovako\" ili 'ovako'."
+    }
+  ],
+  "example_code": "print(\"Zdravo, svete!\")\nprint('I jednostruki navodnici rade.')\nprint()\nprint(\"Python\", \"je\", \"zabavan\")\n",
+  "example_steps": [
+    {
+      "code": "print(\"Zdravo, svete!\")",
+      "explanation": "Pozivamo funkciju print sa jednim argumentom — stringom „Zdravo, svete!“. Ispisuje se tekst bez navodnika."
+    },
+    {
+      "code": "print('I jednostruki navodnici rade.')",
+      "explanation": "Isti rezultat se dobija i sa jednostrukim navodnicima. Važno je samo da početni i krajnji navodnik budu isti."
+    },
+    {
+      "code": "print()",
+      "explanation": "Poziv bez argumenta ispisuje prazan red. Zagrade su ipak obavezne — bez njih funkcija nije pozvana."
+    },
+    {
+      "code": "print(\"Python\", \"je\", \"zabavan\")",
+      "explanation": "Tri argumenta odvojena zarezima. print ih ispisuje u istom redu i između njih sam stavlja po jedan razmak: Python je zabavan."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji ispisuje tačno ova tri reda, ovim redosledom:\n\n`Zdravo, svete!`\n`Zovem se Python učenik.`\n`Učim da programiram.`\n\nZa svaki red koristi poseban poziv funkcije print.",
+    "starter_code": "# Moj prvi program.\n# Napiši tri poziva funkcije print ispod ove linije.\n\n",
+    "expected_output_preview": "Zdravo, svete!\nZovem se Python učenik.\nUčim da programiram.",
+    "criteria": {
+      "expected_output": "Zdravo, svete!\nZovem se Python učenik.\nUčim da programiram.",
+      "code_contains": [
+        {
+          "pattern": "print(",
+          "min_count": 3,
+          "message": "Kod sadrži najmanje tri poziva funkcije print."
+        }
+      ]
+    },
+    "hints": [
+      "Svaki red je jedan poziv: print(\"tekst\").",
+      "Prvi red rešenja je: print(\"Zdravo, svete!\") — ostala dva napiši po istom obrascu.",
+      "Proveri zareze, tačke i uzvičnik — izlaz mora biti identičan zadatom, znak po znak."
+    ],
+    "solution": "# Moj prvi program.\nprint(\"Zdravo, svete!\")\nprint(\"Zovem se Python učenik.\")\nprint(\"Učim da programiram.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Koja linija je ispravno napisana?",
+      "options": [
+        "Print(\"Zdravo\")",
+        "print(\"Zdravo\")",
+        "print \"Zdravo\""
+      ],
+      "correct": 1,
+      "explanation": "Ime funkcije pišemo malim slovima, a argument stavljamo u zagrade."
+    },
+    {
+      "question": "Šta ispisuje print(\"A\", \"B\")?",
+      "options": [
+        "AB",
+        "A B",
+        "\"A\", \"B\""
+      ],
+      "correct": 1,
+      "explanation": "Više argumenata print ispisuje u istom redu, odvojene razmakom."
+    },
+    {
+      "question": "Čemu služe navodnici oko teksta?",
+      "options": [
+        "Ispisuju se zajedno sa tekstom",
+        "Označavaju početak i kraj stringa",
+        "Ukrašavaju kod"
+      ],
+      "correct": 1,
+      "explanation": "Navodnici govore Pythonu gde tekst počinje i gde se završava; oni se ne ispisuju."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"Ana\", \"i\", \"Marko\")\n",
+      "options": [
+        "AnaiMarko",
+        "Ana i Marko",
+        "\"Ana\", \"i\", \"Marko\""
+      ],
+      "correct": 1,
+      "explanation": "Više argumenata print ispisuje u istom redu, sa razmakom između njih. Navodnici se ne ispisuju."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(\"A\")\nprint()\nprint(\"B\")\n",
+      "answer": "A\n\nB",
+      "explanation": "print() bez argumenata ispisuje prazan red, pa je između A i B jedan prazan red."
+    }
+  ]
+}

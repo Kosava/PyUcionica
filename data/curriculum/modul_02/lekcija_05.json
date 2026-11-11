@@ -1,0 +1,153 @@
+{
+  "id": "m02_l05",
+  "goal": "Naučićeš da pretvaraš vrednosti iz jednog tipa u drugi pomoću int(), float() i str(), i da prepoznaš greške koje nastaju kada se tipovi pomešaju.",
+  "explanation": [
+    "Tekst \"15\" i broj 15 izgledaju isto kada se ispišu, ali za Python su to potpuno različite stvari. \"15\" je tekst od dva znaka, a 15 je broj sa kojim se može računati. Zato `\"15\" + \"27\"` daje `1527` (spojen tekst), a `15 + 27` daje `42`.",
+    "Pretvaranje vrednosti u drugi tip naziva se **konverzija**. Za to služe funkcije sa imenima tipova:\n- `int(\"15\")` → ceo broj 15,\n- `float(\"2.5\")` → decimalni broj 2.5,\n- `str(42)` → tekst \"42\".",
+    "Python ne dozvoljava da se tekst i broj spoje znakom +, jer ne zna da li želiš da računaš ili da spajaš tekst. `\"Godine: \" + 30` daje grešku **TypeError**. Rešenje je da broj pretvoriš u tekst: `\"Godine: \" + str(30)`.",
+    "Ako tekst ne izgleda kao broj, pretvaranje ne uspeva: `int(\"pet\")` ili `int(\"2.5\")` daju grešku **ValueError**. Za decimalne brojeve u tekstu koristi `float()`.",
+    "`int()` od decimalnog broja odseca decimale (ne zaokružuje!): `int(3.9)` je `3`.",
+    "> Konverzija je posebno važna u sledećoj lekciji: sve što korisnik upiše sa tastature, Python vidi kao tekst. Da bi se sa tim računalo, mora se pretvoriti u broj."
+  ],
+  "terms": [
+    {
+      "term": "Konverzija",
+      "definition": "Pretvaranje vrednosti iz jednog tipa u drugi, npr. teksta \"5\" u broj 5."
+    },
+    {
+      "term": "int(), float(), str()",
+      "definition": "Funkcije koje pretvaraju vrednost u ceo broj, decimalni broj ili tekst."
+    },
+    {
+      "term": "TypeError",
+      "definition": "Greška kada se operacija primeni na pogrešne tipove, npr. tekst + broj."
+    },
+    {
+      "term": "ValueError",
+      "definition": "Greška kada vrednost ne može da se pretvori, npr. int(\"abc\")."
+    }
+  ],
+  "example_code": "a = \"15\"\nb = \"27\"\nprint(a + b)\nprint(int(a) + int(b))\n\ncena = float(\"99.90\")\nprint(cena * 2)\n\ngodine = 30\nprint(\"Godine: \" + str(godine))\nprint(int(3.9))\n",
+  "example_steps": [
+    {
+      "code": "print(a + b)",
+      "explanation": "a i b su tekst, pa + spaja: 1527."
+    },
+    {
+      "code": "print(int(a) + int(b))",
+      "explanation": "Posle pretvaranja u brojeve, + sabira: 42."
+    },
+    {
+      "code": "cena = float(\"99.90\")",
+      "explanation": "Tekst sa decimalnom tačkom pretvara se u float 99.9."
+    },
+    {
+      "code": "print(\"Godine: \" + str(godine))",
+      "explanation": "Broj se pretvara u tekst da bi mogao da se spoji sa tekstom."
+    },
+    {
+      "code": "print(int(3.9))",
+      "explanation": "int odseca decimale: 3, a ne 4."
+    }
+  ],
+  "exercise": {
+    "type": "fix",
+    "description": "Ovaj program treba da sabere dva broja i ispiše `Zbir je 42`, ali ispisuje `Zbir je 1527`. Ispravi ga:\n\n- pretvori `broj_a` i `broj_b` u cele brojeve pre sabiranja,\n- a zbir pretvori u tekst pre spajanja sa `\"Zbir je \"`.\n\nPrve dve linije (gde se zadaju vrednosti) ne menjaj, i ne upisuj broj 42 ručno.",
+    "starter_code": "broj_a = \"15\"\nbroj_b = \"27\"\nzbir = broj_a + broj_b\nprint(\"Zbir je \" + zbir)\n",
+    "expected_output_preview": "Zbir je 42",
+    "criteria": {
+      "expected_output": "Zbir je 42",
+      "code_contains": [
+        {
+          "pattern": "broj_a\\s*=\\s*[\\\"']15[\\\"']",
+          "message": "Prve dve linije su ostale iste (vrednosti su tekst).",
+          "regex": true
+        },
+        {
+          "pattern": "int(",
+          "message": "Koristi se int() za pretvaranje u broj."
+        },
+        {
+          "pattern": "str(",
+          "message": "Koristi se str() za pretvaranje zbira u tekst."
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "\\b42\\b",
+          "message": "Broj 42 se računa, a ne upisuje ručno.",
+          "regex": true
+        }
+      ]
+    },
+    "hints": [
+      "Problem je u trećoj liniji: tekst + tekst se spaja. Pretvori obe vrednosti u brojeve pomoću int().",
+      "zbir = int(broj_a) + int(broj_b)",
+      "Sada je zbir broj, a tekst i broj ne mogu da se spoje sa +. U poslednjoj liniji koristi str(zbir)."
+    ],
+    "solution": "broj_a = \"15\"\nbroj_b = \"27\"\nzbir = int(broj_a) + int(broj_b)\nprint(\"Zbir je \" + str(zbir))\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta daje \"3\" + \"4\"?",
+      "options": [
+        "7",
+        "34",
+        "Grešku"
+      ],
+      "correct": 1,
+      "explanation": "Oba su tekst, pa se spajaju."
+    },
+    {
+      "question": "Koja greška nastaje kod \"Cena: \" + 100?",
+      "options": [
+        "ValueError",
+        "TypeError",
+        "NameError"
+      ],
+      "correct": 1,
+      "explanation": "Tekst i broj su različiti tipovi — TypeError."
+    },
+    {
+      "question": "Koliko je int(7.8)?",
+      "options": [
+        "7",
+        "8",
+        "7.8"
+      ],
+      "correct": 0,
+      "explanation": "int odseca decimale, ne zaokružuje."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(int(\"7\") + 3)\n",
+      "options": [
+        "73",
+        "10",
+        "Greška"
+      ],
+      "correct": 1,
+      "explanation": "int(\"7\") pretvara tekst u broj 7, pa se sabira: 7 + 3 = 10."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"Broj: \" + 5)\n",
+      "options": [
+        "Broj: 5",
+        "Ništa — javlja se TypeError",
+        "Broj: + 5"
+      ],
+      "correct": 1,
+      "explanation": "Tekst i broj ne mogu da se spoje sa +. Rešenje: str(5) ili zarez u print-u."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(str(4) + str(2))\nprint(int(9.9))\n",
+      "answer": "42\n9",
+      "explanation": "Dva teksta se spajaju u 42, a int odseca decimale, pa 9.9 postaje 9."
+    }
+  ]
+}

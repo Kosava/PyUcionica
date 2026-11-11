@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b7be6"/>
+      <stop offset="1" stop-color="#2452b0"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="48" fill="url(#bg)"/>
+  <!-- otvorena knjiga -->
+  <path d="M48 76c22-8 46-8 72 4v108c-26-12-50-12-72-4z" fill="#ffffff" opacity="0.95"/>
+  <path d="M208 76c-22-8-46-8-72 4v108c26-12 50-12 72-4z" fill="#ffffff" opacity="0.8"/>
+  <!-- znakovi koda -->
+  <path d="M90 112l-20 18 20 18" fill="none" stroke="#2452b0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M166 112l20 18-20 18" fill="none" stroke="#2452b0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

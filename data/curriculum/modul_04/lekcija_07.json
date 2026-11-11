@@ -1,0 +1,136 @@
+{
+  "id": "m04_l07",
+  "goal": "Naučićeš da pomoću rečnika čuvaš parove ključ–vrednost i da brzo pronađeš vrednost po ključu.",
+  "explanation": [
+    "Lista čuva vrednosti po poziciji (0, 1, 2...). Često je prirodnije tražiti po **imenu**: broj telefona po imenu osobe, cenu po nazivu proizvoda. Za to služi **rečnik** (dictionary, dict).",
+    "Rečnik čuva parove **ključ: vrednost** u vitičastim zagradama: `imenik = {\"Ana\": \"064111\", \"Marko\": \"065222\"}`. Vrednost se dobija po ključu: `imenik[\"Ana\"]` → \"064111\".",
+    "Rad sa rečnikom:\n- `imenik[\"Iva\"] = \"066333\"` — dodaje novi par ili menja postojeći,\n- `\"Ana\" in imenik` — da li ključ postoji,\n- `del imenik[\"Marko\"]` — briše par,\n- `len(imenik)` — broj parova.",
+    "Ako ključ ne postoji, `imenik[\"Pera\"]` izaziva **KeyError**. Bezbedniji način je metoda **get**: `imenik.get(\"Pera\")` vraća None, a `imenik.get(\"Pera\", \"nema\")` vraća zadatu zamenu.",
+    "Ključevi su jedinstveni (kao u skupu) i najčešće su tekst ili broj. Vrednosti mogu biti bilo šta — i liste, i drugi rečnici."
+  ],
+  "terms": [
+    {
+      "term": "Rečnik (dict)",
+      "definition": "Kolekcija parova ključ: vrednost, npr. {\"Ana\": 5}."
+    },
+    {
+      "term": "Ključ",
+      "definition": "Jedinstvena oznaka po kojoj se pronalazi vrednost."
+    },
+    {
+      "term": "get",
+      "definition": "Vraća vrednost za ključ, ili zamensku vrednost ako ključ ne postoji."
+    },
+    {
+      "term": "KeyError",
+      "definition": "Greška kada se traži ključ koji ne postoji u rečniku."
+    }
+  ],
+  "example_code": "cene = {\"hleb\": 65, \"mleko\": 129, \"jaja\": 210}\nprint(\"Hleb košta\", cene[\"hleb\"])\n\ncene[\"sir\"] = 450\ncene[\"mleko\"] = 135\nprint(cene)\n\nprint(\"kafa\" in cene)\nprint(cene.get(\"kafa\", \"nema u ponudi\"))\nprint(\"Proizvoda:\", len(cene))\n",
+  "example_steps": [
+    {
+      "code": "print(\"Hleb košta\", cene[\"hleb\"])",
+      "explanation": "Vrednost se dobija po ključu."
+    },
+    {
+      "code": "cene[\"sir\"] = 450\ncene[\"mleko\"] = 135",
+      "explanation": "Novi ključ dodaje par; postojeći ključ menja vrednost."
+    },
+    {
+      "code": "print(cene.get(\"kafa\", \"nema u ponudi\"))",
+      "explanation": "Ključ ne postoji, pa get vraća zamenu umesto KeyError."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Dat je mali imenik (rečnik). Napiši program koji:\n\n- učitava ime,\n- ako ime postoji u imeniku, ispisuje `Ana: 064111222`\n- ako ne postoji, ispisuje `Nema kontakta: Pera`\n\nKoristi `in` ili metodu `get`.",
+    "starter_code": "imenik = {\n    \"Ana\": \"064111222\",\n    \"Marko\": \"065333444\",\n    \"Jovana\": \"066555666\",\n}\n\nime = input(\"Ime: \")\n# Pronađi broj ili javi da kontakt ne postoji.\n",
+    "expected_output_preview": "Ime: Ana\nAna: 064111222",
+    "criteria": {
+      "code_not_contains": [
+        {
+          "pattern": "064111222\")",
+          "message": "Broj se uzima iz rečnika, a ne upisuje ručno u ispis."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "Ana",
+          "output_contains": [
+            "Ana: 064111222"
+          ]
+        },
+        {
+          "stdin": "Jovana",
+          "output_contains": [
+            "Jovana: 066555666"
+          ]
+        },
+        {
+          "stdin": "Pera",
+          "output_contains": [
+            "Nema kontakta: Pera"
+          ],
+          "name": "nepoznato ime"
+        }
+      ]
+    },
+    "hints": [
+      "Provera: if ime in imenik:",
+      "Ispis kada postoji: print(f\"{ime}: {imenik[ime]}\")",
+      "else: print(f\"Nema kontakta: {ime}\")"
+    ],
+    "solution": "imenik = {\n    \"Ana\": \"064111222\",\n    \"Marko\": \"065333444\",\n    \"Jovana\": \"066555666\",\n}\n\nime = input(\"Ime: \")\n# Pronađi broj ili javi da kontakt ne postoji.\nif ime in imenik:\n    print(f\"{ime}: {imenik[ime]}\")\nelse:\n    print(f\"Nema kontakta: {ime}\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Kako se dobija vrednost za ključ \"Ana\"?",
+      "options": [
+        "imenik(\"Ana\")",
+        "imenik[\"Ana\"]",
+        "imenik.Ana"
+      ],
+      "correct": 1,
+      "explanation": "Uglaste zagrade sa ključem."
+    },
+    {
+      "question": "Šta se desi kod d[\"x\"] ako ključ \"x\" ne postoji?",
+      "options": [
+        "Vraća None",
+        "KeyError",
+        "Dodaje se ključ"
+      ],
+      "correct": 1,
+      "explanation": "Za bezbedno čitanje koristi get."
+    },
+    {
+      "question": "Šta radi d[\"novi\"] = 5?",
+      "options": [
+        "Javlja grešku",
+        "Dodaje par ili menja postojeću vrednost",
+        "Briše ključ"
+      ],
+      "correct": 1,
+      "explanation": "Dodela po ključu dodaje ili menja."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "d = {\"a\": 1, \"b\": 2}\nd[\"a\"] = 10\nd[\"c\"] = 3\nprint(len(d), d[\"a\"])\n",
+      "options": [
+        "3 10",
+        "4 10",
+        "3 1"
+      ],
+      "correct": 0,
+      "explanation": "Ključ a je promenjen, c je dodat: 3 para."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "ocene = {\"Ana\": 5}\nprint(ocene.get(\"Ana\", 0))\nprint(ocene.get(\"Iva\", 0))\nprint(\"Iva\" in ocene)\n",
+      "answer": "5\n0\nFalse",
+      "explanation": "get vraća zamenu 0 za nepostojeći ključ."
+    }
+  ]
+}

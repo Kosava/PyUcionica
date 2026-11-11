@@ -1,0 +1,137 @@
+{
+  "id": "m05_l02",
+  "goal": "Naučićeš da funkciji predaješ vrednosti — parametre i argumente — uključujući podrazumevane vrednosti i imenovane argumente.",
+  "explanation": [
+    "Funkcija koja uvek radi potpuno isto nije mnogo korisna. **Parametri** omogućavaju da joj pri pozivu predaš podatke. Navode se u zagradama definicije: `def pozdravi(ime):`. Unutar funkcije `ime` je obična promenljiva.",
+    "Vrednost koju predaješ pri pozivu zove se **argument**: u `pozdravi(\"Ana\")` argument je \"Ana\". Kratko pravilo: parametar je ime u definiciji, argument je vrednost u pozivu.",
+    "Više parametara odvaja se zarezom: `def predstavi(ime, godine):`. Argumenti se dodeljuju **redom**: `predstavi(\"Ana\", 25)` — ime je \"Ana\", godine 25.",
+    "**Podrazumevana vrednost** se koristi kada argument nije prosleđen: `def pozdrav(ime, rec=\"Zdravo\"):`. Poziv `pozdrav(\"Ana\")` koristi \"Zdravo\", a `pozdrav(\"Ana\", \"Ćao\")` koristi \"Ćao\". Parametri sa podrazumevanom vrednošću idu na kraj.",
+    "**Imenovani argumenti** navode ime parametra pri pozivu: `pozdrav(rec=\"Dobar dan\", ime=\"Iva\")`. Tada redosled nije bitan, a poziv je čitljiviji.",
+    "> Ovaj zadatak proverava aplikacija tako što SAMA poziva tvoju funkciju sa različitim argumentima. Zato funkcija mora da se zove tačno kako piše u zadatku."
+  ],
+  "terms": [
+    {
+      "term": "Parametar",
+      "definition": "Ime u definiciji funkcije koje prima vrednost: def f(x)."
+    },
+    {
+      "term": "Argument",
+      "definition": "Vrednost predata pri pozivu: f(5)."
+    },
+    {
+      "term": "Podrazumevana vrednost",
+      "definition": "Vrednost parametra kada argument nije prosleđen: def f(x=1)."
+    },
+    {
+      "term": "Imenovani argument",
+      "definition": "Argument naveden sa imenom parametra: f(x=3)."
+    }
+  ],
+  "example_code": "def predstavi(ime, godine):\n    print(f\"{ime} ima {godine} godina.\")\n\n\ndef cena_sa_porezom(cena, porez=20):\n    print(f\"Cena sa porezom: {cena * (100 + porez) / 100:.2f}\")\n\n\npredstavi(\"Ana\", 25)\npredstavi(\"Marko\", 31)\ncena_sa_porezom(100)\ncena_sa_porezom(100, 10)\ncena_sa_porezom(porez=0, cena=50)\n",
+  "example_steps": [
+    {
+      "code": "def predstavi(ime, godine):",
+      "explanation": "Dva parametra. Pri pozivu se popunjavaju redom."
+    },
+    {
+      "code": "def cena_sa_porezom(cena, porez=20):",
+      "explanation": "Ako porez nije prosleđen, koristi se 20."
+    },
+    {
+      "code": "cena_sa_porezom(porez=0, cena=50)",
+      "explanation": "Imenovani argumenti — redosled nije bitan."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši funkciju `pozdrav(ime, rec=\"Zdravo\")` koja ispisuje `<rec>, <ime>!`, na primer `Zdravo, Ana!` ili `Ćao, Marko!`.\n\nProvera će sama pozvati tvoju funkciju sa različitim argumentima — u programu je dovoljno da je definišeš (možeš je i pozvati, radi probe).",
+    "starter_code": "# Definiši funkciju pozdrav sa parametrima ime i rec (podrazumevano \"Zdravo\").\n",
+    "expected_output_preview": "pozdrav(\"Ana\")          → Zdravo, Ana!\npozdrav(\"Marko\", \"Ćao\") → Ćao, Marko!",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "def\\s+pozdrav\\(\\s*ime\\s*,\\s*rec\\s*=",
+          "message": "Funkcija pozdrav ima parametar rec sa podrazumevanom vrednošću.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "test_code": "pozdrav(\"Ana\")",
+          "output_contains": [
+            "Zdravo, Ana!"
+          ]
+        },
+        {
+          "test_code": "pozdrav(\"Marko\", \"Ćao\")",
+          "output_contains": [
+            "Ćao, Marko!"
+          ]
+        },
+        {
+          "test_code": "pozdrav(rec=\"Dobar dan\", ime=\"Jovana\")",
+          "output_contains": [
+            "Dobar dan, Jovana!"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Definicija: def pozdrav(ime, rec=\"Zdravo\"):",
+      "Telo: jedan print sa f-stringom.",
+      "print(f\"{rec}, {ime}!\")"
+    ],
+    "solution": "# Definiši funkciju pozdrav sa parametrima ime i rec (podrazumevano \"Zdravo\").\ndef pozdrav(ime, rec=\"Zdravo\"):\n    print(f\"{rec}, {ime}!\")\n"
+  },
+  "quiz": [
+    {
+      "question": "U def f(x): print(x) i pozivu f(5) — šta je argument?",
+      "options": [
+        "x",
+        "5",
+        "f"
+      ],
+      "correct": 1,
+      "explanation": "Argument je vrednost u pozivu."
+    },
+    {
+      "question": "Šta znači def f(a, b=2)?",
+      "options": [
+        "b je obavezan",
+        "Ako se b ne prosledi, b je 2",
+        "a je 2"
+      ],
+      "correct": 1,
+      "explanation": "b ima podrazumevanu vrednost."
+    },
+    {
+      "question": "Koji poziv koristi imenovane argumente?",
+      "options": [
+        "f(1, 2)",
+        "f(b=2, a=1)",
+        "f()"
+      ],
+      "correct": 1,
+      "explanation": "Navode se imena parametara."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "def f(a, b=10):\n    print(a + b)\n\nf(1)\n",
+      "options": [
+        "1",
+        "11",
+        "Greška"
+      ],
+      "correct": 1,
+      "explanation": "b je podrazumevano 10."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "def opis(ime, boja=\"plava\"):\n    print(ime, boja)\n\nopis(\"nebo\")\nopis(\"trava\", \"zelena\")\n",
+      "answer": "nebo plava\ntrava zelena",
+      "explanation": "Drugi poziv zadaje boju, prvi koristi podrazumevanu."
+    }
+  ]
+}

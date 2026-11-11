@@ -1,0 +1,124 @@
+{
+  "id": "m08_l03",
+  "goal": "Bolje ćeš upoznati QApplication i QWidget: kako jedna aplikacija upravlja sa više prozora i kako se prozoru zadaju najmanja veličina i položaj.",
+  "explanation": [
+    "U prethodnoj lekciji napravio si jedan prozor. Jedna aplikacija može imati i **više prozora** — npr. glavni prozor i prozor sa podešavanjima. Svi rade u istoj petlji događaja, pa i dalje postoji samo **jedna** QApplication.",
+    "QWidget ima mnogo korisnih metoda. Neke od njih:\n- `setWindowTitle(tekst)` — naslov,\n- `resize(širina, visina)` — veličina,\n- `move(x, y)` — položaj na ekranu (gornji levi ugao),\n- `setMinimumSize(širina, visina)` — prozor ne može da se smanji ispod ove veličine,\n- `width()` i `height()` — vraćaju trenutnu širinu i visinu.",
+    "Metode koje počinju sa **set** nešto postavljaju, a metode bez toga (npr. `windowTitle()`, `width()`) vraćaju trenutnu vrednost. Ovaj obrazac se ponavlja u celom PyQt6.",
+    "Program sa više prozora završava se kada se zatvori **poslednji** prozor. Tada se završava i app.exec().",
+    "> Dok vežbaš, prozori se mogu pojaviti jedan preko drugog — pomeri ih mišem ili im zadaj različit položaj pomoću move().",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "Metoda „set…“",
+      "definition": "Postavlja svojstvo widget-a, npr. setWindowTitle(\"Naslov\")."
+    },
+    {
+      "term": "Metoda za čitanje",
+      "definition": "Vraća trenutnu vrednost svojstva, npr. windowTitle() ili width()."
+    },
+    {
+      "term": "setMinimumSize",
+      "definition": "Najmanja dozvoljena veličina prozora."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\napp = QApplication(sys.argv)\n\nglavni = QWidget()\nglavni.setWindowTitle(\"Glavni prozor\")\nglavni.resize(400, 300)\nglavni.move(100, 100)\nglavni.show()\n\npomocni = QWidget()\npomocni.setWindowTitle(\"Pomoćni prozor\")\npomocni.resize(250, 150)\npomocni.move(550, 100)\npomocni.show()\n\nprint(\"Širina glavnog prozora:\", glavni.width())\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "app = QApplication(sys.argv)",
+      "explanation": "I dalje samo jedna aplikacija, iako će biti dva prozora."
+    },
+    {
+      "code": "glavni.move(100, 100)",
+      "explanation": "Gornji levi ugao prozora biće 100 piksela od leve i 100 od gornje ivice ekrana."
+    },
+    {
+      "code": "pomocni = QWidget()",
+      "explanation": "Drugi prozor je nov QWidget objekat, sa svojim naslovom, veličinom i položajem."
+    },
+    {
+      "code": "print(\"Širina glavnog prozora:\", glavni.width())",
+      "explanation": "width() vraća trenutnu širinu: 400."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program sa **dva prozora**:\n\n- prozor sa naslovom `Glavni`, najmanje veličine **300 × 200** (`setMinimumSize`),\n- prozor sa naslovom `Pomoćni`.\n\nOba prozora moraju biti prikazana, a u programu sme da postoji samo jedna QApplication.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\napp = QApplication(sys.argv)\n\n# Napravi i prikaži dva prozora.\n\nsys.exit(app.exec())\n",
+    "expected_output_preview": "(otvaraju se dva prozora: „Glavni“ i „Pomoćni“)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "setMinimumSize(",
+          "message": "Glavnom prozoru je zadata najmanja veličina."
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "QApplication(",
+          "message": "Program ima samo jednu QApplication.",
+          "min_count": 2
+        }
+      ],
+      "cases": [
+        {
+          "name": "dva prozora",
+          "gui_script": "naslovi = sorted(p.windowTitle() for p in prozori())\nprint('prozori:', naslovi)\nfor p in prozori():\n    if p.windowTitle() == 'Glavni':\n        m = p.minimumSize()\n        print('najmanja veličina:', m.width(), 'x', m.height())\n",
+          "output_contains": [
+            "prozori: ['Glavni', 'Pomoćni']",
+            "najmanja veličina: 300 x 200"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Svaki prozor je poseban QWidget: glavni = QWidget() i pomocni = QWidget().",
+      "Najmanja veličina: glavni.setMinimumSize(300, 200)",
+      "Ne zaboravi show() za OBA prozora."
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\napp = QApplication(sys.argv)\n\n# Napravi i prikaži dva prozora.\nglavni = QWidget()\nglavni.setWindowTitle(\"Glavni\")\nglavni.setMinimumSize(300, 200)\nglavni.show()\n\npomocni = QWidget()\npomocni.setWindowTitle(\"Pomoćni\")\npomocni.show()\n\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Program ima tri prozora. Koliko QApplication objekata treba?",
+      "options": [
+        "Tri",
+        "Jedan",
+        "Dva"
+      ],
+      "correct": 1,
+      "explanation": "Aplikacija je uvek jedna, bez obzira na broj prozora."
+    },
+    {
+      "question": "Šta vraća prozor.windowTitle()?",
+      "options": [
+        "Postavlja novi naslov",
+        "Trenutni naslov prozora",
+        "Ništa"
+      ],
+      "correct": 1,
+      "explanation": "Metode bez „set“ čitaju trenutnu vrednost."
+    },
+    {
+      "question": "Čemu služi move(x, y)?",
+      "options": [
+        "Menja veličinu prozora",
+        "Postavlja položaj prozora na ekranu",
+        "Zatvara prozor"
+      ],
+      "correct": 1,
+      "explanation": "move pomera gornji levi ugao prozora."
+    },
+    {
+      "question": "Kada se završava app.exec() u programu sa dva prozora?",
+      "options": [
+        "Kada se zatvori prvi prozor",
+        "Kada se zatvori poslednji prozor",
+        "Odmah"
+      ],
+      "correct": 1,
+      "explanation": "Petlja događaja radi dok postoji bar jedan otvoren prozor."
+    }
+  ]
+}

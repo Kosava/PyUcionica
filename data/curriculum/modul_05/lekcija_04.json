@@ -1,0 +1,136 @@
+{
+  "id": "m05_l04",
+  "goal": "Razumećeš gde promenljiva „živi“ — lokalni i globalni opseg — i kako da podatke uredno prenosiš u funkciju i iz nje.",
+  "explanation": [
+    "Promenljiva napravljena **unutar** funkcije je **lokalna**: postoji samo dok se funkcija izvršava i vidi se samo u njoj. Posle poziva nestaje. Zato dve funkcije mogu imati promenljivu istog imena bez ikakvog sukoba.",
+    "Promenljiva napravljena **van** svih funkcija je **globalna**. Funkcija može da je **čita**. Ali čim u funkciji DODELIŠ vrednost tom imenu, Python ga smatra lokalnim za celu funkciju.",
+    "Zato ovaj kod pravi grešku **UnboundLocalError**:\n`ukupno = 0`\n`def dodaj(x):`\n`    ukupno = ukupno + x`\nDesna strana pokušava da pročita lokalno `ukupno`, koje još nema vrednost.",
+    "Postoji reč `global` koja to „popravlja“, ali se ne preporučuje: funkcije koje menjaju globalne promenljive teško se prate i testiraju. **Bolje rešenje:** podatke predaj kao parametre, a rezultat vrati pomoću return:\n`def dodaj(ukupno, x):`\n`    return ukupno + x`\n`ukupno = dodaj(ukupno, 5)`",
+    "> Pravilo dobre funkcije: sve što joj treba dobija kroz parametre, a sve što proizvede vraća kroz return."
+  ],
+  "terms": [
+    {
+      "term": "Opseg (scope)",
+      "definition": "Deo programa u kome je promenljiva vidljiva."
+    },
+    {
+      "term": "Lokalna promenljiva",
+      "definition": "Napravljena u funkciji; postoji samo tokom njenog izvršavanja."
+    },
+    {
+      "term": "Globalna promenljiva",
+      "definition": "Napravljena van funkcija; vidljiva u celom fajlu."
+    },
+    {
+      "term": "UnboundLocalError",
+      "definition": "Greška kada funkcija čita lokalnu promenljivu pre nego što joj je dodeljena vrednost."
+    }
+  ],
+  "example_code": "poruka = \"globalna\"\n\n\ndef prikazi():\n    print(\"U funkciji vidim:\", poruka)\n\n\ndef lokalno():\n    poruka = \"lokalna\"\n    print(\"U funkciji:\", poruka)\n\n\nprikazi()\nlokalno()\nprint(\"Van funkcije:\", poruka)\n\n\ndef uvecaj(broj, za_koliko):\n    return broj + za_koliko\n\n\npoeni = 10\npoeni = uvecaj(poeni, 5)\nprint(\"Poeni:\", poeni)\n",
+  "example_steps": [
+    {
+      "code": "def prikazi():\n    print(\"U funkciji vidim:\", poruka)",
+      "explanation": "Funkcija samo čita globalnu promenljivu — to je dozvoljeno."
+    },
+    {
+      "code": "def lokalno():\n    poruka = \"lokalna\"",
+      "explanation": "Dodela pravi NOVU lokalnu promenljivu; globalna ostaje „globalna“."
+    },
+    {
+      "code": "poeni = uvecaj(poeni, 5)",
+      "explanation": "Ispravan način: vrednost ulazi kao argument, nova vrednost izlazi kao povratna."
+    }
+  ],
+  "exercise": {
+    "type": "fix",
+    "description": "Ovaj program javlja **UnboundLocalError**. Prepravi ga:\n\n- funkcija `dodaj_poene(ukupno, poeni)` prima trenutni zbir i poene i **vraća** novi zbir (bez print-a i bez reči `global`),\n- program dva puta poziva funkciju (sa 5 i sa 10 poena) i čuva rezultat u `ukupno`,\n- na kraju ispisuje `Ukupno: 15`.",
+    "starter_code": "ukupno = 0\n\n\ndef dodaj_poene(poeni):\n    ukupno = ukupno + poeni\n    print(\"Ukupno:\", ukupno)\n\n\ndodaj_poene(5)\ndodaj_poene(10)\n",
+    "expected_output_preview": "Ukupno: 15",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "def\\s+dodaj_poene\\(\\s*ukupno\\s*,\\s*poeni\\s*\\)",
+          "message": "Funkcija prima ukupno i poeni kao parametre.",
+          "regex": true
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "global",
+          "message": "Ne koristi se reč global."
+        }
+      ],
+      "cases": [
+        {
+          "expected_output": "Ukupno: 15",
+          "name": "program"
+        },
+        {
+          "test_code": "print(\"test:\", dodaj_poene(100, 1))",
+          "output_contains": [
+            "test: 101"
+          ],
+          "output_line_count": 2,
+          "name": "funkcija vraća zbir i ne ispisuje"
+        }
+      ]
+    },
+    "hints": [
+      "Nova definicija: def dodaj_poene(ukupno, poeni): sa telom return ukupno + poeni.",
+      "Pozivi čuvaju rezultat: ukupno = dodaj_poene(ukupno, 5).",
+      "Ispis ide na kraj programa, van funkcije: print(\"Ukupno:\", ukupno)."
+    ],
+    "solution": "ukupno = 0\n\n\ndef dodaj_poene(ukupno, poeni):\n    return ukupno + poeni\n\n\nukupno = dodaj_poene(ukupno, 5)\nukupno = dodaj_poene(ukupno, 10)\nprint(\"Ukupno:\", ukupno)\n"
+  },
+  "quiz": [
+    {
+      "question": "Gde je vidljiva promenljiva napravljena unutar funkcije?",
+      "options": [
+        "U celom programu",
+        "Samo u toj funkciji",
+        "Nigde"
+      ],
+      "correct": 1,
+      "explanation": "To je lokalna promenljiva."
+    },
+    {
+      "question": "Zašto x = x + 1 u funkciji (x je globalno) izaziva grešku?",
+      "options": [
+        "Zbog sintakse",
+        "Dodela čini x lokalnim, a ono još nema vrednost",
+        "Globalne promenljive ne postoje"
+      ],
+      "correct": 1,
+      "explanation": "To je UnboundLocalError."
+    },
+    {
+      "question": "Koji je preporučen način da funkcija promeni vrednost?",
+      "options": [
+        "global",
+        "Primi je kao parametar i vrati novu vrednost",
+        "print"
+      ],
+      "correct": 1,
+      "explanation": "Parametar ulazi, return izlazi."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "x = 5\n\ndef f():\n    x = 99\n\nf()\nprint(x)\n",
+      "options": [
+        "99",
+        "5",
+        "Greška"
+      ],
+      "correct": 1,
+      "explanation": "x u funkciji je lokalno; globalno x ostaje 5."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "def f(a):\n    a = a * 2\n    return a\n\nb = 3\nc = f(b)\nprint(b)\nprint(c)\n",
+      "answer": "3\n6",
+      "explanation": "a je lokalna kopija; b se ne menja, a c dobija vraćenu vrednost."
+    }
+  ]
+}

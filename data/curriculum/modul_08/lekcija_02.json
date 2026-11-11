@@ -1,0 +1,134 @@
+{
+  "id": "m08_l02",
+  "goal": "Napravićeš svoj prvi program sa pravim prozorom i naučićeš pet linija koje ima svaki PyQt6 program.",
+  "explanation": [
+    "Svaki PyQt6 program ima isti kostur. Naizgled je dosta koda za jedan prazan prozor, ali ćeš ga pisati uvek isto, pa se brzo zapamti.",
+    "**1. Uvoz.** `import sys` uključuje modul sys (deo samog Pythona), a `from PyQt6.QtWidgets import QApplication, QWidget` uzima dve stvari iz PyQt6.",
+    "**2. Aplikacija.** `app = QApplication(sys.argv)` pravi **objekat** aplikacije. Objekat je vrednost koja ima svoje podatke i svoje metode — kao tekst koji ima metodu upper(). Program sme da ima tačno jednu aplikaciju i ona mora nastati pre bilo kog prozora. `sys.argv` su podaci sa kojima je program pokrenut; za sada ga samo prosleđuješ.",
+    "**3. Prozor.** `prozor = QWidget()` pravi prazan prozor. **Widget** je svaki element interfejsa: prozor, dugme, natpis, polje za unos. Metodama prozora menjaš njegova svojstva: `setWindowTitle(\"...\")` postavlja naslov, a `resize(400, 250)` širinu i visinu u pikselima.",
+    "**4. Prikaz.** `prozor.show()` prikazuje prozor. Bez ove linije prozor postoji, ali se ne vidi!",
+    "**5. Petlja događaja.** `app.exec()` pokreće **petlju događaja** — deo programa koji stalno čeka šta će korisnik uraditi (klik, kucanje, pomeranje prozora) i na to reaguje. Ova linija se završava tek kada zatvoriš prozor. `sys.exit(...)` zatim uredno završava program.",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "Objekat",
+      "definition": "Vrednost koja ima svoje podatke i metode. Prozor, dugme i aplikacija su objekti."
+    },
+    {
+      "term": "Widget",
+      "definition": "Bilo koji element interfejsa: prozor, dugme, natpis, polje za unos..."
+    },
+    {
+      "term": "QApplication",
+      "definition": "Objekat aplikacije. Pravi se tačno jednom, pre svih prozora."
+    },
+    {
+      "term": "Petlja događaja",
+      "definition": "Deo programa koji čeka akcije korisnika i reaguje na njih. Pokreće se sa app.exec()."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\napp = QApplication(sys.argv)\n\nprozor = QWidget()\nprozor.setWindowTitle(\"Moj prvi prozor\")\nprozor.resize(400, 250)\nprozor.show()\n\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "app = QApplication(sys.argv)",
+      "explanation": "Aplikacija — uvek prva, i uvek samo jedna."
+    },
+    {
+      "code": "prozor = QWidget()",
+      "explanation": "Pravi se prozor i čuva u promenljivoj prozor, da bismo mogli da ga podešavamo."
+    },
+    {
+      "code": "prozor.setWindowTitle(\"Moj prvi prozor\")\nprozor.resize(400, 250)",
+      "explanation": "Metode prozora: naslov u gornjoj traci i veličina 400 × 250 piksela."
+    },
+    {
+      "code": "prozor.show()",
+      "explanation": "Tek sada se prozor pojavljuje na ekranu."
+    },
+    {
+      "code": "sys.exit(app.exec())",
+      "explanation": "Petlja događaja radi dok ne zatvoriš prozor; zatim se program uredno završava."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji otvara prozor:\n\n- sa naslovom `Zdravo, PyQt6!`\n- veličine **500 × 300** piksela.\n\nPokreni program da vidiš prozor, pa ga zatvori. Zatim klikni „Proveri zadatak“ — provera otvara tvoj prozor nevidljivo, pregleda ga i odmah zatvara.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\n# 1. Napravi aplikaciju.\n\n# 2. Napravi prozor, postavi naslov i veličinu.\n\n# 3. Prikaži prozor i pokreni petlju događaja.\n",
+    "expected_output_preview": "(otvara se prozor „Zdravo, PyQt6!“ veličine 500 × 300)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "QApplication(",
+          "message": "Program pravi QApplication."
+        },
+        {
+          "pattern": ".show()",
+          "message": "Prozor se prikazuje pomoću show()."
+        },
+        {
+          "pattern": "app.exec()",
+          "message": "Pokreće se petlja događaja (app.exec())."
+        }
+      ],
+      "cases": [
+        {
+          "name": "naslov i veličina",
+          "gui_script": "p = glavni()\nif p is not None:\n    print('naslov:', p.windowTitle())\n    print('veličina:', p.width(), 'x', p.height())\n",
+          "output_contains": [
+            "naslov: Zdravo, PyQt6!",
+            "veličina: 500 x 300"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Kostur je isti kao u primeru — prepiši ga i promeni naslov i veličinu.",
+      "Veličina: prozor.resize(500, 300)",
+      "Ne zaboravi poslednje dve linije: prozor.show() i sys.exit(app.exec())"
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import QApplication, QWidget\n\n# 1. Napravi aplikaciju.\napp = QApplication(sys.argv)\n\n# 2. Napravi prozor, postavi naslov i veličinu.\nprozor = QWidget()\nprozor.setWindowTitle(\"Zdravo, PyQt6!\")\nprozor.resize(500, 300)\n\n# 3. Prikaži prozor i pokreni petlju događaja.\nprozor.show()\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Koliko QApplication objekata sme da ima jedan program?",
+      "options": [
+        "Jedan",
+        "Po jedan za svaki prozor",
+        "Nijedan"
+      ],
+      "correct": 0,
+      "explanation": "Aplikacija je jedna i pravi se pre svih prozora."
+    },
+    {
+      "question": "Šta se desi ako zaboraviš prozor.show()?",
+      "options": [
+        "Prozor se ipak prikaže",
+        "Prozor postoji, ali se ne vidi",
+        "Python javlja SyntaxError"
+      ],
+      "correct": 1,
+      "explanation": "Bez show() prozor ostaje sakriven."
+    },
+    {
+      "question": "Čemu služi app.exec()?",
+      "options": [
+        "Pokreće petlju događaja koja čeka akcije korisnika",
+        "Zatvara prozor",
+        "Ispisuje naslov prozora"
+      ],
+      "correct": 0,
+      "explanation": "Petlja događaja radi dok se prozor ne zatvori."
+    },
+    {
+      "question": "Šta je widget?",
+      "options": [
+        "Samo prozor",
+        "Bilo koji element interfejsa: prozor, dugme, natpis...",
+        "Greška u PyQt6"
+      ],
+      "correct": 1,
+      "explanation": "Dugmad, natpisi, polja i prozori su svi widget-i."
+    }
+  ]
+}

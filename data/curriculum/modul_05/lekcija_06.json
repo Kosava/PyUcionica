@@ -1,0 +1,149 @@
+{
+  "id": "m05_l06",
+  "goal": "Naučićeš da koristiš module standardne biblioteke — math, random i datetime — pomoću import.",
+  "explanation": [
+    "Python dolazi sa velikom **standardnom bibliotekom** — stotinama gotovih **modula**. Modul je fajl sa funkcijama i vrednostima koje možeš da koristiš. Da bi ih koristio, modul uvezeš naredbom **import**.",
+    "Tri oblika:\n- `import math` — pa koristiš `math.sqrt(16)`, `math.pi` (ime modula, tačka, ime),\n- `from math import sqrt, pi` — pa koristiš samo `sqrt(16)`, `pi`,\n- `import random as r` — modul dobija kraće ime.",
+    "Nekoliko korisnih modula:\n- **math**: `sqrt` (koren), `pi`, `floor`/`ceil` (zaokruživanje naniže/naviše), `pow`,\n- **random**: `randint(1, 6)` (slučajan ceo broj, uključujući oba kraja), `choice(lista)`, `shuffle(lista)`,\n- **datetime**: `datetime.date.today()` — današnji datum.",
+    "Slučajni brojevi su svaki put drugačiji. Za probu i testiranje može se zadati „seme“: `random.seed(42)` — posle toga program uvek dobija iste „slučajne“ brojeve.",
+    "Naredbe import se pišu na **vrh** programa, da se odmah vidi šta program koristi."
+  ],
+  "terms": [
+    {
+      "term": "Modul",
+      "definition": "Fajl sa funkcijama i vrednostima koje možeš da uvezeš i koristiš."
+    },
+    {
+      "term": "Standardna biblioteka",
+      "definition": "Moduli koji dolaze uz Python: math, random, datetime, json..."
+    },
+    {
+      "term": "import",
+      "definition": "Uvozi modul: import math ili from math import sqrt."
+    },
+    {
+      "term": "random.seed",
+      "definition": "Zadaje početnu vrednost generatora slučajnih brojeva, pa su rezultati ponovljivi."
+    }
+  ],
+  "example_code": "import math\nimport random\nfrom datetime import date\n\nprint(\"Koren iz 2:\", round(math.sqrt(2), 3))\nprint(\"Pi:\", math.pi)\nprint(\"Naviše:\", math.ceil(4.2), \"Naniže:\", math.floor(4.8))\n\nrandom.seed(1)\nprint(\"Kocka:\", random.randint(1, 6))\nprint(\"Izbor:\", random.choice([\"kamen\", \"papir\", \"makaze\"]))\n\nprint(\"Danas je:\", date.today())\n",
+  "example_steps": [
+    {
+      "code": "import math",
+      "explanation": "Posle uvoza: math.sqrt, math.pi..."
+    },
+    {
+      "code": "from datetime import date",
+      "explanation": "Uvozi se samo date, pa se piše date.today() bez „datetime.“."
+    },
+    {
+      "code": "random.seed(1)",
+      "explanation": "Sa semenom su „slučajni“ brojevi isti pri svakom pokretanju."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava poluprečnik kruga (decimalni broj) i, pomoću modula `math`, ispisuje na dve decimale:\n\n`Površina: 78.54` (π · r²)\n`Obim: 31.42` (2 · π · r)",
+    "starter_code": "# Uvezi modul math.\n\nr = float(input(\"Poluprečnik: \"))\n\n# Izračunaj i ispiši površinu i obim.\n",
+    "expected_output_preview": "Poluprečnik: 5\nPovršina: 78.54\nObim: 31.42",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^(import\\s+math|from\\s+math\\s+import)",
+          "message": "Uvozi se modul math.",
+          "regex": true
+        },
+        {
+          "pattern": "pi",
+          "message": "Koristi se konstanta pi iz modula math."
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "3.14",
+          "message": "Broj π se uzima iz modula math, a ne upisuje ručno."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "5",
+          "output_contains": [
+            "Površina: 78.54",
+            "Obim: 31.42"
+          ]
+        },
+        {
+          "stdin": "1",
+          "output_contains": [
+            "Površina: 3.14",
+            "Obim: 6.28"
+          ]
+        },
+        {
+          "stdin": "2.5",
+          "output_contains": [
+            "Površina: 19.63",
+            "Obim: 15.71"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Na vrh: import math.",
+      "povrsina = math.pi * r ** 2 i obim = 2 * math.pi * r",
+      "print(f\"Površina: {povrsina:.2f}\")"
+    ],
+    "solution": "# Uvezi modul math.\nimport math\n\nr = float(input(\"Poluprečnik: \"))\n\n# Izračunaj i ispiši površinu i obim.\npovrsina = math.pi * r ** 2\nobim = 2 * math.pi * r\nprint(f\"Površina: {povrsina:.2f}\")\nprint(f\"Obim: {obim:.2f}\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Kako se koristi sqrt posle import math?",
+      "options": [
+        "sqrt(9)",
+        "math.sqrt(9)",
+        "import sqrt(9)"
+      ],
+      "correct": 1,
+      "explanation": "Ime modula, tačka, ime funkcije."
+    },
+    {
+      "question": "Šta vraća random.randint(1, 6)?",
+      "options": [
+        "Broj od 1 do 5",
+        "Broj od 1 do 6, uključujući 6",
+        "Uvek 6"
+      ],
+      "correct": 1,
+      "explanation": "randint uključuje oba kraja."
+    },
+    {
+      "question": "Čemu služi random.seed(42)?",
+      "options": [
+        "Briše slučajne brojeve",
+        "Čini „slučajne“ brojeve ponovljivim",
+        "Pravi broj 42"
+      ],
+      "correct": 1,
+      "explanation": "Isto seme — isti niz brojeva."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "import math\nprint(math.floor(7.9), math.ceil(7.1))\n",
+      "options": [
+        "7 8",
+        "8 7",
+        "7 7"
+      ],
+      "correct": 0,
+      "explanation": "floor zaokružuje naniže, ceil naviše."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "from math import sqrt\nprint(sqrt(49))\nprint(int(sqrt(16)) + 1)\n",
+      "answer": "7.0\n5",
+      "explanation": "sqrt vraća float; int(4.0) je 4."
+    }
+  ]
+}

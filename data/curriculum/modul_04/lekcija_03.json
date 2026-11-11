@@ -1,0 +1,144 @@
+{
+  "id": "m04_l03",
+  "goal": "Naučićeš da prekineš petlju pre vremena (break) i da preskočiš ostatak jednog prolaza (continue).",
+  "explanation": [
+    "Ponekad petlja treba da stane čim se nešto desi — npr. kada korisnik pogodi broj. Naredba **break** odmah prekida petlju; program nastavlja prvom linijom posle petlje.",
+    "Čest obrazac je `while True:` — petlja koja bi trajala večno — u kojoj `break` određuje kraj:\n`while True:`\n`    odgovor = input()`\n`    if odgovor == \"kraj\":`\n`        break`",
+    "Naredba **continue** preskače ostatak trenutnog prolaza i odmah prelazi na sledeći. Korisno kada neke vrednosti treba zanemariti (npr. negativne brojeve).",
+    "break i continue rade i u for i u while petljama. Pišu se unutar bloka petlje, najčešće unutar if-a.",
+    "> while True je sasvim u redu — pod uslovom da postoji break do kog se stvarno može stići."
+  ],
+  "terms": [
+    {
+      "term": "break",
+      "definition": "Odmah prekida petlju."
+    },
+    {
+      "term": "continue",
+      "definition": "Preskače ostatak trenutnog prolaza i prelazi na sledeći."
+    },
+    {
+      "term": "while True",
+      "definition": "Petlja bez kraja u uslovu; završava se pomoću break."
+    }
+  ],
+  "example_code": "for broj in range(1, 11):\n    if broj % 2 == 0:\n        continue\n    if broj > 7:\n        break\n    print(broj)\n\nwhile True:\n    tekst = input(\"Upiši nešto (kraj za izlaz): \")\n    if tekst == \"kraj\":\n        break\n    print(\"Upisao si:\", tekst)\nprint(\"Doviđenja!\")\n",
+  "example_steps": [
+    {
+      "code": "    if broj % 2 == 0:\n        continue",
+      "explanation": "Parni brojevi se preskaču — print se za njih ne izvršava."
+    },
+    {
+      "code": "    if broj > 7:\n        break",
+      "explanation": "Kod broja 9 petlja staje. Ispis: 1, 3, 5, 7."
+    },
+    {
+      "code": "while True:",
+      "explanation": "Ponavlja se dok korisnik ne upiše „kraj“ — tada break izlazi iz petlje."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši igru pogađanja. Tajni broj je `7` (već je u kodu). Program u petlji `while True` traži da korisnik pogađa:\n\n- ako je pokušaj manji od tajnog broja, ispiši `Veće`\n- ako je veći, ispiši `Manje`\n- ako je tačan, ispiši `Pogodio si iz N. pokušaja!` i prekini petlju pomoću `break`.",
+    "starter_code": "tajni = 7\npokusaji = 0\n\n# Petlja while True: učitaj pokušaj, uvećaj brojač, uporedi.\n",
+    "expected_output_preview": "Pogodi broj: 3\nVeće\nPogodi broj: 9\nManje\nPogodi broj: 7\nPogodio si iz 3. pokušaja!",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "while\\s+True\\s*:",
+          "message": "Koristi se petlja while True.",
+          "regex": true
+        },
+        {
+          "pattern": "break",
+          "message": "Petlja se prekida pomoću break."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "3\n9\n7",
+          "output_contains": [
+            "Veće",
+            "Manje",
+            "Pogodio si iz 3. pokušaja!"
+          ]
+        },
+        {
+          "stdin": "7",
+          "output_contains": [
+            "Pogodio si iz 1. pokušaja!"
+          ],
+          "output_not_contains": [
+            "Veće",
+            "Manje"
+          ],
+          "name": "odmah pogođeno"
+        },
+        {
+          "stdin": "1\n2\n8\n7\n5",
+          "output_contains": [
+            "Pogodio si iz 4. pokušaja!"
+          ],
+          "name": "posle pogotka se ne pita"
+        }
+      ]
+    },
+    "hints": [
+      "U petlji: pokusaj = int(input(\"Pogodi broj: \")), pa pokusaji += 1.",
+      "Tri slučaja: if pokusaj < tajni: ... elif pokusaj > tajni: ... else: ...",
+      "U else delu: print(f\"Pogodio si iz {pokusaji}. pokušaja!\") pa break."
+    ],
+    "solution": "tajni = 7\npokusaji = 0\n\n# Petlja while True: učitaj pokušaj, uvećaj brojač, uporedi.\nwhile True:\n    pokusaj = int(input(\"Pogodi broj: \"))\n    pokusaji += 1\n    if pokusaj < tajni:\n        print(\"Veće\")\n    elif pokusaj > tajni:\n        print(\"Manje\")\n    else:\n        print(f\"Pogodio si iz {pokusaji}. pokušaja!\")\n        break\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta radi break?",
+      "options": [
+        "Preskače jedan prolaz",
+        "Odmah prekida petlju",
+        "Zaustavlja ceo program"
+      ],
+      "correct": 1,
+      "explanation": "Program nastavlja posle petlje."
+    },
+    {
+      "question": "Šta radi continue?",
+      "options": [
+        "Prekida petlju",
+        "Preskače ostatak trenutnog prolaza",
+        "Ponavlja prolaz"
+      ],
+      "correct": 1,
+      "explanation": "Petlja se nastavlja sledećim prolazom."
+    },
+    {
+      "question": "Šta mora da postoji u while True petlji?",
+      "options": [
+        "break do kog se može stići",
+        "range",
+        "continue"
+      ],
+      "correct": 0,
+      "explanation": "Inače je petlja beskonačna."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "for i in range(5):\n    if i == 3:\n        break\n    print(i, end=\"\")\n",
+      "options": [
+        "012",
+        "0123",
+        "01234"
+      ],
+      "correct": 0,
+      "explanation": "Kada i postane 3, petlja staje pre ispisa."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "for i in range(1, 6):\n    if i == 2 or i == 4:\n        continue\n    print(i)\n",
+      "answer": "1\n3\n5",
+      "explanation": "2 i 4 se preskaču zbog continue."
+    }
+  ]
+}

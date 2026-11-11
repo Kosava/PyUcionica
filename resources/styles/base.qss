@@ -1,0 +1,494 @@
+/* pyqt6_learning_studio/resources/styles/base.qss
+ * Šablon stilova. Vrednosti oblika $ime zamenjuju se bojama iz aktivne teme
+ * (ui/theme.py), pa svetla i tamna tema dele isti šablon.
+ */
+
+QWidget {
+    color: $text;
+    font-size: 10pt;
+}
+
+QMainWindow, QWidget#Central {
+    background: $bg;
+}
+
+QToolTip {
+    background: $surface;
+    color: $text;
+    border: 1px solid $border_strong;
+    padding: 4px 6px;
+}
+
+/* ---------- Paneli ---------- */
+QFrame#Panel {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+}
+
+QFrame#PanelHeader {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $border;
+}
+
+QLabel#PanelTitle {
+    font-weight: 600;
+    color: $text;
+}
+
+QLabel#Muted {
+    color: $text_muted;
+}
+
+QLabel#Faint {
+    color: $text_faint;
+    font-size: 9pt;
+}
+
+/* ---------- Lekcija ---------- */
+QLabel#ModuleLabel {
+    color: $accent;
+    font-size: 9pt;
+    font-weight: 600;
+}
+
+QLabel#LessonTitle {
+    font-size: 15pt;
+    font-weight: 600;
+    color: $text;
+}
+
+QLabel#GoalLabel {
+    color: $text_muted;
+}
+
+QTextBrowser#LessonText {
+    background: $surface;
+    border: none;
+    selection-background-color: $selection;
+    selection-color: $text;
+}
+
+QTabWidget#LessonTabs::pane {
+    border: none;
+    border-top: 1px solid $border;
+    top: -1px;
+}
+
+QTabWidget#LessonTabs QTabBar::tab {
+    background: transparent;
+    color: $text_muted;
+    padding: 7px 14px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-right: 2px;
+}
+
+QTabWidget#LessonTabs QTabBar::tab:selected {
+    color: $accent;
+    border-bottom: 2px solid $accent;
+    font-weight: 600;
+}
+
+QTabWidget#LessonTabs QTabBar::tab:hover:!selected {
+    color: $text;
+}
+
+QProgressBar {
+    background: $surface_alt;
+    border: none;
+    border-radius: 3px;
+    max-height: 6px;
+    min-height: 6px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background: $accent;
+    border-radius: 3px;
+}
+
+/* ---------- Dugmad ---------- */
+QPushButton {
+    background: $surface;
+    color: $text;
+    border: 1px solid $border_strong;
+    border-radius: 6px;
+    padding: 5px 12px;
+    min-height: 20px;
+}
+
+QPushButton:hover {
+    background: $surface_alt;
+    border-color: $text_faint;
+}
+
+QPushButton:pressed {
+    background: $border;
+}
+
+QPushButton:disabled {
+    color: $text_faint;
+    background: $surface_alt;
+    border-color: $border;
+}
+
+QPushButton#PrimaryButton {
+    background: $accent;
+    color: $accent_text;
+    border: 1px solid $accent;
+    font-weight: 600;
+}
+
+QPushButton#PrimaryButton:hover {
+    background: $accent_hover;
+    border-color: $accent_hover;
+}
+
+QPushButton#PrimaryButton:pressed {
+    background: $accent_pressed;
+}
+
+QPushButton#PrimaryButton:disabled {
+    background: $border;
+    border-color: $border;
+    color: $text_faint;
+}
+
+QPushButton#DangerButton {
+    color: $error;
+    border-color: $error_border;
+}
+
+QPushButton#DangerButton:hover {
+    background: $error_soft;
+}
+
+QPushButton#DangerButton:disabled {
+    color: $text_faint;
+    border-color: $border;
+    background: $surface_alt;
+}
+
+QPushButton#CompleteButton:checked {
+    background: $success_soft;
+    color: $success;
+    border-color: $success_border;
+    font-weight: 600;
+}
+
+QToolButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QToolButton:hover {
+    background: $surface_alt;
+    border-color: $border;
+}
+
+QToolButton:checked {
+    background: $accent_soft;
+    border-color: $accent_soft;
+}
+
+/* ---------- Izlaz ---------- */
+QPlainTextEdit#OutputView {
+    background: $code_bg;
+    border: none;
+    color: $text;
+    selection-background-color: $selection;
+    selection-color: $text;
+}
+
+QLabel#StatusBadge {
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 9pt;
+    font-weight: 600;
+    background: $surface_alt;
+    color: $text_muted;
+}
+
+QLabel#StatusBadge[state="running"] { background: $accent_soft;  color: $accent; }
+QLabel#StatusBadge[state="success"] { background: $success_soft; color: $success; }
+QLabel#StatusBadge[state="error"]   { background: $error_soft;   color: $error; }
+QLabel#StatusBadge[state="warning"] { background: $warning_soft; color: $warning; }
+QLabel#StatusBadge[state="input"]   { background: $warning_soft; color: $warning; }
+
+QScrollArea#CardScroll, QWidget#CardHolder {
+    background: $surface;
+    border: none;
+}
+
+QFrame#Card {
+    border-radius: 6px;
+    border: 1px solid $border;
+    background: $surface_alt;
+}
+
+QFrame#Card[kind="error"]   { background: $error_soft;   border-color: $error_border; }
+QFrame#Card[kind="success"] { background: $success_soft; border-color: $success_border; }
+QFrame#Card[kind="warning"] { background: $warning_soft; border-color: $warning_border; }
+QFrame#Card[kind="info"]    { background: $accent_soft;  border-color: $accent_border; }
+
+QLabel#CardTitle {
+    font-weight: 600;
+    background: transparent;
+}
+
+QFrame#Card QLabel {
+    background: transparent;
+}
+
+QListWidget#CheckList {
+    background: transparent;
+    border: none;
+}
+
+QListWidget#CheckList::item {
+    padding: 2px 0;
+}
+
+QFrame#InputBar {
+    background: $surface_alt;
+    border-top: 1px solid $border;
+}
+
+QFrame#InputBar[waiting="true"] {
+    background: $warning_soft;
+    border-top: 1px solid $warning_border;
+}
+
+QLineEdit {
+    background: $surface;
+    border: 1px solid $border_strong;
+    border-radius: 6px;
+    padding: 4px 8px;
+    selection-background-color: $selection;
+    selection-color: $text;
+}
+
+QLineEdit:focus {
+    border-color: $accent;
+}
+
+QLineEdit:disabled {
+    background: $surface_alt;
+    color: $text_faint;
+}
+
+/* ---------- Razdvajači, statusna traka, skrol ---------- */
+QSplitter::handle {
+    background: transparent;
+}
+
+QSplitter::handle:hover {
+    background: $accent_soft;
+}
+
+QStatusBar {
+    background: $surface;
+    border-top: 1px solid $border;
+    color: $text_muted;
+}
+
+QStatusBar QLabel {
+    color: $text_muted;
+    padding: 0 8px;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: $border_strong;
+    border-radius: 4px;
+    min-height: 28px;
+    margin: 2px;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:horizontal {
+    background: $border_strong;
+    border-radius: 4px;
+    min-width: 28px;
+    margin: 2px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: none;
+    border: none;
+    width: 0;
+    height: 0;
+}
+
+QMessageBox QLabel {
+    color: $text;
+}
+
+/* ---------- Početna strana ---------- */
+QScrollArea#HomeScroll, QWidget#HomeContent {
+    background: $bg;
+    border: none;
+}
+
+QFrame#HomeCard {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+}
+
+QFrame#HomeCard[locked="true"] {
+    background: $surface_alt;
+}
+
+QFrame#HomeCard[locked="true"] QLabel#ModuleCardTitle {
+    color: $text_muted;
+}
+
+QFrame#HeroCard {
+    background: $surface;
+    border: 1px solid $accent_border;
+    border-left: 4px solid $accent;
+    border-radius: 8px;
+}
+
+QFrame#HomeCard QLabel, QFrame#HeroCard QLabel {
+    background: transparent;
+}
+
+QLabel#IconBadge {
+    background: $accent_soft;
+    border-radius: 18px;
+}
+
+QLabel#HomeTitle {
+    font-size: 18pt;
+    font-weight: 600;
+}
+
+QLabel#HeroTitle {
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+QLabel#StatValue {
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+QLabel#SectionTitle {
+    font-size: 12pt;
+    font-weight: 600;
+    padding-top: 6px;
+}
+
+QLabel#ModuleCardTitle {
+    font-size: 11pt;
+    font-weight: 600;
+}
+
+/* ---------- Sadržaj kursa ---------- */
+QTreeWidget#CourseTree {
+    background: $surface;
+    border: none;
+    outline: none;
+}
+
+QTreeWidget#CourseTree::item {
+    padding: 4px 2px;
+    border-radius: 4px;
+}
+
+QTreeWidget#CourseTree::item:hover {
+    background: $surface_alt;
+}
+
+QTreeWidget#CourseTree::item:selected {
+    background: $selection;
+    color: $text;
+}
+
+/* ---------- Kviz ---------- */
+QLabel#QuizQuestion {
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+QRadioButton#QuizOption {
+    padding: 6px 4px;
+    spacing: 8px;
+}
+
+QPlainTextEdit#QuizAnswer {
+    background: $code_bg;
+    border: 1px solid $border_strong;
+    border-radius: 6px;
+}
+
+QPlainTextEdit#QuizAnswer:focus {
+    border-color: $accent;
+}
+
+/* ---------- Dijalozi: grupe i polja ---------- */
+QGroupBox {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 14px 10px 10px 10px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    left: 10px;
+    padding: 0 4px;
+    color: $text_muted;
+}
+
+QLineEdit#PathField {
+    background: $surface_alt;
+    color: $text_muted;
+    font-family: monospace;
+}
+
+/* ---------- Pretraga i omiljene ---------- */
+QLineEdit#SearchInput {
+    font-size: 12pt;
+    padding: 7px 10px;
+}
+
+QListWidget#SearchResults {
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 8px;
+    outline: none;
+}
+
+QListWidget#SearchResults::item {
+    border-bottom: 1px solid $border;
+}
+
+QListWidget#SearchResults::item:selected,
+QListWidget#SearchResults::item:hover {
+    background: $accent_soft;
+}
+
+QPushButton#FavoriteButton {
+    text-align: left;
+    padding: 7px 12px;
+}

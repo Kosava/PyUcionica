@@ -1,0 +1,132 @@
+{
+  "id": "m05_l03",
+  "goal": "Naučićeš da funkcija vrati rezultat pomoću return, i zašto je to obično bolje od ispisivanja unutar funkcije.",
+  "explanation": [
+    "Funkcije kao len ili int ne ispisuju ništa — one **vraćaju** vrednost koju dalje koristiš: `n = len(\"Ana\")`. Tvoje funkcije to rade pomoću **return**.",
+    "`return vrednost` završava funkciju i vraća vrednost na mesto poziva:\n`def kvadrat(x):`\n`    return x * x`\nSada je `kvadrat(4)` isto što i 16: `y = kvadrat(4) + 1` daje 17.",
+    "**print ≠ return.** print samo prikazuje tekst korisniku; rezultat se ne može dalje koristiti. Funkcija bez return vraća posebnu vrednost **None** („ništa“), pa bi `kvadrat(4) + 1` izazvalo TypeError. Pravilo: funkcija koja nešto računa — vraća; o ispisu odlučuje onaj ko je pozvao.",
+    "return odmah završava funkciju — kod ispod se ne izvršava. Funkcija može imati više return-ova, npr. u različitim granama if-a.",
+    "Funkcija može vratiti i True/False (**logičku funkciju**), što je zgodno u uslovima: `if je_paran(n):`."
+  ],
+  "terms": [
+    {
+      "term": "return",
+      "definition": "Završava funkciju i vraća vrednost na mesto poziva."
+    },
+    {
+      "term": "Povratna vrednost",
+      "definition": "Vrednost koju funkcija vrati; koristi se kao svaka druga vrednost."
+    },
+    {
+      "term": "None",
+      "definition": "Posebna vrednost „ništa“ — vraća je funkcija bez return-a."
+    }
+  ],
+  "example_code": "def kvadrat(x):\n    return x * x\n\n\ndef je_punoletan(godine):\n    if godine >= 18:\n        return True\n    return False\n\n\nprint(kvadrat(4))\nzbir = kvadrat(3) + kvadrat(4)\nprint(\"Zbir kvadrata:\", zbir)\n\nif je_punoletan(20):\n    print(\"Punoletan\")\n\n\ndef samo_ispisuje(x):\n    print(x * x)\n\n\nrezultat = samo_ispisuje(5)\nprint(\"Vraćeno:\", rezultat)\n",
+  "example_steps": [
+    {
+      "code": "zbir = kvadrat(3) + kvadrat(4)",
+      "explanation": "Povratne vrednosti (9 i 16) koriste se u računu: 25."
+    },
+    {
+      "code": "    if godine >= 18:\n        return True\n    return False",
+      "explanation": "Dva return-a; izvršava se samo jedan."
+    },
+    {
+      "code": "rezultat = samo_ispisuje(5)",
+      "explanation": "Funkcija ispisuje 25, ali vraća None — to pokazuje sledeći red."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši dve funkcije koje **vraćaju** (ne ispisuju!) rezultat:\n\n- `povrsina(a, b)` — površina pravougaonika sa stranicama a i b,\n- `je_paran(n)` — vraća `True` ako je n paran, inače `False`.\n\nProvera će pozvati funkcije i koristiti njihove rezultate u računu — zato je važno da vraćaju vrednost.",
+    "starter_code": "# Funkcija povrsina(a, b) vraća a * b.\n\n\n# Funkcija je_paran(n) vraća True ili False.\n",
+    "expected_output_preview": "povrsina(3, 4) + 1 → 13\nje_paran(4) → True",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^\\s+return\\b",
+          "message": "Funkcije vraćaju rezultat pomoću return.",
+          "regex": true,
+          "min_count": 2
+        }
+      ],
+      "cases": [
+        {
+          "test_code": "print(povrsina(3, 4) + 1)",
+          "expected_output": "13"
+        },
+        {
+          "test_code": "print(povrsina(2.5, 2))",
+          "expected_output": "5.0"
+        },
+        {
+          "test_code": "print(je_paran(4), je_paran(7), je_paran(0))",
+          "expected_output": "True False True"
+        },
+        {
+          "test_code": "print(type(je_paran(3)).__name__)",
+          "expected_output": "bool",
+          "name": "vraća bool"
+        }
+      ]
+    },
+    "hints": [
+      "def povrsina(a, b):\n    return a * b",
+      "Paran broj ima ostatak 0 pri deljenju sa 2.",
+      "def je_paran(n):\n    return n % 2 == 0   (poređenje je već True ili False)"
+    ],
+    "solution": "# Funkcija povrsina(a, b) vraća a * b.\ndef povrsina(a, b):\n    return a * b\n\n\n# Funkcija je_paran(n) vraća True ili False.\ndef je_paran(n):\n    return n % 2 == 0\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta vraća funkcija koja nema return?",
+      "options": [
+        "0",
+        "None",
+        "Prazan tekst"
+      ],
+      "correct": 1,
+      "explanation": "None znači „ništa“."
+    },
+    {
+      "question": "Šta se desi sa kodom ispod return u istom bloku?",
+      "options": [
+        "Izvrši se posle",
+        "Ne izvršava se",
+        "Izvrši se dva puta"
+      ],
+      "correct": 1,
+      "explanation": "return odmah završava funkciju."
+    },
+    {
+      "question": "Zašto funkcija koja računa treba da vrati rezultat umesto da ga ispiše?",
+      "options": [
+        "Brža je",
+        "Rezultat može dalje da se koristi u računu",
+        "print ne radi u funkciji"
+      ],
+      "correct": 1,
+      "explanation": "Ispisani rezultat ne može da se koristi."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "def f(x):\n    return x * 2\n    print(\"kraj\")\n\nprint(f(3) + 1)\n",
+      "options": [
+        "7",
+        "kraj 7",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "print posle return se ne izvršava; f(3) je 6."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "def maks(a, b):\n    if a > b:\n        return a\n    return b\n\nprint(maks(3, 8))\nprint(maks(5, 2) * 10)\n",
+      "answer": "8\n50",
+      "explanation": "Funkcija vraća veći broj; rezultat se koristi u računu."
+    }
+  ]
+}

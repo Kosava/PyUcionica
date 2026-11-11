@@ -1,0 +1,3 @@
+#!/bin/sh
+# Pokretač instalirane aplikacije (Arch paket): /usr/bin/pyqt6-learning-studio
+exec /usr/bin/python3 /usr/share/pyqt6-learning-studio/main.py "$@"

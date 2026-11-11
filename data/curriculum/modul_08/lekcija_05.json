@@ -1,0 +1,117 @@
+{
+  "id": "m08_l05",
+  "goal": "Upoznaćeš polja za unos teksta: QLineEdit za jedan red i QTextEdit za više redova, i njihova najkorisnija podešavanja.",
+  "explanation": [
+    "Program često treba da dobije podatke od korisnika: ime, broj, poruku. U konzolnim programima za to si koristio input(). U programima sa prozorom koriste se **polja za unos**.",
+    "**QLineEdit** je polje za **jedan red** teksta — ime, lozinka, broj. Najkorisnije metode:\n- `setPlaceholderText(\"Upiši ime\")` — siva pomoćna poruka dok je polje prazno,\n- `setMaxLength(20)` — najviše znakova,\n- `text()` — vraća upisani tekst (uvek str, kao i input()!),\n- `setText(\"...\")` i `clear()`.",
+    "**QTextEdit** je polje za **više redova** — beleška, poruka, opis. Tekst se čita sa `toPlainText()`, a postavlja sa `setPlainText(\"...\")`. Sa `setReadOnly(True)` polje postaje samo za čitanje — korisno za prikaz dužeg teksta koji korisnik ne treba da menja.",
+    "Ponavljanje iz Modula 2: šta god korisnik upiše u polje, `text()` vraća **tekst**. Ako ti treba broj, pretvori ga: `int(polje.text())`.",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "QLineEdit",
+      "definition": "Polje za unos jednog reda teksta. Tekst se čita sa text()."
+    },
+    {
+      "term": "QTextEdit",
+      "definition": "Polje za više redova teksta. Tekst se čita sa toPlainText()."
+    },
+    {
+      "term": "Placeholder",
+      "definition": "Siva pomoćna poruka u praznom polju, npr. „Upiši ime“."
+    },
+    {
+      "term": "Samo za čitanje",
+      "definition": "Polje koje korisnik vidi, ali ne može da menja (setReadOnly(True))."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Polja za unos\")\n\nime = QLineEdit()\nime.setPlaceholderText(\"Upiši ime\")\nime.setMaxLength(20)\n\nbeleska = QTextEdit()\nbeleska.setPlainText(\"Prvi red\\nDrugi red\")\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(QLabel(\"Ime:\"))\nraspored.addWidget(ime)\nraspored.addWidget(QLabel(\"Beleška:\"))\nraspored.addWidget(beleska)\n\nprozor.show()\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "ime.setPlaceholderText(\"Upiši ime\")",
+      "explanation": "Dok je polje prazno, u njemu piše sivo „Upiši ime“."
+    },
+    {
+      "code": "ime.setMaxLength(20)",
+      "explanation": "Korisnik ne može da upiše više od 20 znakova."
+    },
+    {
+      "code": "beleska.setPlainText(\"Prvi red\\nDrugi red\")",
+      "explanation": "QTextEdit prima više redova; \\n je novi red."
+    },
+    {
+      "code": "raspored.addWidget(QLabel(\"Ime:\"))",
+      "explanation": "Natpis može da se napravi i doda u istoj liniji, kada nam kasnije ne treba promenljiva za njega."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napravi prozor `Kontakt forma` sa:\n\n- poljem QLineEdit sa pomoćnom porukom `Tvoje ime` i najviše **30** znakova,\n- poljem QTextEdit koje je **samo za čitanje** i sadrži tekst `Popuni ime i pošalji poruku.`\n\nProvera će pročitati podešavanja oba polja.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLineEdit, QTextEdit, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Kontakt forma\")\n\n# Napravi i podesi QLineEdit i QTextEdit, pa ih dodaj u raspored.\n\nprozor.show()\nsys.exit(app.exec())\n",
+    "expected_output_preview": "(prozor „Kontakt forma“ sa poljem za ime i tekstom samo za čitanje)",
+    "criteria": {
+      "cases": [
+        {
+          "name": "podešavanja polja",
+          "gui_script": "polje = nadji('QLineEdit')\nveliko = nadji('QTextEdit')\nif polje is None or veliko is None:\n    print('[provera] Nisu pronađena oba polja (QLineEdit i QTextEdit).')\nelse:\n    print('placeholder:', polje.placeholderText())\n    print('najviše znakova:', polje.maxLength())\n    print('samo za čitanje:', veliko.isReadOnly())\n    print('tekst:', veliko.toPlainText())\n    upisi(polje, 'Ana')\n    print('upisano:', polje.text())\n",
+          "output_contains": [
+            "placeholder: Tvoje ime",
+            "najviše znakova: 30",
+            "samo za čitanje: True",
+            "tekst: Popuni ime i pošalji poruku.",
+            "upisano: Ana"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "polje = QLineEdit(), pa polje.setPlaceholderText(\"Tvoje ime\") i polje.setMaxLength(30).",
+      "uputstvo = QTextEdit(), pa uputstvo.setPlainText(\"...\") i uputstvo.setReadOnly(True).",
+      "Na kraju: raspored = QVBoxLayout(prozor), pa addWidget za oba polja."
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLineEdit, QTextEdit, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Kontakt forma\")\n\n# Napravi i podesi QLineEdit i QTextEdit, pa ih dodaj u raspored.\npolje = QLineEdit()\npolje.setPlaceholderText(\"Tvoje ime\")\npolje.setMaxLength(30)\n\nuputstvo = QTextEdit()\nuputstvo.setPlainText(\"Popuni ime i pošalji poruku.\")\nuputstvo.setReadOnly(True)\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(polje)\nraspored.addWidget(uputstvo)\n\nprozor.show()\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Koji widget koristiš za unos jednog reda, npr. imena?",
+      "options": [
+        "QTextEdit",
+        "QLineEdit",
+        "QLabel"
+      ],
+      "correct": 1,
+      "explanation": "QLineEdit je polje za jedan red."
+    },
+    {
+      "question": "Kog tipa je vrednost koju vraća polje.text()?",
+      "options": [
+        "int",
+        "str",
+        "Zavisi od upisanog"
+      ],
+      "correct": 1,
+      "explanation": "Kao i input(), text() uvek vraća tekst."
+    },
+    {
+      "question": "Kako se čita tekst iz QTextEdit?",
+      "options": [
+        "text()",
+        "toPlainText()",
+        "read()"
+      ],
+      "correct": 1,
+      "explanation": "QTextEdit tekst vraća metodom toPlainText()."
+    },
+    {
+      "question": "Čemu služi setPlaceholderText?",
+      "options": [
+        "Postavlja pravi tekst polja",
+        "Prikazuje sivu pomoćnu poruku u praznom polju",
+        "Zaključava polje"
+      ],
+      "correct": 1,
+      "explanation": "Placeholder nestaje čim korisnik počne da kuca."
+    }
+  ]
+}

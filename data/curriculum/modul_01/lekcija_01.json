@@ -1,0 +1,125 @@
+{
+  "id": "m01_l01",
+  "goal": "Razumećeš šta je program, šta je programski jezik Python i ko zapravo izvršava kod koji napišeš.",
+  "explanation": [
+    "Računar je neverovatno brz, ali sam ne ume da odluči šta treba da radi. Svaku stvar mora neko da mu kaže — tačno, korak po korak. Spisak takvih koraka zove se **program**, a pisanje programa zove se **programiranje**.",
+    "Program je kao recept za kolač. Recept kaže: „uzmi brašno“, „dodaj jaja“, „peci 30 minuta“. Kuvar prati korake redom i dobije kolač. Računar isto prati korake programa redom i dobije rezultat.",
+    "Računar „u sebi“ razume samo nule i jedinice, što je za ljude nečitljivo. Zato su napravljeni **programski jezici** — jezici koje ljudi mogu da čitaju i pišu, a računar može da ih prevede u svoje nule i jedinice. **Python** je jedan od najpopularnijih programskih jezika na svetu, jer liči na običan engleski i lako se čita.",
+    "Tekst koji napišeš u programskom jeziku zove se **kod**. Kod sam po sebi ne radi ništa — to je samo tekst. Da bi se nešto desilo, potreban je program koji čita tvoj kod i izvršava ga. Za Python, taj program se zove **interpreter** (tumač). Interpreter čita tvoj kod od prve linije ka poslednjoj i izvršava naredbe jednu po jednu.",
+    "U ovoj aplikaciji sve je spremno: dole levo je **editor** — mesto gde pišeš kod. Dole desno je **rezultat** — tu se vidi šta je program uradio. Kada klikneš dugme „Pokreni“ (ili pritisneš Ctrl+Enter), interpreter izvrši kod iz editora i rezultat se odmah pojavi desno.",
+    "> Ne brini da ćeš nešto pokvariti. Ako napišeš nešto pogrešno, Python će samo prijaviti grešku i objasniti šta mu nije jasno. Greške su sasvim normalan deo učenja — prave ih i iskusni programeri, svakog dana."
+  ],
+  "terms": [
+    {
+      "term": "Program",
+      "definition": "Spisak uputstava (koraka) koje računar izvršava redom."
+    },
+    {
+      "term": "Programiranje",
+      "definition": "Pisanje programa, odnosno smišljanje koraka koje računar treba da uradi."
+    },
+    {
+      "term": "Programski jezik",
+      "definition": "Jezik sa tačnim pravilima, koji ljudi koriste da bi računaru zadali uputstva. Python je jedan od njih."
+    },
+    {
+      "term": "Kod",
+      "definition": "Tekst programa napisan u programskom jeziku. Kaže se i „izvorni kod“."
+    },
+    {
+      "term": "Interpreter",
+      "definition": "Program koji čita Python kod i izvršava ga, liniju po liniju, od vrha ka dnu."
+    },
+    {
+      "term": "Editor",
+      "definition": "Prozor u kome pišeš i menjaš kod. U ovoj aplikaciji nalazi se dole levo."
+    }
+  ],
+  "example_code": "print(\"Dobro došao u svet programiranja!\")\nprint(\"Ovo je moj prvi korak.\")\nprint(2 + 3)\n",
+  "example_steps": [
+    {
+      "code": "print(\"Dobro došao u svet programiranja!\")",
+      "explanation": "Reč print znači „ispiši“. Ova linija kaže Pythonu da ispiše tekst koji se nalazi između navodnika. Detaljno ćemo je upoznati u sledećoj lekciji."
+    },
+    {
+      "code": "print(\"Ovo je moj prvi korak.\")",
+      "explanation": "Druga naredba se izvršava tek posle prve. Zato se ovaj tekst pojavljuje u drugom redu rezultata."
+    },
+    {
+      "code": "print(2 + 3)",
+      "explanation": "Ovde nema navodnika, pa Python ne ispisuje tekst „2 + 3“, već prvo izračuna rezultat i ispiše broj 5."
+    }
+  ],
+  "exercise": {
+    "type": "complete",
+    "description": "Klikni „Pokreni“ da vidiš šta početni kod radi. Zatim promeni tekst između navodnika tako da program ispiše tačno ovu rečenicu:\n\n`Spreman sam da učim Python.`\n\nPazi na velika i mala slova i na tačku na kraju. Kada završiš, klikni „Proveri zadatak“.",
+    "starter_code": "# Promeni tekst između navodnika, ali ostavi navodnike i zagrade.\nprint(\"Promeni ovaj tekst\")\n",
+    "expected_output_preview": "Spreman sam da učim Python.",
+    "criteria": {
+      "expected_output": "Spreman sam da učim Python.",
+      "code_contains": [
+        {
+          "pattern": "print(",
+          "message": "Kod koristi naredbu print za ispis."
+        }
+      ]
+    },
+    "hints": [
+      "Treba da promeniš samo tekst između dva navodnika. Navodnike i zagrade ostavi kako jesu.",
+      "Linija treba da izgleda ovako: print(\"...\"), gde umesto tri tačke stoji tražena rečenica.",
+      "Proveri da li si napisao „Python“ velikim P i da li postoji tačka na kraju rečenice."
+    ],
+    "solution": "# Promeni tekst između navodnika, ali ostavi navodnike i zagrade.\nprint(\"Spreman sam da učim Python.\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta je program?",
+      "options": [
+        "Spisak uputstava koje računar izvršava redom",
+        "Deo računara, kao procesor",
+        "Bilo koji tekst na ekranu"
+      ],
+      "correct": 0,
+      "explanation": "Program je niz koraka (uputstava) koje računar izvršava jedan za drugim."
+    },
+    {
+      "question": "Kako se zove program koji čita i izvršava Python kod?",
+      "options": [
+        "Editor",
+        "Interpreter",
+        "Terminal"
+      ],
+      "correct": 1,
+      "explanation": "Interpreter (tumač) čita kod i izvršava ga liniju po liniju."
+    },
+    {
+      "question": "Šta ispisuje naredba print(2 + 3)?",
+      "options": [
+        "2 + 3",
+        "5",
+        "Ništa, javlja grešku"
+      ],
+      "correct": 1,
+      "explanation": "Bez navodnika Python izračuna izraz i ispisuje rezultat: 5."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(3 * 4)\n",
+      "options": [
+        "3 * 4",
+        "12",
+        "34"
+      ],
+      "correct": 1,
+      "explanation": "Bez navodnika Python prvo izračuna izraz: 3 puta 4 je 12."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(\"Python\")\nprint(1 + 1)\n",
+      "answer": "Python\n2",
+      "explanation": "Svaki print ispisuje jedan red: prvo tekst Python, pa rezultat računa 1 + 1."
+    }
+  ]
+}

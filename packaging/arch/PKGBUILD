@@ -1,0 +1,40 @@
+# pyqt6_learning_studio/packaging/arch/PKGBUILD
+# Arch Linux paket. Upotreba (iz korena projekta):
+#   packaging/make_dist.sh          # pravi izvorni tarball i kopira ga ovde
+#   cd packaging/arch && makepkg -si
+pkgname=pyqt6-learning-studio
+pkgver=0.7.0
+pkgrel=1
+pkgdesc="Interaktivna aplikacija za učenje Pythona i PyQt6 za potpune početnike (na srpskom)"
+arch=('any')
+license=('LicenseRef-custom')
+depends=('python' 'python-pyqt6' 'qt6-svg')
+optdepends=('python-qscintilla-qt6: napredni editor koda (sintaksa, uvlačenje)')
+checkdepends=('python-pytest')
+source=("$pkgname-$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+_appdir="/usr/share/$pkgname"
+
+check() {
+    cd "$srcdir/$pkgname-$pkgver"
+    export QT_QPA_PLATFORM=offscreen
+    python -m pytest -q -p no:cacheprovider
+    python main.py --self-test
+}
+
+package() {
+    cd "$srcdir/$pkgname-$pkgver"
+
+    install -d "$pkgdir$_appdir"
+    cp -r config core database data models resources ui main.py "$pkgdir$_appdir/"
+    find "$pkgdir$_appdir" -name '__pycache__' -prune -exec rm -rf {} +
+    python -m compileall -q -d "$_appdir" "$pkgdir$_appdir"
+
+    install -Dm755 packaging/linux/pyqt6-learning-studio "$pkgdir/usr/bin/$pkgname"
+    install -Dm644 packaging/linux/pyqt6-learning-studio.desktop \
+        "$pkgdir/usr/share/applications/$pkgname.desktop"
+    install -Dm644 resources/app-icon.svg \
+        "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

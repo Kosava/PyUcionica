@@ -1,0 +1,151 @@
+{
+  "id": "m03_l03",
+  "goal": "Naučićeš da spajaš više uslova pomoću and, or i not.",
+  "explanation": [
+    "Često jedan uslov nije dovoljan. „Možeš u bioskop ako imaš 15 godina **i** imaš kartu.“ „Popust važi ako si student **ili** penzioner.“ Za spajanje uslova postoje **logički operatori**.",
+    "`and` (i) — rezultat je True samo ako su **oba** uslova True. Ako je bar jedan False, ceo izraz je False.",
+    "`or` (ili) — rezultat je True ako je **bar jedan** uslov True. False je samo kada su oba False.",
+    "`not` (ne) — okreće vrednost: `not True` je False, a `not False` je True.",
+    "Tabela za `and` i `or`:\n- True and True → True; True and False → False; False and False → False\n- True or True → True; True or False → True; False or False → False",
+    "Kada kombinuješ više operatora, koristi zagrade da bude jasno šta ide zajedno: `(godine >= 65) or (student and godine < 26)`."
+  ],
+  "terms": [
+    {
+      "term": "Logički operator",
+      "definition": "Spaja ili menja logičke vrednosti: and, or, not."
+    },
+    {
+      "term": "and",
+      "definition": "True samo ako su oba uslova tačna."
+    },
+    {
+      "term": "or",
+      "definition": "True ako je bar jedan uslov tačan."
+    },
+    {
+      "term": "not",
+      "definition": "Okreće logičku vrednost: not True je False."
+    }
+  ],
+  "example_code": "godine = 17\nima_kartu = True\nprint(godine >= 15 and ima_kartu)\n\nstudent = False\npenzioner = True\nprint(\"Popust:\", student or penzioner)\n\nkisa = False\nprint(\"Idem napolje:\", not kisa)\n\ntemperatura = 24\nprint(\"Lepo vreme:\", temperatura > 18 and not kisa)\n",
+  "example_steps": [
+    {
+      "code": "print(godine >= 15 and ima_kartu)",
+      "explanation": "17 >= 15 je True, ima_kartu je True — oba su True, pa je rezultat True."
+    },
+    {
+      "code": "print(\"Popust:\", student or penzioner)",
+      "explanation": "Dovoljno je da jedan bude True: True."
+    },
+    {
+      "code": "print(\"Idem napolje:\", not kisa)",
+      "explanation": "kisa je False, not False je True."
+    },
+    {
+      "code": "print(\"Lepo vreme:\", temperatura > 18 and not kisa)",
+      "explanation": "Oba dela su True, pa je i rezultat True."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Bioskop pušta posetioca ako ima **najmanje 15 godina** **i** ima kartu. Napiši program koji:\n\n- pita koliko osoba ima godina (ceo broj),\n- pita da li ima kartu (korisnik odgovara `da` ili `ne`),\n- u promenljivu `moze_da_udje` stavi rezultat oba uslova spojena sa `and`,\n- ispiše `Može da uđe: True` ili `Može da uđe: False`.",
+    "starter_code": "godine = int(input(\"Koliko imaš godina? \"))\nkarta = input(\"Da li imaš kartu (da/ne)? \")\n\n# Spoji oba uslova pomoću and.\n\n# Ispiši rezultat.\n",
+    "expected_output_preview": "Koliko imaš godina? 16\nDa li imaš kartu (da/ne)? da\nMože da uđe: True",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": " and ",
+          "message": "Uslovi su spojeni pomoću and."
+        },
+        {
+          "pattern": ">=",
+          "message": "Godine se porede sa >=."
+        },
+        {
+          "pattern": "moze_da_udje",
+          "message": "Rezultat se čuva u promenljivoj moze_da_udje."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "16\nda",
+          "output_contains": [
+            "Može da uđe: True"
+          ]
+        },
+        {
+          "stdin": "16\nne",
+          "output_contains": [
+            "Može da uđe: False"
+          ]
+        },
+        {
+          "stdin": "12\nda",
+          "output_contains": [
+            "Može da uđe: False"
+          ]
+        },
+        {
+          "stdin": "15\nda",
+          "output_contains": [
+            "Može da uđe: True"
+          ],
+          "name": "tačno 15 godina"
+        }
+      ]
+    },
+    "hints": [
+      "Prvi uslov: godine >= 15. Drugi uslov: karta == \"da\".",
+      "moze_da_udje = godine >= 15 and karta == \"da\"",
+      "Ispis: print(\"Može da uđe:\", moze_da_udje)"
+    ],
+    "solution": "godine = int(input(\"Koliko imaš godina? \"))\nkarta = input(\"Da li imaš kartu (da/ne)? \")\n\n# Spoji oba uslova pomoću and.\nmoze_da_udje = godine >= 15 and karta == \"da\"\n\n# Ispiši rezultat.\nprint(\"Može da uđe:\", moze_da_udje)\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta je True and False?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "explanation": "and zahteva da oba budu True."
+    },
+    {
+      "question": "Šta je False or True?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "explanation": "or je True ako je bar jedan True."
+    },
+    {
+      "question": "Šta je not (5 > 3)?",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 1,
+      "explanation": "5 > 3 je True, a not ga okreće u False."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(True and not False)\n",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct": 0,
+      "explanation": "not False je True, a True and True je True."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "x = 7\nprint(x > 5 and x < 10)\nprint(x < 5 or x > 6)\nprint(not x > 5)\n",
+      "answer": "True\nTrue\nFalse",
+      "explanation": "7 je između 5 i 10; drugi uslov or-a je tačan; x > 5 je True, a not ga okreće u False."
+    }
+  ]
+}

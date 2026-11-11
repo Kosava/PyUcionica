@@ -1,0 +1,145 @@
+{
+  "id": "m02_l01",
+  "goal": "Naučićeš šta je promenljiva, kako joj se dodeljuje vrednost i kako se ta vrednost kasnije menja i koristi.",
+  "explanation": [
+    "Do sada je program samo ispisivao vrednosti koje smo direktno napisali. Pravi programi, međutim, moraju da **pamte** podatke: ime korisnika, cenu, broj poena... Za pamćenje se koriste **promenljive**.",
+    "Promenljivu zamisli kao kutiju sa nalepnicom. Na nalepnici je **ime** promenljive, a u kutiji je **vrednost**. Kada kasnije u kodu napišeš ime, Python pogleda u kutiju i koristi vrednost koja je u njoj.",
+    "Promenljiva se pravi **dodeljivanjem**: levo je ime, u sredini znak `=`, desno vrednost. Na primer `ime = \"Ana\"` znači: „napravi kutiju sa nalepnicom ime i stavi u nju tekst Ana“.",
+    "> Znak = u programiranju NE znači „jednako“ kao u matematici. Znači „stavi vrednost sa desne strane u promenljivu sa leve strane“. Zato se čita „ime dobija vrednost Ana“.",
+    "Vrednost promenljive može da se **promeni** novim dodeljivanjem. Stara vrednost se tada zaboravlja, a promenljiva čuva novu. Python izvršava kod odozgo nadole, pa svaka linija vidi vrednost koja je poslednja dodeljena iznad nje.",
+    "Kada promenljivu daš funkciji print, ispisuje se njena **vrednost**, a ne ime: `print(ime)` ispisuje Ana. Primeti da oko imena promenljive nema navodnika — `print(\"ime\")` bi ispisao samu reč ime.",
+    "Pravila za imena promenljivih:\n- smeju sadržati slova, cifre i donju crtu _,\n- ne smeju počinjati cifrom (`2broj` nije dozvoljeno),\n- ne smeju sadržati razmake — umesto razmaka koristi donju crtu: `broj_poena`,\n- velika i mala slova se razlikuju: `ime` i `Ime` su dve različite promenljive.\nDobro ime opisuje šta je u kutiji: `cena` je bolje od `x`."
+  ],
+  "terms": [
+    {
+      "term": "Promenljiva",
+      "definition": "Imenovano mesto u memoriji u kome program čuva vrednost, kao kutija sa nalepnicom."
+    },
+    {
+      "term": "Vrednost",
+      "definition": "Podatak koji se čuva u promenljivoj, npr. tekst \"Ana\" ili broj 25."
+    },
+    {
+      "term": "Dodeljivanje",
+      "definition": "Stavljanje vrednosti u promenljivu pomoću znaka =, npr. godine = 25."
+    },
+    {
+      "term": "Ime promenljive",
+      "definition": "Reč kojom se promenljiva označava. Sme da sadrži slova, cifre i _, ali ne sme početi cifrom."
+    }
+  ],
+  "example_code": "ime = \"Ana\"\ngodine = 25\nprint(ime)\nprint(godine)\n\ngodine = 26\nprint(ime, \"sada ima\", godine, \"godina.\")\n",
+  "example_steps": [
+    {
+      "code": "ime = \"Ana\"",
+      "explanation": "Pravi se promenljiva ime i u nju se stavlja tekst Ana. Ova linija ništa ne ispisuje — samo pamti vrednost."
+    },
+    {
+      "code": "godine = 25",
+      "explanation": "Promenljiva godine dobija broj 25. Brojevi se pišu bez navodnika."
+    },
+    {
+      "code": "print(ime)\nprint(godine)",
+      "explanation": "print ispisuje vrednosti promenljivih: Ana, pa 25. Oko imena promenljive nema navodnika."
+    },
+    {
+      "code": "godine = 26",
+      "explanation": "Nova vrednost zamenjuje staru. Od ove linije nadalje godine je 26."
+    },
+    {
+      "code": "print(ime, \"sada ima\", godine, \"godina.\")",
+      "explanation": "Promenljive i tekst se mogu kombinovati u jednom print-u, odvojeni zarezima: Ana sada ima 26 godina."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji:\n\n- pravi promenljivu `grad` sa vrednošću \"Beograd\" i promenljivu `reka` sa vrednošću \"Sava\",\n- ispisuje rečenicu pomoću `print(grad, \"leži na reci\", reka)`,\n- zatim menja vrednost promenljive `reka` u \"Dunav\",\n- i ponovo ispisuje istu rečenicu, istom print naredbom.\n\nRečenice sastavljaj od promenljivih — ne piši ceo tekst ručno.",
+    "starter_code": "# 1. Napravi promenljive grad i reka.\n\n# 2. Ispiši rečenicu.\n\n# 3. Promeni vrednost promenljive reka.\n\n# 4. Ponovo ispiši rečenicu.\n",
+    "expected_output_preview": "Beograd leži na reci Sava\nBeograd leži na reci Dunav",
+    "criteria": {
+      "expected_output": "Beograd leži na reci Sava\nBeograd leži na reci Dunav",
+      "code_contains": [
+        {
+          "pattern": "^\\s*grad\\s*=\\s*[\\\"']Beograd[\\\"']",
+          "message": "Postoji promenljiva grad sa vrednošću \"Beograd\".",
+          "regex": true
+        },
+        {
+          "pattern": "^\\s*reka\\s*=",
+          "message": "Promenljivoj reka je vrednost dodeljena dva puta.",
+          "regex": true,
+          "min_count": 2
+        },
+        {
+          "pattern": "print\\(\\s*grad\\s*,",
+          "message": "Obe rečenice se ispisuju pomoću promenljivih (print(grad, ...)).",
+          "regex": true,
+          "min_count": 2
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "Beograd leži",
+          "message": "Rečenica se sastavlja od promenljivih, a ne piše se ceo tekst ručno."
+        }
+      ]
+    },
+    "hints": [
+      "Promenljiva se pravi ovako: ime = vrednost. Tekst stavi pod navodnike: grad = \"Beograd\".",
+      "Ispis je print(grad, \"leži na reci\", reka). Istu liniju napiši dva puta — pre i posle promene.",
+      "Između dva print-a treba da stoji linija reka = \"Dunav\"."
+    ],
+    "solution": "# 1. Napravi promenljive grad i reka.\ngrad = \"Beograd\"\nreka = \"Sava\"\n# 2. Ispiši rečenicu.\nprint(grad, \"leži na reci\", reka)\n# 3. Promeni vrednost promenljive reka.\nreka = \"Dunav\"\n# 4. Ponovo ispiši rečenicu.\nprint(grad, \"leži na reci\", reka)\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta radi linija broj = 10?",
+      "options": [
+        "Proverava da li je broj jednak 10",
+        "Stavlja vrednost 10 u promenljivu broj",
+        "Ispisuje 10"
+      ],
+      "correct": 1,
+      "explanation": "Znak = dodeljuje vrednost sa desne strane promenljivoj sa leve strane."
+    },
+    {
+      "question": "Koje ime promenljive NIJE dozvoljeno?",
+      "options": [
+        "broj_poena",
+        "poeni2",
+        "2poena"
+      ],
+      "correct": 2,
+      "explanation": "Ime promenljive ne sme da počne cifrom."
+    },
+    {
+      "question": "Šta ispisuje: x = 5, pa x = 8, pa print(x)?",
+      "options": [
+        "5",
+        "8",
+        "5 8"
+      ],
+      "correct": 1,
+      "explanation": "Novo dodeljivanje zamenjuje staru vrednost; x je 8."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "x = 3\nx = x + 2\nprint(x)\n",
+      "options": [
+        "3",
+        "5",
+        "x + 2"
+      ],
+      "correct": 1,
+      "explanation": "Desna strana se računa sa starom vrednošću (3 + 2), a rezultat postaje nova vrednost promenljive x."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "ime = \"Ana\"\nprint(\"ime\")\nprint(ime)\n",
+      "answer": "ime\nAna",
+      "explanation": "\"ime\" pod navodnicima je tekst, a ime bez navodnika je promenljiva čija je vrednost Ana."
+    }
+  ]
+}

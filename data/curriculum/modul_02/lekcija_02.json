@@ -1,0 +1,135 @@
+{
+  "id": "m02_l02",
+  "goal": "Upoznaćeš dve vrste brojeva u Pythonu — cele (int) i decimalne (float) — i naučićeš da računaš sa njima.",
+  "explanation": [
+    "Svaka vrednost u Pythonu ima svoj **tip**. Tip govori kakva je vrednost i šta se sa njom može raditi. Za brojeve postoje dva osnovna tipa.",
+    "**int** (od engleskog integer — ceo broj) su brojevi bez decimala: `7`, `0`, `-15`, `2026`.",
+    "**float** su brojevi sa decimalnim delom: `3.14`, `0.5`, `-2.75`. Važno: decimale se u Pythonu pišu **tačkom**, ne zarezom. `3,14` Python ne bi razumeo kao broj.",
+    "Sa brojevima se računa kao na kalkulatoru: `+` sabiranje, `-` oduzimanje, `*` množenje (zvezdica, ne slovo x) i `/` deljenje. Rezultat računa može se odmah ispisati ili sačuvati u promenljivu: `ukupno = cena * komada`.",
+    "Deljenje sa `/` uvek daje float, čak i kada se brojevi dele bez ostatka: `10 / 2` daje `5.0`. Ako se u računu pojavi bar jedan float, i rezultat je float.",
+    "Tip bilo koje vrednosti saznaješ funkcijom `type()`: `print(type(7))` ispisuje `<class 'int'>`, a `print(type(7.0))` ispisuje `<class 'float'>`.",
+    "> Računar decimalne brojeve čuva približno, pa ponekad dobiješ npr. 0.30000000000000004 umesto 0.3. To nije greška u tvom kodu — tako rade svi računari. Kako se lepo zaokružuje, naučićeš u lekciji o f-stringovima."
+  ],
+  "terms": [
+    {
+      "term": "Tip podatka",
+      "definition": "Vrsta vrednosti (ceo broj, decimalni broj, tekst...). Od tipa zavisi šta se sa vrednošću može raditi."
+    },
+    {
+      "term": "int",
+      "definition": "Ceo broj, bez decimala: 5, -3, 100."
+    },
+    {
+      "term": "float",
+      "definition": "Decimalni broj, sa tačkom: 2.5, 0.1, -7.0."
+    },
+    {
+      "term": "type()",
+      "definition": "Funkcija koja vraća tip vrednosti, npr. type(3.5) je float."
+    }
+  ],
+  "example_code": "cena = 120\nkomada = 4\nukupno = cena * komada\nprint(\"Ukupno:\", ukupno)\n\nvisina = 1.82\nprint(type(cena))\nprint(type(visina))\nprint(10 / 4)\nprint(10 / 2)\n",
+  "example_steps": [
+    {
+      "code": "cena = 120\nkomada = 4",
+      "explanation": "Dve promenljive tipa int (celi brojevi)."
+    },
+    {
+      "code": "ukupno = cena * komada",
+      "explanation": "Python prvo izračuna desnu stranu (120 * 4 = 480), pa rezultat stavi u promenljivu ukupno."
+    },
+    {
+      "code": "print(type(cena))\nprint(type(visina))",
+      "explanation": "Ispisuje tipove: <class 'int'> za 120 i <class 'float'> za 1.82."
+    },
+    {
+      "code": "print(10 / 4)\nprint(10 / 2)",
+      "explanation": "Deljenje uvek daje float: 2.5 i 5.0."
+    }
+  ],
+  "exercise": {
+    "type": "complete",
+    "description": "Dopuni program tako da izračuna dve stvari i ispiše rezultate:\n\n- `ukupno` — koliko koštaju 3 hleba ako jedan košta 65 dinara (koristi promenljive `cena_hleba` i `komada`),\n- `prosek` — prosečnu temperaturu tri dana: zbir temperatura podeljen sa 3.\n\nRezultate ne upisuj ručno — neka ih Python izračuna.",
+    "starter_code": "cena_hleba = 65\nkomada = 3\n# Izračunaj ukupnu cenu i sačuvaj je u promenljivu ukupno.\n\nprint(ukupno)\n\nt1 = 12.5\nt2 = 14.0\nt3 = 9.5\n# Izračunaj prosečnu temperaturu i sačuvaj je u promenljivu prosek.\n\nprint(prosek)\n",
+    "expected_output_preview": "195\n12.0",
+    "criteria": {
+      "expected_output": "195\n12.0",
+      "code_contains": [
+        {
+          "pattern": "ukupno\\s*=.*\\*",
+          "message": "Promenljiva ukupno se računa množenjem (*).",
+          "regex": true
+        },
+        {
+          "pattern": "prosek\\s*=.*/",
+          "message": "Promenljiva prosek se računa deljenjem (/).",
+          "regex": true
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "=\\s*(195|12\\.0)\\s*$",
+          "message": "Rezultati se računaju, a ne upisuju ručno.",
+          "regex": true
+        }
+      ]
+    },
+    "hints": [
+      "Ukupna cena je cena jednog komada puta broj komada. Množenje se piše zvezdicom *.",
+      "ukupno = cena_hleba * komada",
+      "Za prosek prvo saberi sve tri temperature, pa podeli sa 3. Zagrade su obavezne: prosek = (t1 + t2 + t3) / 3"
+    ],
+    "solution": "cena_hleba = 65\nkomada = 3\n# Izračunaj ukupnu cenu i sačuvaj je u promenljivu ukupno.\nukupno = cena_hleba * komada\nprint(ukupno)\n\nt1 = 12.5\nt2 = 14.0\nt3 = 9.5\n# Izračunaj prosečnu temperaturu i sačuvaj je u promenljivu prosek.\nprosek = (t1 + t2 + t3) / 3\nprint(prosek)\n"
+  },
+  "quiz": [
+    {
+      "question": "Kog tipa je vrednost 7.0?",
+      "options": [
+        "int",
+        "float",
+        "str"
+      ],
+      "correct": 1,
+      "explanation": "Svaki broj sa decimalnom tačkom je float, čak i ako je decimalni deo nula."
+    },
+    {
+      "question": "Šta ispisuje print(9 / 3)?",
+      "options": [
+        "3",
+        "3.0",
+        "Grešku"
+      ],
+      "correct": 1,
+      "explanation": "Deljenje sa / uvek daje float."
+    },
+    {
+      "question": "Kako se ispravno piše decimalni broj dva i po?",
+      "options": [
+        "2,5",
+        "2.5",
+        "2½"
+      ],
+      "correct": 1,
+      "explanation": "U Pythonu se decimale odvajaju tačkom."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(7 / 2)\n",
+      "options": [
+        "3",
+        "3.5",
+        "4"
+      ],
+      "correct": 1,
+      "explanation": "Deljenje sa / daje decimalni broj: 3.5."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "a = 4\nb = 2\nprint(a * b)\nprint(a / b)\n",
+      "answer": "8\n2.0",
+      "explanation": "Množenje dva cela broja daje ceo broj 8, a deljenje uvek daje float: 2.0."
+    }
+  ]
+}

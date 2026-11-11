@@ -1,0 +1,145 @@
+{
+  "id": "m02_l03",
+  "goal": "Naučićeš da radiš sa tekstom (str): spajanje, ponavljanje, dužina teksta i promena velikih i malih slova.",
+  "explanation": [
+    "Tekst u Pythonu ima tip **str** (od string — niz znakova). Već znaš da se piše pod navodnicima. Sada ćeš naučiti šta se sve sa tekstom može raditi.",
+    "**Spajanje** teksta radi se znakom `+`: `\"Dobar\" + \"dan\"` daje `Dobardan`. Razmak se ne dodaje sam — ako ti treba, dodaj ga: `\"Dobar\" + \" \" + \"dan\"`.",
+    "**Ponavljanje** radi se znakom `*` i celim brojem: `\"ha\" * 3` daje `hahaha`. Zgodno za crtanje linija: `\"-\" * 20`.",
+    "Funkcija `len()` (od length — dužina) vraća broj znakova u tekstu. `len(\"Ana\")` je 3. Razmaci i znakovi interpunkcije se takođe broje.",
+    "Tekst ima i svoje **metode**. Metoda je funkcija koja pripada nekoj vrednosti i poziva se tako što se posle vrednosti stavi tačka, ime metode i zagrade. Na primer:\n- `ime.upper()` — vraća tekst velikim slovima,\n- `ime.lower()` — vraća tekst malim slovima,\n- `ime.title()` — vraća tekst sa prvim slovom svake reči velikim.",
+    "> Metode ne menjaju originalnu promenljivu — one vraćaju NOVI tekst. Posle ime.upper() promenljiva ime je i dalje ista. Ako želiš da sačuvaš rezultat, dodeli ga: ime = ime.upper()."
+  ],
+  "terms": [
+    {
+      "term": "str",
+      "definition": "Tip podatka za tekst. Vrednost se piše između navodnika."
+    },
+    {
+      "term": "Spajanje (konkatenacija)",
+      "definition": "Pravljenje jednog teksta od više delova pomoću +."
+    },
+    {
+      "term": "len()",
+      "definition": "Funkcija koja vraća broj znakova u tekstu."
+    },
+    {
+      "term": "Metoda",
+      "definition": "Funkcija koja pripada vrednosti i poziva se tačkom: tekst.upper()."
+    }
+  ],
+  "example_code": "ime = \"marko\"\nprezime = \"Petrović\"\n\npuno_ime = ime + \" \" + prezime\nprint(puno_ime)\nprint(len(ime))\nprint(ime.title())\nprint(prezime.upper())\nprint(\"=\" * 15)\n",
+  "example_steps": [
+    {
+      "code": "puno_ime = ime + \" \" + prezime",
+      "explanation": "Spajaju se tri dela: ime, razmak i prezime. Rezultat: marko Petrović."
+    },
+    {
+      "code": "print(len(ime))",
+      "explanation": "Reč marko ima 5 slova, pa se ispisuje 5."
+    },
+    {
+      "code": "print(ime.title())",
+      "explanation": "Metoda title vraća Marko — prvo slovo veliko. Promenljiva ime ostaje marko."
+    },
+    {
+      "code": "print(prezime.upper())",
+      "explanation": "Sva slova velika: PETROVIĆ. Radi i sa našim slovima."
+    },
+    {
+      "code": "print(\"=\" * 15)",
+      "explanation": "Znak = ponovljen 15 puta — jednostavna linija za ukrašavanje ispisa."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Korišćenjem promenljivih `ime` i `grad` iz početnog koda, napiši četiri print naredbe koje ispisuju:\n\n- ime velikim slovima (metoda `upper`),\n- broj slova u imenu (funkcija `len`),\n- tekst `ana iz niš`, sastavljen spajanjem `ime`, `\" iz \"` i `grad`,\n- liniju od 10 crtica, dobijenu ponavljanjem (`*`).",
+    "starter_code": "ime = \"ana\"\ngrad = \"niš\"\n\n# Napiši četiri print naredbe ispod.\n",
+    "expected_output_preview": "ANA\n3\nana iz niš\n----------",
+    "criteria": {
+      "expected_output": "ANA\n3\nana iz niš\n----------",
+      "code_contains": [
+        {
+          "pattern": "ime.upper()",
+          "message": "Veliko slovo se dobija metodom ime.upper()."
+        },
+        {
+          "pattern": "len(ime)",
+          "message": "Dužina se računa funkcijom len(ime)."
+        },
+        {
+          "pattern": "ime\\s*\\+",
+          "message": "Tekst se sastavlja spajanjem promenljivih (+).",
+          "regex": true
+        },
+        {
+          "pattern": "\\*\\s*10",
+          "message": "Linija se dobija ponavljanjem teksta (* 10).",
+          "regex": true
+        }
+      ],
+      "code_not_contains": [
+        {
+          "pattern": "\"ANA\"",
+          "message": "ANA se dobija metodom, ne upisuje se ručno."
+        }
+      ]
+    },
+    "hints": [
+      "Prvi red: print(ime.upper()). Drugi red: print(len(ime)).",
+      "Treći red spaja tri dela: print(ime + \" iz \" + grad). Obrati pažnju na razmake oko reči iz.",
+      "Četvrti red: print(\"-\" * 10)."
+    ],
+    "solution": "ime = \"ana\"\ngrad = \"niš\"\n\n# Napiši četiri print naredbe ispod.\nprint(ime.upper())\nprint(len(ime))\nprint(ime + \" iz \" + grad)\nprint(\"-\" * 10)\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta daje \"Py\" + \"thon\"?",
+      "options": [
+        "Py thon",
+        "Python",
+        "Grešku"
+      ],
+      "correct": 1,
+      "explanation": "Spajanje ne dodaje razmak."
+    },
+    {
+      "question": "Koliko je len(\"Zdravo svete\")?",
+      "options": [
+        "11",
+        "12",
+        "2"
+      ],
+      "correct": 1,
+      "explanation": "Broje se svi znakovi, uključujući razmak: 6 + 1 + 5 = 12."
+    },
+    {
+      "question": "Posle t = \"abc\" i t.upper(), šta je u promenljivoj t?",
+      "options": [
+        "abc",
+        "ABC",
+        "Ništa"
+      ],
+      "correct": 0,
+      "explanation": "Metode teksta vraćaju novi tekst i ne menjaju original."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"ab\" * 3)\n",
+      "options": [
+        "ab3",
+        "ababab",
+        "ab ab ab"
+      ],
+      "correct": 1,
+      "explanation": "Tekst pomnožen celim brojem ponavlja se, bez razmaka između ponavljanja."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "t = \"Python\"\nprint(len(t))\nprint(t.upper())\nprint(t)\n",
+      "answer": "6\nPYTHON\nPython",
+      "explanation": "len broji 6 slova. upper vraća novi tekst, a promenljiva t ostaje nepromenjena."
+    }
+  ]
+}

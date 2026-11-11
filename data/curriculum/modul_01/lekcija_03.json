@@ -1,0 +1,122 @@
+{
+  "id": "m01_l03",
+  "goal": "Saznaćeš šta se tačno dešava kada pokreneš kod, zašto je redosled linija važan i kako se Python program pokreće van ove aplikacije.",
+  "explanation": [
+    "Kada klikneš „Pokreni“, dešava se nekoliko koraka:\n- kod iz editora se zapisuje u privremeni fajl,\n- Python interpreter pročita ceo fajl i proveri da li je kod ispravno napisan,\n- ako jeste, izvršava naredbe redom, od prve linije ka poslednjoj,\n- sve što program ispiše prikazuje se u panelu sa rezultatom.",
+    "Pre izvršavanja Python proverava **sintaksu** — pravila pisanja, kao gramatiku u jeziku. Ako na bilo kom mestu nađe sintaksnu grešku (na primer navodnik koji nije zatvoren), neće izvršiti nijednu liniju, čak ni one ispravne iznad greške.",
+    "**Redosled je važan.** Interpreter ne preskače i ne menja redosled: druga linija se izvršava tek kad se prva završi. Ako zameniš mesta dvema linijama, menja se i redosled onoga što se ispisuje.",
+    "Program se završava sam kada interpreter izvrši poslednju liniju. Ispod rezultata vidiš status („Uspešno izvršeno“ ili opis greške) i **vreme izvršavanja**. Ako se program zaglavi i radi predugo, aplikacija ga automatski zaustavlja posle određenog vremena; možeš ga zaustaviti i sam dugmetom „Zaustavi“.",
+    "Van ove aplikacije, Python kod se čuva u fajlu sa nastavkom **.py** (npr. `moj_program.py`) i pokreće iz **terminala** (prozora u kome se kucaju komande) komandom `python moj_program.py`. Na Linuxu se komanda često zove `python3`. Ova aplikacija radi tačno to umesto tebe, pa za sada ne moraš da koristiš terminal.",
+    "> Primeti: print(2 + 3) ispisuje 5. Kada argument nije pod navodnicima, Python prvo izračuna vrednost, pa tek onda ispisuje rezultat."
+  ],
+  "terms": [
+    {
+      "term": "Sintaksa",
+      "definition": "Pravila po kojima se piše kod u nekom jeziku. Kod koji ih ne poštuje ne može da se pokrene."
+    },
+    {
+      "term": "Izvršavanje",
+      "definition": "Kada interpreter zaista radi ono što kod kaže, naredbu po naredbu."
+    },
+    {
+      "term": "Fajl .py",
+      "definition": "Običan tekstualni fajl sa Python kodom. Nastavak .py označava da sadrži Python program."
+    },
+    {
+      "term": "Terminal",
+      "definition": "Prozor u kome se računaru zadaju komande kucanjem teksta, npr. python program.py."
+    }
+  ],
+  "example_code": "print(\"Prvi korak\")\nprint(\"Drugi korak\")\nprint(2 + 3)\nprint(\"Treći korak\")\n",
+  "example_steps": [
+    {
+      "code": "print(\"Prvi korak\")",
+      "explanation": "Interpreter počinje od prve linije i ispisuje „Prvi korak“."
+    },
+    {
+      "code": "print(\"Drugi korak\")",
+      "explanation": "Tek kada prva linija završi, izvršava se druga."
+    },
+    {
+      "code": "print(2 + 3)",
+      "explanation": "Argument nije tekst nego račun. Python izračuna 2 + 3 i ispiše 5."
+    },
+    {
+      "code": "print(\"Treći korak\")",
+      "explanation": "Poslednja linija. Kad se ona izvrši, program je gotov i status postaje „Uspešno izvršeno“."
+    }
+  ],
+  "exercise": {
+    "type": "fix",
+    "description": "Ovaj program treba da ispiše uputstvo za pravljenje čaja, ali su linije pomešane. Premesti linije (ne menjaj tekst unutar njih!) tako da program ispisuje korake redom, od 1 do 4.\n\nSavet: označi liniju, iseci je (Ctrl+X) i nalepi (Ctrl+V) na pravo mesto.",
+    "starter_code": "print(\"3. Sipaj vodu u šolju\")\nprint(\"1. Uključi kuvalo\")\nprint(\"4. Ubaci kesicu čaja\")\nprint(\"2. Sačekaj da voda provri\")\n",
+    "expected_output_preview": "1. Uključi kuvalo\n2. Sačekaj da voda provri\n3. Sipaj vodu u šolju\n4. Ubaci kesicu čaja",
+    "criteria": {
+      "expected_output": "1. Uključi kuvalo\n2. Sačekaj da voda provri\n3. Sipaj vodu u šolju\n4. Ubaci kesicu čaja",
+      "code_contains": [
+        {
+          "pattern": "print(",
+          "min_count": 4,
+          "message": "Sve četiri print linije su i dalje u kodu."
+        }
+      ]
+    },
+    "hints": [
+      "Python izvršava linije od vrha ka dnu. Koja linija treba da bude prva?",
+      "Na vrhu treba da bude linija sa tekstom „1. Uključi kuvalo“, a odmah ispod nje linija sa „2. ...“.",
+      "Konačan redosled linija: 1, 2, 3, 4. Nijedna linija ne treba da se briše ni menja."
+    ],
+    "solution": "print(\"1. Uključi kuvalo\")\nprint(\"2. Sačekaj da voda provri\")\nprint(\"3. Sipaj vodu u šolju\")\nprint(\"4. Ubaci kesicu čaja\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Kojim redosledom Python izvršava linije koda?",
+      "options": [
+        "Nasumično",
+        "Od poslednje ka prvoj",
+        "Od prve ka poslednjoj"
+      ],
+      "correct": 2,
+      "explanation": "Interpreter izvršava naredbe redom, od vrha ka dnu."
+    },
+    {
+      "question": "Šta se dešava ako u 5. liniji postoji sintaksna greška?",
+      "options": [
+        "Izvrše se linije 1–4, pa se javi greška",
+        "Ne izvrši se nijedna linija",
+        "Python preskoči 5. liniju"
+      ],
+      "correct": 1,
+      "explanation": "Sintaksa se proverava pre pokretanja; ako je neispravna, ništa se ne izvršava."
+    },
+    {
+      "question": "Kakav nastavak ima fajl sa Python kodom?",
+      "options": [
+        ".py",
+        ".txt",
+        ".exe"
+      ],
+      "correct": 0,
+      "explanation": "Python fajlovi se čuvaju sa nastavkom .py."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "print(\"2 + 2\")\n",
+      "options": [
+        "4",
+        "2 + 2",
+        "\"2 + 2\""
+      ],
+      "correct": 1,
+      "explanation": "Pod navodnicima je tekst, pa se ne računa — ispisuje se doslovno 2 + 2."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "print(\"C\")\nprint(\"A\")\nprint(\"B\")\n",
+      "answer": "C\nA\nB",
+      "explanation": "Linije se izvršavaju redom, odozgo nadole, bez obzira na abecedu."
+    }
+  ]
+}

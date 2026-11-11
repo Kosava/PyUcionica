@@ -1,0 +1,126 @@
+{
+  "id": "m08_l04",
+  "goal": "Dodaćeš u prozor natpis (QLabel) i dugme (QPushButton), rasporedićeš ih jedno ispod drugog i napravićeš dugme koje zatvara prozor.",
+  "explanation": [
+    "Prazan prozor nije mnogo koristan. Sada ćemo u njega staviti dva najčešća widget-a:\n- **QLabel** — natpis, tekst koji korisnik čita,\n- **QPushButton** — dugme na koje korisnik klikne.",
+    "Tekst se zadaje pri pravljenju: `natpis = QLabel(\"Zdravo!\")`, a kasnije se menja metodom `setText(\"...\")` i čita metodom `text()`.",
+    "Da bi se natpis i dugme pojavili **u** prozoru, koristimo **raspored** (layout). `QVBoxLayout` ređa widget-e vertikalno, jedan ispod drugog. `raspored = QVBoxLayout(prozor)` pravi raspored i odmah ga dodeljuje prozoru, a `raspored.addWidget(natpis)` dodaje widget. Raspored sam brine o veličini i položaju — kada povećaš prozor, elementi se prilagode. Ostale rasporede učićeš u lekciji 54.",
+    "Kada korisnik klikne dugme, dugme šalje **signal** `clicked`. Signal možeš da povežeš sa nečim što treba da se desi: `dugme.clicked.connect(prozor.close)` znači „kada se dugme klikne, pozovi metodu close prozora“. Primeti: posle close **nema zagrada** — ne pozivamo je odmah, već je samo predajemo dugmetu, da je pozove kasnije. Signale detaljno obrađujemo u lekciji 53.",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "QLabel",
+      "definition": "Widget za prikaz teksta (natpis). Tekst se menja sa setText, čita sa text()."
+    },
+    {
+      "term": "QPushButton",
+      "definition": "Dugme. Kada se klikne, šalje signal clicked."
+    },
+    {
+      "term": "Raspored (layout)",
+      "definition": "Objekat koji raspoređuje widget-e u prozoru, npr. QVBoxLayout — jedan ispod drugog."
+    },
+    {
+      "term": "Signal",
+      "definition": "Obaveštenje koje widget šalje kada se nešto desi, npr. clicked kada se dugme klikne."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Natpis i dugme\")\n\nnatpis = QLabel(\"Ovo je natpis.\")\ndugme = QPushButton(\"Klikni me\")\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(natpis)\nraspored.addWidget(dugme)\n\ndugme.clicked.connect(prozor.close)\n\nprozor.show()\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "natpis = QLabel(\"Ovo je natpis.\")\ndugme = QPushButton(\"Klikni me\")",
+      "explanation": "Dva nova widget-a. Još nisu u prozoru."
+    },
+    {
+      "code": "raspored = QVBoxLayout(prozor)",
+      "explanation": "Raspored koji pripada prozoru i ređa elemente vertikalno."
+    },
+    {
+      "code": "raspored.addWidget(natpis)\nraspored.addWidget(dugme)",
+      "explanation": "Redosled dodavanja je redosled prikaza: natpis gore, dugme ispod."
+    },
+    {
+      "code": "dugme.clicked.connect(prozor.close)",
+      "explanation": "Klik na dugme poziva prozor.close — prozor se zatvara i program se završava."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napravi prozor sa naslovom `Dobrodošlica` u kome su, jedno ispod drugog:\n\n- natpis sa tekstom `Dobrodošli u PyQt6!`\n- dugme sa tekstom `Zatvori`, koje **zatvara prozor** kada se klikne.\n\nProvera će pročitati natpis, kliknuti dugme i proveriti da li se prozor zatvorio.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\n\n# Postavi naslov, napravi natpis i dugme, dodaj ih u raspored.\n\n# Poveži klik na dugme sa zatvaranjem prozora.\n\nprozor.show()\nsys.exit(app.exec())\n",
+    "expected_output_preview": "(prozor „Dobrodošlica“ sa natpisom i dugmetom „Zatvori“)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "QVBoxLayout(",
+          "message": "Elementi su u rasporedu QVBoxLayout."
+        },
+        {
+          "pattern": "clicked\\.connect\\(",
+          "message": "Klik na dugme je povezan pomoću clicked.connect.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "name": "natpis, dugme i zatvaranje",
+          "gui_script": "p = glavni()\nif p is not None:\n    print('naslov:', p.windowTitle())\n    natpis = nadji('QLabel')\n    print('natpis:', tekst(natpis) if natpis else '(nema natpisa)')\n    if klikni('Zatvori'):\n        print('prozor posle klika:', 'otvoren' if p.isVisible() else 'zatvoren')\n",
+          "output_contains": [
+            "naslov: Dobrodošlica",
+            "natpis: Dobrodošli u PyQt6!",
+            "prozor posle klika: zatvoren"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Naslov: prozor.setWindowTitle(\"Dobrodošlica\"). Natpis: natpis = QLabel(\"Dobrodošli u PyQt6!\").",
+      "Raspored: raspored = QVBoxLayout(prozor), pa raspored.addWidget(natpis) i raspored.addWidget(dugme).",
+      "Zatvaranje: dugme.clicked.connect(prozor.close) — bez zagrada posle close."
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\n\n# Postavi naslov, napravi natpis i dugme, dodaj ih u raspored.\nprozor.setWindowTitle(\"Dobrodošlica\")\nnatpis = QLabel(\"Dobrodošli u PyQt6!\")\ndugme = QPushButton(\"Zatvori\")\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(natpis)\nraspored.addWidget(dugme)\n\n# Poveži klik na dugme sa zatvaranjem prozora.\ndugme.clicked.connect(prozor.close)\n\nprozor.show()\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Kojim widget-om se prikazuje tekst koji korisnik samo čita?",
+      "options": [
+        "QPushButton",
+        "QLabel",
+        "QApplication"
+      ],
+      "correct": 1,
+      "explanation": "QLabel je natpis."
+    },
+    {
+      "question": "Šta radi QVBoxLayout?",
+      "options": [
+        "Ređa widget-e vertikalno, jedan ispod drugog",
+        "Pravi novo dugme",
+        "Zatvara prozor"
+      ],
+      "correct": 0,
+      "explanation": "V u imenu znači vertikalno."
+    },
+    {
+      "question": "Zašto u dugme.clicked.connect(prozor.close) posle close nema zagrada?",
+      "options": [
+        "Greška u primeru",
+        "Metoda se predaje dugmetu da je pozove kasnije, pri kliku",
+        "Zagrade nisu dozvoljene u PyQt6"
+      ],
+      "correct": 1,
+      "explanation": "Sa zagradama bi se prozor zatvorio odmah, umesto pri kliku."
+    },
+    {
+      "question": "Kako se menja tekst natpisa?",
+      "options": [
+        "natpis.text = \"Novo\"",
+        "natpis.setText(\"Novo\")",
+        "QLabel(\"Novo\")"
+      ],
+      "correct": 1,
+      "explanation": "Metoda setText postavlja novi tekst."
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "id": "m04_l06",
+  "goal": "Naučićeš da koristiš skupove za uklanjanje duplikata i brzu proveru da li nešto postoji, i da tekst deliš na reči metodom split.",
+  "explanation": [
+    "**Skup** (set) je kolekcija **bez duplikata** i bez redosleda: `boje = {\"crvena\", \"plava\", \"crvena\"}` ima samo dva elementa. Prazan skup se pravi sa `set()` (jer `{}` je prazan rečnik — sledeća lekcija).",
+    "Najčešća upotreba: uklanjanje duplikata iz liste — `set(lista)`. Pošto skup nema redosled, za lep ispis se pretvara u sortiranu listu: `sorted(skup)`.",
+    "Operacije:\n- `skup.add(x)` — dodaje (ako već postoji, ništa se ne menja),\n- `x in skup` — veoma brza provera,\n- `a | b` — unija (sve iz oba), `a & b` — presek (samo zajedničko), `a - b` — razlika.",
+    "**split** je metoda teksta koja ga deli na reči i vraća listu: `\"mama tata mama\".split()` daje `[\"mama\", \"tata\", \"mama\"]`. Bez argumenta deli po razmacima; sa argumentom po zadatom znaku: `\"a,b\".split(\",\")`.",
+    "**join** radi suprotno — spaja listu teksta u jedan tekst sa zadatim razmakom između: `\", \".join([\"a\", \"b\"])` daje `\"a, b\"`."
+  ],
+  "terms": [
+    {
+      "term": "Skup (set)",
+      "definition": "Kolekcija bez duplikata i bez redosleda: {1, 2, 3}."
+    },
+    {
+      "term": "sorted",
+      "definition": "Vraća novu, sortiranu listu od bilo koje kolekcije."
+    },
+    {
+      "term": "split",
+      "definition": "Deli tekst na listu reči: \"a b\".split() → [\"a\", \"b\"]."
+    },
+    {
+      "term": "join",
+      "definition": "Spaja listu teksta: \", \".join([\"a\", \"b\"]) → \"a, b\"."
+    }
+  ],
+  "example_code": "brojevi = [3, 1, 3, 2, 1]\njedinstveni = set(brojevi)\nprint(sorted(jedinstveni))\n\nrecenica = \"pas mačka pas riba mačka\"\nreci = recenica.split()\nprint(reci)\nprint(\"Različitih reči:\", len(set(reci)))\n\nana = {\"fudbal\", \"šah\", \"plivanje\"}\nmarko = {\"šah\", \"košarka\"}\nprint(\"Zajedničko:\", ana & marko)\nprint(\", \".join(sorted(ana | marko)))\n",
+  "example_steps": [
+    {
+      "code": "jedinstveni = set(brojevi)",
+      "explanation": "Duplikati nestaju: {1, 2, 3}."
+    },
+    {
+      "code": "reci = recenica.split()",
+      "explanation": "Tekst postaje lista od pet reči."
+    },
+    {
+      "code": "print(\"Zajedničko:\", ana & marko)",
+      "explanation": "Presek: samo šah."
+    },
+    {
+      "code": "print(\", \".join(sorted(ana | marko)))",
+      "explanation": "Unija, sortirana i spojena zarezima."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji učitava rečenicu i ispisuje:\n\n- `Različitih reči: N` — broj različitih reči,\n- `Reči: a, b, c` — različite reči, **sortirane abecedno**, spojene sa `\", \"`.\n\nVelika i mala slova smatraj istim (pretvori rečenicu u mala slova pomoću lower()).",
+    "starter_code": "recenica = input(\"Rečenica: \")\n\n# Podeli na reči, ukloni duplikate, ispiši broj i sortirane reči.\n",
+    "expected_output_preview": "Rečenica: mama tata Mama\nRazličitih reči: 2\nReči: mama, tata",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "set(",
+          "message": "Duplikati se uklanjaju pomoću skupa (set)."
+        },
+        {
+          "pattern": ".split(",
+          "message": "Rečenica se deli metodom split."
+        },
+        {
+          "pattern": "join(",
+          "message": "Reči se spajaju metodom join."
+        }
+      ],
+      "cases": [
+        {
+          "stdin": "mama tata Mama",
+          "output_contains": [
+            "Različitih reči: 2",
+            "Reči: mama, tata"
+          ]
+        },
+        {
+          "stdin": "pas mačka pas riba mačka",
+          "output_contains": [
+            "Različitih reči: 3",
+            "Reči: mačka, pas, riba"
+          ]
+        },
+        {
+          "stdin": "jedan",
+          "output_contains": [
+            "Različitih reči: 1",
+            "Reči: jedan"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "reci = recenica.lower().split()",
+      "jedinstvene = set(reci), a broj je len(jedinstvene).",
+      "print(\"Reči:\", \", \".join(sorted(jedinstvene)))"
+    ],
+    "solution": "recenica = input(\"Rečenica: \")\n\n# Podeli na reči, ukloni duplikate, ispiši broj i sortirane reči.\nreci = recenica.lower().split()\njedinstvene = set(reci)\nprint(\"Različitih reči:\", len(jedinstvene))\nprint(\"Reči:\", \", \".join(sorted(jedinstvene)))\n"
+  },
+  "quiz": [
+    {
+      "question": "Koliko elemenata ima {1, 2, 2, 3, 3}?",
+      "options": [
+        "5",
+        "3",
+        "2"
+      ],
+      "correct": 1,
+      "explanation": "Skup nema duplikata."
+    },
+    {
+      "question": "Kako se pravi prazan skup?",
+      "options": [
+        "{}",
+        "set()",
+        "[]"
+      ],
+      "correct": 1,
+      "explanation": "{} je prazan rečnik."
+    },
+    {
+      "question": "Šta vraća \"a b c\".split()?",
+      "options": [
+        "\"abc\"",
+        "[\"a\", \"b\", \"c\"]",
+        "3"
+      ],
+      "correct": 1,
+      "explanation": "split vraća listu reči."
+    },
+    {
+      "type": "predict",
+      "question": "Šta ispisuje ovaj program?",
+      "code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(sorted(a & b))\n",
+      "options": [
+        "[2, 3]",
+        "[1, 2, 3, 4]",
+        "[1, 4]"
+      ],
+      "correct": 0,
+      "explanation": "& je presek — samo zajednički elementi."
+    },
+    {
+      "type": "output",
+      "question": "Upiši tačno šta ovaj program ispisuje.",
+      "code": "reci = \"b a c a\".split()\nprint(len(reci))\nprint(\"-\".join(sorted(set(reci))))\n",
+      "answer": "4\na-b-c",
+      "explanation": "Lista ima 4 reči; bez duplikata i sortirano: a, b, c."
+    }
+  ]
+}

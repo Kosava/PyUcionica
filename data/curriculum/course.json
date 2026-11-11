@@ -1,0 +1,429 @@
+{
+  "title": "Python i PyQt6 od nule",
+  "version": 1,
+  "modules": [
+    {
+      "id": "m01",
+      "number": 1,
+      "title": "Uvod u programiranje",
+      "lessons": [
+        {
+          "id": "m01_l01",
+          "title": "Šta je programiranje i kako Python funkcioniše",
+          "file": "modul_01/lekcija_01.json"
+        },
+        {
+          "id": "m01_l02",
+          "title": "Prvi program: print(\"Zdravo, svete!\")",
+          "file": "modul_01/lekcija_02.json"
+        },
+        {
+          "id": "m01_l03",
+          "title": "Kako se pokreće Python kod",
+          "file": "modul_01/lekcija_03.json"
+        },
+        {
+          "id": "m01_l04",
+          "title": "Komentari u kodu",
+          "file": "modul_01/lekcija_04.json"
+        },
+        {
+          "id": "m01_l05",
+          "title": "Kako čitati poruke grešaka",
+          "file": "modul_01/lekcija_05.json"
+        }
+      ]
+    },
+    {
+      "id": "m02",
+      "number": 2,
+      "title": "Promenljive i tipovi podataka",
+      "lessons": [
+        {
+          "id": "m02_l01",
+          "title": "Promenljive i dodeljivanje vrednosti",
+          "file": "modul_02/lekcija_01.json"
+        },
+        {
+          "id": "m02_l02",
+          "title": "Brojevi: int i float",
+          "file": "modul_02/lekcija_02.json"
+        },
+        {
+          "id": "m02_l03",
+          "title": "Tekst: str",
+          "file": "modul_02/lekcija_03.json"
+        },
+        {
+          "id": "m02_l04",
+          "title": "Logičke vrednosti: bool",
+          "file": "modul_02/lekcija_04.json"
+        },
+        {
+          "id": "m02_l05",
+          "title": "Pretvaranje tipova podataka",
+          "file": "modul_02/lekcija_05.json"
+        },
+        {
+          "id": "m02_l06",
+          "title": "Funkcija input() i korisnički unos",
+          "file": "modul_02/lekcija_06.json"
+        },
+        {
+          "id": "m02_l07",
+          "title": "Ispis formatiranog teksta pomoću f-stringova",
+          "file": "modul_02/lekcija_07.json"
+        }
+      ]
+    },
+    {
+      "id": "m03",
+      "number": 3,
+      "title": "Operatori i uslovi",
+      "lessons": [
+        {
+          "id": "m03_l01",
+          "title": "Matematički operatori",
+          "file": "modul_03/lekcija_01.json"
+        },
+        {
+          "id": "m03_l02",
+          "title": "Poređenje vrednosti",
+          "file": "modul_03/lekcija_02.json"
+        },
+        {
+          "id": "m03_l03",
+          "title": "Logički operatori",
+          "file": "modul_03/lekcija_03.json"
+        },
+        {
+          "id": "m03_l04",
+          "title": "if, elif i else",
+          "file": "modul_03/lekcija_04.json"
+        },
+        {
+          "id": "m03_l05",
+          "title": "Ugnježdeni uslovi",
+          "file": "modul_03/lekcija_05.json"
+        },
+        {
+          "id": "m03_l06",
+          "title": "Praktičan kalkulator",
+          "file": "modul_03/lekcija_06.json"
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "number": 4,
+      "title": "Petlje i kolekcije",
+      "lessons": [
+        {
+          "id": "m04_l01",
+          "title": "Petlja for",
+          "file": "modul_04/lekcija_01.json"
+        },
+        {
+          "id": "m04_l02",
+          "title": "Petlja while",
+          "file": "modul_04/lekcija_02.json"
+        },
+        {
+          "id": "m04_l03",
+          "title": "break i continue",
+          "file": "modul_04/lekcija_03.json"
+        },
+        {
+          "id": "m04_l04",
+          "title": "Liste",
+          "file": "modul_04/lekcija_04.json"
+        },
+        {
+          "id": "m04_l05",
+          "title": "Torke",
+          "file": "modul_04/lekcija_05.json"
+        },
+        {
+          "id": "m04_l06",
+          "title": "Skupovi",
+          "file": "modul_04/lekcija_06.json"
+        },
+        {
+          "id": "m04_l07",
+          "title": "Rečnici",
+          "file": "modul_04/lekcija_07.json"
+        },
+        {
+          "id": "m04_l08",
+          "title": "Prolazak kroz kolekcije",
+          "file": "modul_04/lekcija_08.json"
+        },
+        {
+          "id": "m04_l09",
+          "title": "Praktična evidencija podataka",
+          "file": "modul_04/lekcija_09.json"
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "number": 5,
+      "title": "Funkcije i organizacija koda",
+      "lessons": [
+        {
+          "id": "m05_l01",
+          "title": "Definisanje funkcija pomoću def",
+          "file": "modul_05/lekcija_01.json"
+        },
+        {
+          "id": "m05_l02",
+          "title": "Parametri i argumenti",
+          "file": "modul_05/lekcija_02.json"
+        },
+        {
+          "id": "m05_l03",
+          "title": "Povratne vrednosti pomoću return",
+          "file": "modul_05/lekcija_03.json"
+        },
+        {
+          "id": "m05_l04",
+          "title": "Lokalni i globalni opseg promenljivih",
+          "file": "modul_05/lekcija_04.json"
+        },
+        {
+          "id": "m05_l05",
+          "title": "Lambda funkcije i osnovne funkcije višeg reda",
+          "file": "modul_05/lekcija_05.json"
+        },
+        {
+          "id": "m05_l06",
+          "title": "Uvoz modula pomoću import",
+          "file": "modul_05/lekcija_06.json"
+        },
+        {
+          "id": "m05_l07",
+          "title": "Organizacija projekta u više Python fajlova",
+          "file": "modul_05/lekcija_07.json"
+        }
+      ]
+    },
+    {
+      "id": "m06",
+      "number": 6,
+      "title": "Greške, fajlovi i podaci",
+      "lessons": [
+        {
+          "id": "m06_l01",
+          "title": "SyntaxError, TypeError, NameError i ostale česte greške"
+        },
+        {
+          "id": "m06_l02",
+          "title": "try, except, else i finally"
+        },
+        {
+          "id": "m06_l03",
+          "title": "Čitanje i upisivanje tekstualnih fajlova"
+        },
+        {
+          "id": "m06_l04",
+          "title": "JSON podaci"
+        },
+        {
+          "id": "m06_l05",
+          "title": "Osnove SQLite baze podataka"
+        },
+        {
+          "id": "m06_l06",
+          "title": "Osnovno testiranje pomoću pytest"
+        }
+      ]
+    },
+    {
+      "id": "m07",
+      "number": 7,
+      "title": "Objektno-orijentisano programiranje",
+      "lessons": [
+        {
+          "id": "m07_l01",
+          "title": "Šta su klase i objekti"
+        },
+        {
+          "id": "m07_l02",
+          "title": "Konstruktor __init__"
+        },
+        {
+          "id": "m07_l03",
+          "title": "Atributi i metode"
+        },
+        {
+          "id": "m07_l04",
+          "title": "Enkapsulacija"
+        },
+        {
+          "id": "m07_l05",
+          "title": "Nasleđivanje"
+        },
+        {
+          "id": "m07_l06",
+          "title": "Kompozicija objekata"
+        },
+        {
+          "id": "m07_l07",
+          "title": "Praktičan mali projekat"
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "number": 8,
+      "title": "Početak rada sa PyQt6",
+      "lessons": [
+        {
+          "id": "m08_l01",
+          "title": "Šta je PyQt6 i kako se instalira",
+          "file": "modul_08/lekcija_01.json"
+        },
+        {
+          "id": "m08_l02",
+          "title": "Kreiranje prvog prozora",
+          "file": "modul_08/lekcija_02.json"
+        },
+        {
+          "id": "m08_l03",
+          "title": "QApplication i QWidget",
+          "file": "modul_08/lekcija_03.json"
+        },
+        {
+          "id": "m08_l04",
+          "title": "QLabel i QPushButton",
+          "file": "modul_08/lekcija_04.json"
+        },
+        {
+          "id": "m08_l05",
+          "title": "QLineEdit i QTextEdit",
+          "file": "modul_08/lekcija_05.json"
+        },
+        {
+          "id": "m08_l06",
+          "title": "Signali i slotovi",
+          "file": "modul_08/lekcija_06.json"
+        },
+        {
+          "id": "m08_l07",
+          "title": "Layout sistemi: QVBoxLayout, QHBoxLayout i QGridLayout"
+        },
+        {
+          "id": "m08_l08",
+          "title": "QMainWindow, meni i statusna traka"
+        },
+        {
+          "id": "m08_l09",
+          "title": "QCheckBox, QRadioButton i QComboBox"
+        },
+        {
+          "id": "m08_l10",
+          "title": "Liste i tabele"
+        },
+        {
+          "id": "m08_l11",
+          "title": "QDialog i dijaloški prozori"
+        },
+        {
+          "id": "m08_l12",
+          "title": "QTabWidget i QSplitter"
+        },
+        {
+          "id": "m08_l13",
+          "title": "Rad sa ikonama, fontovima i QSS stilovima"
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "number": 9,
+      "title": "Napredniji PyQt6",
+      "lessons": [
+        {
+          "id": "m09_l01",
+          "title": "Model-view arhitektura"
+        },
+        {
+          "id": "m09_l02",
+          "title": "QTableView i modeli podataka"
+        },
+        {
+          "id": "m09_l03",
+          "title": "Učitavanje i čuvanje podataka"
+        },
+        {
+          "id": "m09_l04",
+          "title": "SQLite u desktop aplikaciji"
+        },
+        {
+          "id": "m09_l05",
+          "title": "QThread i dugotrajne operacije"
+        },
+        {
+          "id": "m09_l06",
+          "title": "QProcess i pokretanje spoljnih programa"
+        },
+        {
+          "id": "m09_l07",
+          "title": "Obrada grešaka u GUI aplikaciji"
+        },
+        {
+          "id": "m09_l08",
+          "title": "Podešavanja i čuvanje korisničkih preferencija"
+        },
+        {
+          "id": "m09_l09",
+          "title": "Razdvajanje interfejsa, poslovne logike i podataka"
+        },
+        {
+          "id": "m09_l10",
+          "title": "Pakovanje i distribucija aplikacije"
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "number": 10,
+      "title": "Praktični projekti",
+      "lessons": [
+        {
+          "id": "m10_l01",
+          "title": "Kalkulator",
+          "file": "modul_10/lekcija_01.json"
+        },
+        {
+          "id": "m10_l02",
+          "title": "Lista zadataka"
+        },
+        {
+          "id": "m10_l03",
+          "title": "Evidencija kontakata"
+        },
+        {
+          "id": "m10_l04",
+          "title": "Menadžer beleški sa SQLite bazom"
+        },
+        {
+          "id": "m10_l05",
+          "title": "Uređivač tekstualnih fajlova"
+        },
+        {
+          "id": "m10_l06",
+          "title": "Evidencija podataka sa tabelom i pretragom"
+        },
+        {
+          "id": "m10_l07",
+          "title": "Mala aplikacija za vođenje lične evidencije"
+        },
+        {
+          "id": "m10_l08",
+          "title": "Završni projekat: kompletna desktop aplikacija"
+        }
+      ]
+    }
+  ]
+}

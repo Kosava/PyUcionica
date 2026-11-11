@@ -1,0 +1,116 @@
+{
+  "id": "m08_l01",
+  "goal": "Saznaćeš šta je PyQt6, čemu služi i kako se instalira, i proverićeš da li radi na tvom računaru.",
+  "explanation": [
+    "Do sada su tvoji programi pisali tekst u panel sa rezultatom. Programi koje svakodnevno koristiš izgledaju drugačije: imaju **prozore**, dugmad, polja za unos i menije. Takav izgled se zove **grafički korisnički interfejs** — skraćeno **GUI** (od engleskog Graphical User Interface).",
+    "**PyQt6** je **biblioteka** za pravljenje GUI programa u Pythonu. Biblioteka je zbirka gotovog koda koju neko drugi napiše, a ti je koristiš u svom programu. PyQt6 je Python verzija biblioteke **Qt**, kojom su napravljeni mnogi poznati programi. I ova aplikacija u kojoj učiš napravljena je pomoću PyQt6.",
+    "Biblioteka se u program uključuje naredbom **import**. Na primer `from PyQt6.QtWidgets import QApplication` znači: „iz dela biblioteke PyQt6 koji se zove QtWidgets uzmi QApplication“. Posle toga QApplication možeš da koristiš kao da je deo Pythona. Detaljno o import-u učićeš u Modulu 5.",
+    "PyQt6 se instalira jednom, na računaru:\n- na Arch Linuxu: `sudo pacman -S python-pyqt6`\n- na Windows-u, macOS-u ili u virtuelnom okruženju: `pip install PyQt6`\nOva aplikacija već koristi PyQt6, pa je on kod tebe sigurno instaliran — možeš odmah da vežbaš.",
+    "Kada pokreneš program koji otvara prozor, prozor se pojavljuje **posebno**, pored ove aplikacije. Program radi sve dok ne zatvoriš prozor (ili ne klikneš „Zaustavi“), pa za njega ne važi vremensko ograničenje. Ono što program ispiše pomoću print() i dalje se vidi u panelu sa rezultatom.",
+    "> Moduli 6–7 (greške, fajlovi, klase) su još u pripremi. Ova lekcija je napisana tako da je možeš pratiti sa znanjem iz Modula 1–5 — svaki novi pojam koji ti treba (posebno klase) objašnjen je ovde."
+  ],
+  "terms": [
+    {
+      "term": "GUI",
+      "definition": "Grafički korisnički interfejs — prozori, dugmad, polja i meniji umesto čistog teksta."
+    },
+    {
+      "term": "Biblioteka",
+      "definition": "Zbirka gotovog koda koju uključiš u svoj program i koristiš."
+    },
+    {
+      "term": "PyQt6",
+      "definition": "Python biblioteka za pravljenje programa sa prozorima (zasnovana na biblioteci Qt)."
+    },
+    {
+      "term": "import",
+      "definition": "Naredba kojom se u program uključuje deo biblioteke, npr. from PyQt6.QtWidgets import QApplication."
+    }
+  ],
+  "example_code": "from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR\n\nprint(\"PyQt6 je instaliran!\")\nprint(\"Verzija PyQt6:\", PYQT_VERSION_STR)\nprint(\"Verzija Qt:\", QT_VERSION_STR)\n",
+  "example_steps": [
+    {
+      "code": "from PyQt6.QtCore import PYQT_VERSION_STR, QT_VERSION_STR",
+      "explanation": "Iz dela QtCore uzimamo dve vrednosti: verziju PyQt6 i verziju Qt. Ako PyQt6 nije instaliran, ova linija javlja grešku ModuleNotFoundError."
+    },
+    {
+      "code": "print(\"Verzija PyQt6:\", PYQT_VERSION_STR)",
+      "explanation": "PYQT_VERSION_STR je tekst sa brojem verzije, npr. 6.7.1. Ispisuje se kao i svaka druga vrednost."
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napiši program koji proverava da li PyQt6 radi:\n\n- iz `PyQt6.QtCore` uvezi `PYQT_VERSION_STR`,\n- ispiši tekst `PyQt6 verzija: <verzija>` pomoću f-stringa.\n\nPrimer izlaza: `PyQt6 verzija: 6.7.1` (broj zavisi od tvog računara).",
+    "starter_code": "# Uvezi PYQT_VERSION_STR iz PyQt6.QtCore.\n\n# Ispiši verziju pomoću f-stringa.\n",
+    "expected_output_preview": "PyQt6 verzija: 6.x.y",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "from\\s+PyQt6\\.QtCore\\s+import\\s+.*PYQT_VERSION_STR",
+          "message": "PYQT_VERSION_STR se uvozi iz PyQt6.QtCore.",
+          "regex": true
+        },
+        {
+          "pattern": "\\bf[\\\"']",
+          "message": "Ispis koristi f-string.",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "output_contains": [
+            "PyQt6 verzija: 6."
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Prva linija: from PyQt6.QtCore import PYQT_VERSION_STR",
+      "F-string počinje slovom f: f\"PyQt6 verzija: {...}\"",
+      "Ceo ispis: print(f\"PyQt6 verzija: {PYQT_VERSION_STR}\")"
+    ],
+    "solution": "# Uvezi PYQT_VERSION_STR iz PyQt6.QtCore.\nfrom PyQt6.QtCore import PYQT_VERSION_STR\n\n# Ispiši verziju pomoću f-stringa.\nprint(f\"PyQt6 verzija: {PYQT_VERSION_STR}\")\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta znači skraćenica GUI?",
+      "options": [
+        "Grafički korisnički interfejs",
+        "Glavni uslovni izraz",
+        "Greška u importu"
+      ],
+      "correct": 0,
+      "explanation": "GUI = Graphical User Interface: prozori, dugmad, polja."
+    },
+    {
+      "question": "Šta je biblioteka u programiranju?",
+      "options": [
+        "Fajl sa tekstom lekcija",
+        "Zbirka gotovog koda koju koristiš u svom programu",
+        "Folder sa slikama"
+      ],
+      "correct": 1,
+      "explanation": "Biblioteka ti daje gotove delove, kao što su prozori i dugmad u PyQt6."
+    },
+    {
+      "question": "Kako se PyQt6 instalira na Arch Linuxu?",
+      "options": [
+        "sudo pacman -S python-pyqt6",
+        "print(\"PyQt6\")",
+        "import install PyQt6"
+      ],
+      "correct": 0,
+      "explanation": "Na Arch Linuxu paketi se instaliraju pacman-om."
+    },
+    {
+      "question": "Koliko dugo radi program koji otvara prozor?",
+      "options": [
+        "Tačno 10 sekundi",
+        "Dok ne zatvoriš prozor ili ne klikneš „Zaustavi“",
+        "Samo dok se ispiše prvi red"
+      ],
+      "correct": 1,
+      "explanation": "Programi sa prozorom čekaju korisnika, pa za njih ne važi vremensko ograničenje."
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "id": "m08_l06",
+  "goal": "Naučićeš kako program reaguje na akcije korisnika: signal (npr. klik) povezuješ sa svojom funkcijom — slotom — koja tada nešto uradi.",
+  "explanation": [
+    "Program sa prozorom ne izvršava se odozgo nadole i završava, kao do sada. Posle app.exec() on **čeka** da korisnik nešto uradi, pa tek onda reaguje. Kako mu kažemo šta da uradi?",
+    "Kada se nešto desi, widget šalje **signal**: dugme šalje `clicked` kada se klikne, polje za unos šalje `textChanged` kada se tekst promeni. Signal se povezuje sa **slotom** — funkcijom koja će se pozvati kada signal stigne: `dugme.clicked.connect(pozdravi)`.",
+    "Slot je obična **funkcija** koju sami napišemo. Funkcija je imenovani blok koda koji se ne izvršava odmah, već tek kada je neko pozove. Pravi se rečju **def**, imenom, zagradama i dvotačkom; ispod je uvučen blok, kao kod if:\n`def pozdravi():`\n`    rezultat.setText(\"Zdravo!\")`\nFunkcije detaljno učiš u Modulu 5 — za slotove je ovo dovoljno.",
+    "Važno: u `connect(pozdravi)` posle imena funkcije **nema zagrada**. Sa zagradama (`pozdravi()`) funkcija bi se izvršila odmah, jednom, a dugmetu bi se predao njen rezultat. Bez zagrada predaješ samu funkciju — dugme će je pozvati pri svakom kliku.",
+    "Unutar slota koristiš sve što znaš: čitaš polja (`polje.text()`), donosiš odluke sa if, menjaš natpise (`setText`). Funkcija mora biti napisana **pre** linije sa connect.",
+    "> Ako u slotu postoji greška, prozor se ne ruši: greška se ispiše u panelu sa rezultatom, a program nastavlja da radi. Ispravi kod i pokreni ponovo."
+  ],
+  "terms": [
+    {
+      "term": "Signal",
+      "definition": "Obaveštenje koje widget šalje kada se nešto desi (clicked, textChanged...)."
+    },
+    {
+      "term": "Slot",
+      "definition": "Funkcija koja se poziva kada stigne signal sa kojim je povezana."
+    },
+    {
+      "term": "Funkcija (def)",
+      "definition": "Imenovani blok koda koji se izvršava tek kada se pozove. Pravi se rečju def."
+    },
+    {
+      "term": "connect",
+      "definition": "Povezuje signal sa slotom: dugme.clicked.connect(ime_funkcije) — bez zagrada."
+    }
+  ],
+  "example_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Brojač klikova\")\n\nnatpis = QLabel(\"0\")\ndugme = QPushButton(\"Klikni\")\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(natpis)\nraspored.addWidget(dugme)\n\n\ndef na_klik():\n    novi_broj = int(natpis.text()) + 1\n    natpis.setText(str(novi_broj))\n    print(\"Dugme je kliknuto\", novi_broj, \"put(a)\")\n\n\ndugme.clicked.connect(na_klik)\n\nprozor.show()\nsys.exit(app.exec())\n",
+  "example_steps": [
+    {
+      "code": "def na_klik():",
+      "explanation": "Pravi se funkcija na_klik. Njen blok se NE izvršava sada, već pri svakom kliku."
+    },
+    {
+      "code": "    novi_broj = int(natpis.text()) + 1",
+      "explanation": "Natpis sadrži tekst, npr. \"3\". Pretvaramo ga u broj (Modul 2) i dodajemo 1."
+    },
+    {
+      "code": "    natpis.setText(str(novi_broj))",
+      "explanation": "setText prima tekst, pa broj vraćamo u tekst. Korisnik odmah vidi novi broj."
+    },
+    {
+      "code": "    print(\"Dugme je kliknuto\", novi_broj, \"put(a)\")",
+      "explanation": "print u slotu ispisuje u panel sa rezultatom — korisno za praćenje šta se dešava."
+    },
+    {
+      "code": "dugme.clicked.connect(na_klik)",
+      "explanation": "Signal clicked povezan je sa funkcijom na_klik. Bez zagrada!"
+    }
+  ],
+  "exercise": {
+    "type": "write",
+    "description": "Napravi prozor `Pozdrav` sa poljem za unos, dugmetom `Pozdravi` i natpisom ispod. Kada korisnik klikne dugme:\n\n- ako je upisao ime, natpis prikazuje `Zdravo, <ime>!`\n- ako je polje prazno, natpis prikazuje `Upiši ime.`\n\nProvera će upisati ime, kliknuti dugme i pročitati natpis — pa isto to sa praznim poljem.",
+    "starter_code": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Pozdrav\")\n\npolje = QLineEdit()\ndugme = QPushButton(\"Pozdravi\")\nrezultat = QLabel(\"\")\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(polje)\nraspored.addWidget(dugme)\nraspored.addWidget(rezultat)\n\n\n# Napiši funkciju pozdravi() i poveži je sa klikom na dugme.\n\n\nprozor.show()\nsys.exit(app.exec())\n",
+    "expected_output_preview": "(upišeš „Ana“ i klikneš „Pozdravi“ → natpis: Zdravo, Ana!)",
+    "criteria": {
+      "code_contains": [
+        {
+          "pattern": "^def\\s+\\w+\\(",
+          "message": "Postoji funkcija (slot) napravljena sa def.",
+          "regex": true
+        },
+        {
+          "pattern": "clicked\\.connect\\(\\s*\\w+\\s*\\)",
+          "message": "Klik je povezan sa funkcijom (bez zagrada posle imena).",
+          "regex": true
+        }
+      ],
+      "cases": [
+        {
+          "name": "sa imenom",
+          "gui_script": "polje = nadji('QLineEdit')\nupisi(polje, 'Ana')\nklikni('Pozdravi')\nfor n in sve('QLabel'):\n    print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Zdravo, Ana!"
+          ]
+        },
+        {
+          "name": "drugo ime",
+          "gui_script": "polje = nadji('QLineEdit')\nupisi(polje, 'Marko')\nklikni('Pozdravi')\nfor n in sve('QLabel'):\n    print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Zdravo, Marko!"
+          ]
+        },
+        {
+          "name": "prazno polje",
+          "gui_script": "klikni('Pozdravi')\nfor n in sve('QLabel'):\n    print('natpis:', tekst(n))\n",
+          "output_contains": [
+            "natpis: Upiši ime."
+          ],
+          "output_not_contains": [
+            "Zdravo"
+          ]
+        }
+      ]
+    },
+    "hints": [
+      "Funkcija počinje ovako:\ndef pozdravi():\n    ime = polje.text()",
+      "U funkciji koristi if: if ime == \"\": rezultat.setText(\"Upiši ime.\") else: rezultat.setText(f\"Zdravo, {ime}!\")",
+      "Posle funkcije, a pre prozor.show(): dugme.clicked.connect(pozdravi)"
+    ],
+    "solution": "import sys\nfrom PyQt6.QtWidgets import QApplication, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget\n\napp = QApplication(sys.argv)\nprozor = QWidget()\nprozor.setWindowTitle(\"Pozdrav\")\n\npolje = QLineEdit()\npolje.setPlaceholderText(\"Upiši ime\")\ndugme = QPushButton(\"Pozdravi\")\nrezultat = QLabel(\"\")\n\nraspored = QVBoxLayout(prozor)\nraspored.addWidget(polje)\nraspored.addWidget(dugme)\nraspored.addWidget(rezultat)\n\n\ndef pozdravi():\n    ime = polje.text().strip()\n    if ime == \"\":\n        rezultat.setText(\"Upiši ime.\")\n    else:\n        rezultat.setText(f\"Zdravo, {ime}!\")\n\n\ndugme.clicked.connect(pozdravi)\n\nprozor.show()\nsys.exit(app.exec())\n"
+  },
+  "quiz": [
+    {
+      "question": "Šta je slot?",
+      "options": [
+        "Dugme u prozoru",
+        "Funkcija koja se poziva kada stigne signal",
+        "Vrsta rasporeda"
+      ],
+      "correct": 1,
+      "explanation": "Slot je tvoja funkcija povezana sa signalom."
+    },
+    {
+      "question": "Koja linija je ispravna?",
+      "options": [
+        "dugme.clicked.connect(pozdravi())",
+        "dugme.clicked.connect(pozdravi)",
+        "dugme.clicked(pozdravi)"
+      ],
+      "correct": 1,
+      "explanation": "Funkcija se predaje bez zagrada, da bi je dugme pozvalo pri kliku."
+    },
+    {
+      "question": "Kada se izvršava blok funkcije napisane sa def?",
+      "options": [
+        "Odmah, čim Python stigne do nje",
+        "Tek kada je neko pozove (npr. dugme pri kliku)",
+        "Na kraju programa"
+      ],
+      "correct": 1,
+      "explanation": "def samo pravi funkciju; izvršava se pri pozivu."
+    },
+    {
+      "question": "Koji signal šalje QLineEdit kada se promeni tekst?",
+      "options": [
+        "clicked",
+        "textChanged",
+        "show"
+      ],
+      "correct": 1,
+      "explanation": "textChanged se šalje pri svakoj promeni teksta."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=PyQt6 Learning Studio
+GenericName=Učenje programiranja
+GenericName[sr@latin]=Učenje programiranja
+Comment=Interaktivno učenje Pythona i PyQt6 za potpune početnike
+Comment[sr@latin]=Interaktivno učenje Pythona i PyQt6 za potpune početnike
+Exec=pyqt6-learning-studio
+Icon=pyqt6-learning-studio
+Terminal=false
+Categories=Education;Development;IDE;Qt;
+Keywords=python;pyqt6;programiranje;učenje;kurs;
+StartupWMClass=pyqt6-learning-studio
